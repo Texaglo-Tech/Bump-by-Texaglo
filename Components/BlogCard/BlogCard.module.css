@@ -1,0 +1,120 @@
+.Blog_card {
+    width: 384px;
+    height: 501px;
+    border-radius: 51px;
+    border: 2px solid rgba(233, 233, 233, 0.44);
+    background: linear-gradient(324deg, rgba(46, 46, 46, 0.40) 6.96%, rgba(42, 42, 42, 0.40) 93.77%);
+    backdrop-filter: blur(27px);
+    margin-right: 30px;
+}
+
+.Blog_images_section {
+    width: 100%;
+    height: 191px;
+    /* background-color: aquamarine; */
+}
+
+.Blog_images {
+    height: 100%;
+    width: 100%;
+    border-radius: 51px 51px 0px 0px;
+}
+
+.Blog_content {
+    padding: 24px;
+    height: 265px;
+    border-radius: 0px 0px 51px 51px;
+}
+
+.Blog_content_top {
+    display: flex;
+    /* margin: 10px 0px; */
+    margin-bottom: 10px;
+}
+
+.Blog_content_top_btn {
+    display: flex;
+    width: 79px;
+    padding: 8.542px;
+    justify-content: center;
+    align-items: center;
+    gap: 8.542px;
+    border-radius: 28.19px;
+    border: 0.854px solid rgba(80, 80, 80, 0.29);
+    background: rgba(86, 86, 86, 0.30);
+    backdrop-filter: blur(5.125441551208496px);
+    margin-right: 10px;
+}
+
+.Blog_content h1 {
+    width: 333.938px;
+    height: 65.045px;
+    color: #D8D8D8;
+    font-family: Clash Display;
+    font-size: 28.41px;
+    font-weight: 700;
+    margin: 0px !important;
+}
+
+.Blog_content p {
+    color: rgba(255, 255, 255, 0.61);
+    font-family: Zen Kaku Gothic Antique;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 117.8%;
+    /* 18.848px */
+}
+
+.Blog_content hr {
+    width: 383.177px;
+    height: 1px;
+    margin-left: -25px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.Blog_content_bottom {
+    position: relative;
+    margin-top: 10px;
+}
+
+.Blog_content_bottom_img_1 {
+    position: absolute;
+    width: 40.333px;
+    height: 39.765px;
+    border-radius: 70px;
+}
+
+.Blog_content_bottom_img_2 {
+    position: absolute;
+    width: 40.333px;
+    height: 39.765px;
+    border-radius: 70px;
+    left: 30px;
+}
+
+.Blog_content_bottom_btn {
+    position: absolute;
+    width: 106.985px;
+    height: 45.327px;
+    border-radius: 46px;
+    background: #FFF;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.Blog_content_bottom_btn_eye {
+    width: 17px;
+    margin: 0px 12px;
+}
+
+.Blog_content_bottom_btn p {
+    color: rgba(0, 0, 0, 0.85);
+    text-align: center;
+    font-family: Zen Kaku Gothic Antique;
+    font-size: 16.858px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

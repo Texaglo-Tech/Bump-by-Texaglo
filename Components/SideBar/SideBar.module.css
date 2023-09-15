@@ -1,0 +1,86 @@
+/* .NavSection {
+    width: 100%;
+    height: 300vh;
+    position: relative;
+} */
+
+.Nav {
+    width: 90.745px;
+    height: 915.583px;
+    /* transform: rotate(-90deg); */
+    position: absolute;
+    border-radius: 97px;
+    border: 1px solid rgba(255, 255, 255, 0.29);
+    background: rgba(86, 86, 86, 0.30);
+    backdrop-filter: blur(40.5px);
+    left: 37px;
+    top: 33.21px;
+    padding: 0px 8.73px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.NavPic {
+    margin-top: 30px;
+    width: 73.279px;
+    height: 73.279px;
+}
+
+.NavIcons {
+    width: 100%;
+    height: 86%;
+    position: relative;
+}
+
+.IconTop {
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+}
+
+.IconTop hr {
+    width: 45.797px;
+    height: 1.197px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.NavIconImg {
+    width: 41.14px;
+    height: 41.14px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.IconBottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.IconBottom hr {
+    width: 45.797px;
+    height: 1.197px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+@media screen and (max-width: 1600px) {
+    .Nav {
+        width: 80px;
+        height: 650px;
+    }
+
+    .NavIcons {
+        height: 82%;
+
+    }
+}

@@ -1,0 +1,114 @@
+.event_card {
+    width: 384px;
+    height: 451px;
+    border-radius: 51px;
+    border: 2px solid rgba(233, 233, 233, 0.44);
+    background: linear-gradient(324deg, rgba(46, 46, 46, 0.40) 6.96%, rgba(42, 42, 42, 0.40) 93.77%);
+    backdrop-filter: blur(27px);
+    margin-right: 30px;
+}
+
+.event_images_section {
+    width: 100%;
+    height: 197.383px;
+    /* background-color: aquamarine; */
+}
+
+.event_images {
+    height: 100%;
+    width: 100%;
+    border-radius: 50px 50px 0px 0px;
+}
+
+.event_content {
+    padding: 24px;
+    height: 265px;
+    border-radius: 0px 0px 51px 51px;
+}
+
+.event_content_top p {
+    color: rgba(255, 255, 255, 0.61);
+    font-family: Zen Kaku Gothic Antique;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 117.8%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+.event_content h1 {
+    width: 348px;
+    height: 65.045px;
+    color: #D8D8D8;
+    font-family: Clash Display;
+    font-size: 28.41px;
+    font-weight: 700;
+    line-height: 100.5%;
+    margin: 10px 0px;
+}
+
+.event_content p {
+    color: rgba(255, 255, 255, 0.61);
+    font-family: Zen Kaku Gothic Antique;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 117.8%;
+    /* 18.848px */
+}
+
+.event_content hr {
+    width: 383.177px;
+    height: 1px;
+    margin-left: -25px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.event_content_bottom {
+    position: relative;
+    margin-top: 10px;
+}
+
+.event_content_bottom_img_1 {
+    position: absolute;
+    width: 40.333px;
+    height: 39.765px;
+    border-radius: 70px;
+}
+
+.event_content_bottom_img_2 {
+    position: absolute;
+    width: 40.333px;
+    height: 39.765px;
+    border-radius: 70px;
+    left: 30px;
+}
+
+.event_content_bottom_btn {
+    position: absolute;
+    width: 137.41px;
+    height: 45.327px;
+    flex-shrink: 0;
+    border-radius: 46px;
+    background: #FFF;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.event_content_bottom_btn_eye {
+    width: 17px;
+    margin: 0px 12px;
+}
+
+.event_content_bottom_btn p {
+    color: rgba(0, 0, 0, 0.85);
+    text-align: center;
+    font-family: Zen Kaku Gothic Antique;
+    font-size: 16.858px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

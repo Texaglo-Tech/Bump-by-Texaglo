@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import SideBar from "../Components/SideBar/SideBar";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <SideBar />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;
