@@ -35,11 +35,19 @@ const SideBar = () => {
             <hr />
             <Image
               className={Style.NavIconImg}
-              src={images.rocket}
+              src={images.twitter}
               alt="image"
             />
-            <Image className={Style.NavIconImg} src={images.book} alt="image" />
-            <Image className={Style.NavIconImg} src={images.tool} alt="image" />
+            <Image
+              className={Style.NavIconImg}
+              src={images.youtube}
+              alt="image"
+            />
+            <Image
+              className={Style.NavIconImg}
+              src={images.github}
+              alt="image"
+            />
           </div>
         </div>
       </div>

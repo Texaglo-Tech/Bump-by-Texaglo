@@ -18,6 +18,9 @@ import profile_pic from "./profile_pic.png";
 import event_1 from "./event_1.png";
 import elec from "./elec.png";
 import double_arrow from "./double_arrow.png";
+import github from "./github.png";
+import twitter from "./twitter.png";
+import youtube from "./youtube.png";
 
 export default {
   navpic,
@@ -40,4 +43,7 @@ export default {
   event_1,
   elec,
   double_arrow,
+  github,
+  twitter,
+  youtube,
 };
