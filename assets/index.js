@@ -21,6 +21,9 @@ import double_arrow from "./double_arrow.png";
 import github from "./github.png";
 import twitter from "./twitter.png";
 import youtube from "./youtube.png";
+import botAI from "./bot.png";
+import close from "./close.png";
+import profile_icon from "./profile_icon.png";
 
 export default {
   navpic,
@@ -46,4 +49,7 @@ export default {
   github,
   twitter,
   youtube,
+  botAI,
+  close,
+  profile_icon,
 };

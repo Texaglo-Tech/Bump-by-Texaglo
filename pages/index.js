@@ -6,6 +6,7 @@ import Partners from "../Components/Partners/Partners";
 import BlogSections from "../Components/BlogSections/BlogSections";
 import EventsSections from "../Components/EventsSections/EventsSections";
 import ProjectsSections from "../Components/ProjectsSections/ProjectsSections";
+import AiBot from "../Components/AiBot/AiBot";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <BlogSections />
       <EventsSections />
       <ProjectsSections />
+      <AiBot />
     </div>
   );
 }

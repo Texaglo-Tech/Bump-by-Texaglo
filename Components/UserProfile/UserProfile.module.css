@@ -1,0 +1,241 @@
+.profile_section {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.profile_address_section {
+    display: flex;
+    width: 170px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+    margin-right: 10px;
+}
+
+.profile_img_section {
+    width: 52px;
+    height: 44px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.profile_img {
+    width: 35px;
+    height: 35px;
+}
+
+
+.user_details_section {
+    width: 90%;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.user_details_title {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user_details_first_card {
+    width: 383px;
+    height: 586px;
+    border-radius: 33px;
+    background-color: aliceblue;
+    /* background: lightgray -83.826px -47.126px / 141.634% 115.734% no-repeat; */
+    /* filter: blur(25px); */
+}
+
+.user_details_first p {
+    color: #FFF;
+    font-family: Roboto Mono;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.user_details_first_btn {
+    width: 410px;
+    height: 73px;
+    border-radius: 34px;
+    background: #3757F4;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_details_first h3 {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user_details_secound_card {
+    position: relative;
+    width: 287.447px;
+    height: 392.115px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.466);
+    -webkit-backdrop-filter: blur(40.5px);
+    backdrop-filter: blur(40.5px);
+    background: linear-gradient(180deg, #71FAF2 0%, #6211C9 100%);
+}
+
+.user_details_secound_card h1 {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 20px 0px 0px 0px;
+    text-align: center;
+}
+
+.user_details_secound_card p {
+    margin: 0;
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.user_details_secound_card_bottom {
+    width: 100%;
+    position: absolute;
+    height: 200px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_details_secound_card_seekbar {
+    width: 245px;
+    height: 14px;
+    border-radius: 31px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 105.11%);
+}
+
+.user_details_secound_card_innerbar {
+    width: 154.659px;
+    height: 14.06px;
+    border-radius: 31px;
+    background: linear-gradient(90deg, #25CEDE 0%, #FDCC5C 105.11%);
+}
+
+.user_details_secound_card_bottom p {
+    color: #FFF;
+    font-family: Roboto Mono;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 20px;
+}
+
+.user_details_secound_card_bottom_button {
+    width: 182.779px;
+    height: 42.18px;
+    border-radius: 7px;
+    background: rgba(0, 0, 0, 0.50);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    cursor: pointer;
+}
+
+.user_details_secound p {
+    color: #FFF;
+    font-family: Roboto Mono;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.user_details_third {
+    width: 465px;
+}
+
+.user_details_third_card {
+    width: 465px;
+    height: 609px;
+    border-radius: 34px;
+    background: #1C2245;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.user_details_third_card_address {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_address {
+    width: 286px;
+    height: 37px;
+    border-radius: 34px;
+    background: #303865;
+    margin-right: 20px;
+}
+
+.user_address_button {
+    width: 108px;
+    height: 37px;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    color: #fff;
+
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.user_refer_list {
+    margin: auto;
+    margin-top: 30px;
+    width: 80%;
+    max-height: 300px;
+    display: flex;
+    justify-content: space-between;
+}

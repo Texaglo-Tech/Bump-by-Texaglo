@@ -99,3 +99,9 @@
     transform: translate(-50%, -50%);
     top: 710px;
 }
+
+@media screen and (max-width: 1600px) {
+    .scrool_down {
+        top: 600px;
+    }
+}
