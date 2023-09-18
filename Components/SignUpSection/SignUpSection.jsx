@@ -10,6 +10,11 @@ const SignUpSection = ({ setLoginComp }) => {
             <input type="text" required />
             <label>Enter your user name</label>
           </div>
+
+          <div className="input_field">
+            <input type="number" required />
+            <label>Enter your number</label>
+          </div>
           <div className="input_field">
             <input type="text" required />
             <label>Enter your email</label>
