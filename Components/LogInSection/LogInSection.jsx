@@ -7,6 +7,12 @@ const LogInSection = ({ setLoginComp }) => {
 
   console.log(checked);
 
+  const handleOTP = () => {
+    if (!checked) {
+      setIsCodeSend(true);
+    }
+  };
+
   return (
     <>
       {!isCodeSend ? (
@@ -47,18 +53,23 @@ const LogInSection = ({ setLoginComp }) => {
               </div>
             )}
 
-            {/* <div className="input_field">
-            <input type="password" required />
-            <label>Enter your password</label>
-          </div> */}
-            {/* <div className="forget">
-            <label for="remember">
-              <input type="checkbox" id="remember" />
-              <p>Remember me</p>
-            </label>
-            <a href="#">Forgot password?</a>
-          </div> */}
-            <button type="submit" onClick={() => setIsCodeSend(true)}>
+            {checked && (
+              <>
+                <div className="input_field">
+                  <input type="password" required />
+                  <label>Enter your password</label>
+                </div>
+                <div className="forget">
+                  <label for="remember">
+                    <input type="checkbox" id="remember" />
+                    <p>Remember me</p>
+                  </label>
+                  <a href="#">Forgot password?</a>
+                </div>
+              </>
+            )}
+
+            <button type="submit" onClick={handleOTP}>
               Log In
             </button>
             <div className="register">
