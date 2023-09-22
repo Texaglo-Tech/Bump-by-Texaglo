@@ -1,9 +1,38 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import VerificationInput from "../VerificationInput/VerificationInput";
+import axios from "axios";
 
 const LogInSection = ({ setLoginComp }) => {
   const [checked, setChecked] = useState(true);
   const [isCodeSend, setIsCodeSend] = useState(false);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/api/auth/login",
+        data
+        // {
+        //   withCredentials: true,
+        // }
+      );
+      console.log("Response:", response.data);
+      if (response.data == "OK") {
+        console.log("Worked");
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   console.log(checked);
 
@@ -17,7 +46,7 @@ const LogInSection = ({ setLoginComp }) => {
     <>
       {!isCodeSend ? (
         <div className="wrapper">
-          <form action="#" className="wrapper_form">
+          <form action="#" className="wrapper_form" onSubmit={handleSubmit}>
             <h2>Login</h2>
             <div class="checkbox-wrapper-35">
               <input
@@ -43,7 +72,11 @@ const LogInSection = ({ setLoginComp }) => {
             </div>
             {checked ? (
               <div className="input_field">
-                <input type="text" required />
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                />
                 <label>Enter your email</label>
               </div>
             ) : (
@@ -56,7 +89,13 @@ const LogInSection = ({ setLoginComp }) => {
             {checked && (
               <>
                 <div className="input_field">
-                  <input type="password" required />
+                  <input
+                    type="password"
+                    required
+                    onChange={(e) =>
+                      setData({ ...data, password: e.target.value })
+                    }
+                  />
                   <label>Enter your password</label>
                 </div>
                 <div className="forget">

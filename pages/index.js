@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import axios from "axios";
 import styles from "../styles/Home.module.css";
 import HeroSection from "../Components/HeroSection/HeroSection";
 import Partners from "../Components/Partners/Partners";
@@ -9,6 +11,26 @@ import ProjectsSections from "../Components/ProjectsSections/ProjectsSections";
 import AiBot from "../Components/AiBot/AiBot";
 
 export default function Home() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/auth/whoami"
+        );
+        // if (response.data.success) {
+        //   const username = response.data.result;
+        //   console.log(`Username: ${username}`);
+        // } else {
+        //   console.error("You are not logged in");
+        // }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
