@@ -1,6 +1,6 @@
 * {
   padding: 0;
-  /* margin: 0; */
+  margin: 0;
 }
 
 html,
@@ -9,6 +9,22 @@ body {
   background: linear-gradient(113deg, #090909 8.46%, #222 102.56%);
   color: #fff;
 }
+
+/* ===========Dashboard Start================= */
+.dashboard_page {
+  width: 100%;
+  min-height: 100vh;
+  background: #192040;
+
+}
+
+.dashboard_comp {
+  width: 80%;
+  /* min-height: 100vh; */
+  float: right;
+}
+
+/* ===========Dashboard end================= */
 
 /* ===========ChatBox Start================= */
 

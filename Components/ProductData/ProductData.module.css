@@ -1,0 +1,182 @@
+.Product_section {
+    margin-top: 120px;
+    width: 100%;
+    display: flex;
+}
+
+.Product_post_section {
+    width: 60%;
+}
+
+.Product_post_section h1 {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.Product_data_box {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+}
+
+.Product_data_single {
+    margin-right: 30px;
+    width: 300.955px;
+    height: 244px;
+    border-radius: 34px;
+    background: #1C2245;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+
+.Product_post_card_section {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.Product_post_card_box {
+    width: 100%;
+}
+
+.Product_post_card_box h1 {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* .Product_post_card_title {
+    margin-top: 30px;
+  } */
+
+.Product_post_card_box p {
+    margin-top: 20px;
+    color: #FFF;
+    font-family: Roboto Mono;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.Product_post_card {
+    padding: 30px;
+    margin-top: 20px;
+    width: 465px;
+    height: 609px;
+    border-radius: 34px;
+    background: #1C2245;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.Product_card_btn_box {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Product_card_btn_box button:nth-child(1) {
+    width: 163px;
+    height: 37px;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.Product_card_btn_box button:nth-child(2) {
+    width: 170px;
+    height: 37px;
+    border-radius: 34px;
+    background: #303865;
+
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.Product_card_download_btn {
+    width: 356px;
+    height: 37px;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Product_post_card_img_box {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr_image {
+    width: 195px;
+    height: 261px;
+    /* margin-top: 50px; */
+    margin: auto;
+}
+
+.Product_data_export_btn {
+    width: 371px;
+    height: 37px;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1600px) {
+    .Product_section {
+        margin-top: 80px;
+    }
+}

@@ -15,7 +15,13 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3002/api/auth/whoami"
+          "http://localhost:3002/api/auth/whoami",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + token,
+            },
+          }
         );
         // if (response.data.success) {
         //   const username = response.data.result;

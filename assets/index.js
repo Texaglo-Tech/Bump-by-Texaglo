@@ -24,6 +24,8 @@ import youtube from "./youtube.png";
 import botAI from "./bot.png";
 import close from "./close.png";
 import profile_icon from "./profile_icon.png";
+import qr from "./qr.png";
+import c_v_ctrl from "./c_v_ctrl.png";
 
 export default {
   navpic,
@@ -52,4 +54,6 @@ export default {
   botAI,
   close,
   profile_icon,
+  qr,
+  c_v_ctrl,
 };
