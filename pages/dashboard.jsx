@@ -10,8 +10,8 @@ const dashboard = () => {
   return (
     <div className="dashboard_page">
       <div className="dashboard_comp">
-        <PostProduct />
-        {/* <ProductData /> */}
+        {/* <PostProduct /> */}
+        <ProductData />
         {/* <DataComp /> */}
         {/* <Customize /> */}
         {/* <Survey /> */}

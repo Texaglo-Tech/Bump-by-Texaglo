@@ -26,6 +26,7 @@ import close from "./close.png";
 import profile_icon from "./profile_icon.png";
 import qr from "./qr.png";
 import c_v_ctrl from "./c_v_ctrl.png";
+import circle from "./circle.png";
 
 export default {
   navpic,
@@ -56,4 +57,5 @@ export default {
   profile_icon,
   qr,
   c_v_ctrl,
+  circle,
 };

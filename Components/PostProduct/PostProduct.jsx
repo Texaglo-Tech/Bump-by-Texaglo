@@ -56,7 +56,11 @@ const PostProduct = () => {
               </div>
             </div>
 
-            <div className={Style.Product_file_input}></div>
+            <div className={Style.Product_file_input}>
+              <Image className={Style.circle} src={images.circle} alt="image" />
+              <span>+</span>
+              <p>Add image</p>
+            </div>
           </div>
           <div className={Style.Product_post_options_btn}>
             <div className={Style.Product_post_toggle}>

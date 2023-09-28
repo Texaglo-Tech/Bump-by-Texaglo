@@ -12,12 +12,24 @@ const ProductData = () => {
         <div className={Style.Product_post_section}>
           <h1>Bump-me Product Data</h1>
           <div className={Style.Product_data_box}>
-            <div className={Style.Product_data_single}></div>
-            <div className={Style.Product_data_single}></div>
+            <div className={Style.Product_data_single}>
+              <Image className={Style.circle} src={images.circle} alt="image" />
+              <p>100</p>
+            </div>
+            <div className={Style.Product_data_single}>
+              <Image className={Style.circle} src={images.circle} alt="image" />
+              <p>100</p>
+            </div>
           </div>
           <div className={Style.Product_data_box}>
-            <div className={Style.Product_data_single}></div>
-            <div className={Style.Product_data_single}></div>
+            <div className={Style.Product_data_single}>
+              <Image className={Style.circle} src={images.circle} alt="image" />
+              <p>100</p>
+            </div>
+            <div className={Style.Product_data_single}>
+              <Image className={Style.circle} src={images.circle} alt="image" />
+              <p>100</p>
+            </div>
           </div>
           <button className={Style.Product_data_export_btn}>export data</button>
         </div>
