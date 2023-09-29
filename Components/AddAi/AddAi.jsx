@@ -10,7 +10,7 @@ const AddAi = () => {
     <>
       <div className={Style.Product_section}>
         <div className={Style.Product_post_section}>
-          <h1>Customize Bump-me</h1>
+          <h1>Add Ai to Bump-me</h1>
           <div className={Style.Product_post_input}>
             <div className={Style.toggle_switch_container}>
               <div className={`${Style.toggleswitch} ${Style.switch_vertical}`}>
@@ -30,7 +30,11 @@ const AddAi = () => {
             </div>
           </div>
           <div className={Style.Product_file_input_box}>
-            <div className={Style.Product_file_input}></div>
+            <div className={Style.Product_file_input}>
+              <Image className={Style.circle} src={images.circle} alt="image" />
+              <span>+</span>
+              <p>Add image</p>
+            </div>
           </div>
         </div>
         <div className={Style.Product_post_card_section}>

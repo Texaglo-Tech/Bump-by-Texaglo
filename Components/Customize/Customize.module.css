@@ -50,6 +50,7 @@
 }
 
 .content_input label {
+    width: 150px;
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -60,7 +61,7 @@
 }
 
 .content_input input {
-    width: 348px;
+    width: 300px;
     height: 37px;
     border-radius: 34px;
     background: #303865;
@@ -85,6 +86,76 @@
     box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
     margin: auto;
     margin-top: 30px;
+    position: relative;
+}
+
+.circle {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    stroke-width: 5px;
+    stroke: #3757F4;
+    filter: blur(0.5px) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Product_file_input span {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Product_file_input p {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.website_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.website_input label {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 20px;
+}
+
+
+
+.website_input input {
+    width: 216px;
+    height: 37px;
+    border-radius: 34px;
+    background: #303865;
 }
 
 .Product_post_options_btn {

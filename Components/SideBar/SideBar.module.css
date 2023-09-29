@@ -7,18 +7,18 @@
 .Nav {
     width: 90.745px;
     height: 915.583px;
-    /* transform: rotate(-90deg); */
     position: absolute;
     border-radius: 97px;
     border: 1px solid rgba(255, 255, 255, 0.29);
     background: rgba(86, 86, 86, 0.30);
     backdrop-filter: blur(40.5px);
-    left: 37px;
-    top: 33.21px;
+    left: 20px;
+    top: 150px;
     padding: 0px 8.73px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 100;
 }
 
 .NavPic {

@@ -14,17 +14,45 @@ const Customize = () => {
           <div className={Style.Product_post_input}>
             <div className={Style.Product_data_input}>
               <div className={Style.content_input}>
-                <label htmlFor="">named:</label>
+                <label htmlFor="">Bacground:</label>
                 <input type="text" />
               </div>
               <div className={Style.content_input}>
-                <label htmlFor="">cost:</label>
+                <label htmlFor="">Button One:</label>
+                <input type="text" />
+              </div>
+              <div className={Style.content_input}>
+                <label htmlFor="">Button Two:</label>
+                <input type="text" />
+              </div>
+              <div className={Style.content_input}>
+                <label htmlFor="">Buy Now:</label>
                 <input type="text" />
               </div>
             </div>
             <div className={Style.Product_file_input_box}>
-              <div className={Style.Product_file_input}></div>
-              <div className={Style.Product_file_input}></div>
+              <div className={Style.Product_file_input}>
+                <Image
+                  className={Style.circle}
+                  src={images.circle}
+                  alt="image"
+                />
+                <span>+</span>
+                <p>Add image</p>
+              </div>
+              <div className={Style.Product_file_input}>
+                <Image
+                  className={Style.circle}
+                  src={images.circle}
+                  alt="image"
+                />
+                <span>+</span>
+                <p>Add website</p>
+              </div>
+              <div className={Style.website_input}>
+                <label htmlFor="">link:</label>
+                <input type="text" />
+              </div>
             </div>
           </div>
         </div>

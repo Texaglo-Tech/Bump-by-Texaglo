@@ -13,7 +13,15 @@ const Survey = () => {
           <h1>Add survey to Bump-me</h1>
           <div className={Style.Product_post_input}>
             <div className={Style.Product_file_input_box}>
-              <div className={Style.Product_file_input}></div>
+              <div className={Style.Product_file_input}>
+                <Image
+                  className={Style.circle}
+                  src={images.circle}
+                  alt="image"
+                />
+                <span>+</span>
+                <p>Add image</p>
+              </div>
               <div className={Style.Product_add_page}>
                 <span>+</span>
                 <p>Add page</p>

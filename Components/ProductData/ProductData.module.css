@@ -179,6 +179,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.Product_post_card_img_box p {
+    position: absolute;
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card_circle {
+    width: 270px;
+    height: 270px;
+    border-radius: 270px;
+    filter: blur(0.5px);
 }
 
 .qr_image {

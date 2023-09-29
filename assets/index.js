@@ -27,6 +27,7 @@ import profile_icon from "./profile_icon.png";
 import qr from "./qr.png";
 import c_v_ctrl from "./c_v_ctrl.png";
 import circle from "./circle.png";
+import left_double_arrow from "./left_double_arrow.png";
 
 export default {
   navpic,
@@ -58,4 +59,5 @@ export default {
   qr,
   c_v_ctrl,
   circle,
+  left_double_arrow,
 };

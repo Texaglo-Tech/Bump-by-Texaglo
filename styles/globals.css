@@ -13,7 +13,7 @@ body {
 /* ===========Dashboard Start================= */
 .dashboard_page {
   width: 100%;
-  min-height: 100vh;
+  min-height: 150vh;
   background: #192040;
 
 }
@@ -521,3 +521,41 @@ th {
   -webkit-transform: none;
   transform: none;
 }
+
+/*========= Dashboard top nav bar start========= */
+.dashboard_top_nav {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0px 30px; */
+  position: absolute;
+}
+
+.dashboard_top_title {
+  display: flex;
+  margin-left: 40px;
+}
+
+.dashboard_top_title p {
+  color: #FFF;
+  font-family: Roboto Mono;
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 10px;
+}
+
+.dashboard_top_title h1 {
+  color: #FFF;
+  text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/*========= Dashboard top nav bar End========= */

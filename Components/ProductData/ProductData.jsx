@@ -38,20 +38,25 @@ const ProductData = () => {
             <h1>memberships</h1>
             <div className={Style.Product_post_card}>
               <div className={Style.Product_post_card_img_box}>
-                <Image className={Style.qr_image} src={images.qr} alt="image" />
+                <Image
+                  className={Style.card_circle}
+                  src={images.circle}
+                  alt="image"
+                />
+                <p>10</p>
               </div>
 
               <div className={Style.Product_card_btn_box}>
-                <button>Order labels</button>
-                <button>quantity</button>
+                <button>Free</button>
+                <button>Price</button>
               </div>
 
               <div className={Style.Product_card_btn_box}>
-                <button>Order labels</button>
-                <button>quantity</button>
+                <button>Discount</button>
+                <button>Percent</button>
               </div>
               <div className={Style.Product_card_download_btn}>
-                Create and Download
+                Add member discount
               </div>
             </div>
             <p>

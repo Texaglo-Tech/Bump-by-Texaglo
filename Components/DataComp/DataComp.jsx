@@ -9,9 +9,16 @@ const DataComp = () => {
   return (
     <>
       <div className={Style.data_section}>
+        <h1> Bump-me Data</h1>
         <div className={Style.data_box}>
-          <div className={Style.data_box_single}></div>
-          <div className={Style.data_box_single}></div>
+          <div className={Style.data_box_single}>
+            <Image className={Style.circle} src={images.circle} alt="image" />
+            <p>$10,000</p>
+          </div>
+          <div className={Style.data_box_single}>
+            <Image className={Style.circle} src={images.circle} alt="image" />
+            <p>500 Sol</p>
+          </div>
         </div>
         <div className={Style.data_information_box}>
           <div className={Style.data_bars}>
