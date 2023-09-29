@@ -9,15 +9,15 @@ const SideBar = () => {
   return (
     <>
       <div className={Style.Nav}>
-        <Image className={Style.NavPic} src={images.navpic} alt="image" />
+        <a href="/login"><Image className={Style.NavPic} src={images.navpic} alt="image" /></a>
         <div className={Style.NavIcons}>
           <div className={Style.IconTop}>
             <hr />
-            <Image
+            <a href="/dashboard"><Image
               className={Style.NavIconImg}
               src={images.rocket}
               alt="image"
-            />
+            /></a>
             <Image className={Style.NavIconImg} src={images.book} alt="image" />
             <Image className={Style.NavIconImg} src={images.tool} alt="image" />
             <Image
