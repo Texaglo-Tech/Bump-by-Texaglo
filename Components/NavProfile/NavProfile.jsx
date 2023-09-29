@@ -11,11 +11,11 @@ const NavProfile = () => {
       <div className={Style.profile_section}>
         <div className={Style.profile_address_section}></div>
         <div className={Style.profile_img_section}>
-          <Image
+          <a href="/profile"><Image
             className={Style.profile_img}
             src={images.profile_icon}
             alt="image"
-          />
+          /></a>
         </div>
       </div>
     </>

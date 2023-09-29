@@ -4,7 +4,7 @@ import VerificationInput from "../VerificationInput/VerificationInput";
 import axios from "axios";
 
 const LogInSection = ({ setLoginComp }) => {
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [isCodeSend, setIsCodeSend] = useState(false);
   const [data, setData] = useState({
     email: "",
