@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import axios from "axios";
@@ -11,6 +12,10 @@ import ProjectsSections from "../Components/ProjectsSections/ProjectsSections";
 import AiBot from "../Components/AiBot/AiBot";
 
 export default function Home() {
+  const [isLogin, setIsLOgin] = useState(false);
+
+  const router = useRouter();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,6 +40,12 @@ export default function Home() {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!isLogin) {
+      router.push("/login");
+    }
   }, []);
 
   return (
