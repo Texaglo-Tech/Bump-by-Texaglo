@@ -287,10 +287,14 @@ th {
 .login_page {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   min-height: 100vh;
   width: 100%;
   padding: 0 10px;
+}
+
+.login_page_bump{
+  font-size: 40px;
 }
 
 .wrapper {

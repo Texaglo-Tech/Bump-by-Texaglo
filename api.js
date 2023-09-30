@@ -167,7 +167,7 @@ export const verifyOTP = async (data) => {
 
 export const checkAuthentication = async (router) => {
     try{
-
+        
         const token = localStorage.getItem("token");
         if (token) {
             setAuthToken(token);
@@ -180,6 +180,10 @@ export const checkAuthentication = async (router) => {
                 autoClose: 3000,
             });
             router.push("/login")
+        }else{
+            if(router.pathname.includes("login")){
+                router.push("/dashboard")
+            }
         }
     }catch(err){
         toast.warning("Please login!", {
@@ -198,4 +202,10 @@ export const setAuthToken = token => {
     else
         delete axios.defaults.headers.common["Authorization"];
 }
+
+export const logout = async (router)=> {
+    localStorage.removeItem("token");
+    router.push("/login")
+}
+
 

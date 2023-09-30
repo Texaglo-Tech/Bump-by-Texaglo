@@ -1,12 +1,12 @@
 .Nav_analytics {
     width: 327px;
-    height: 916px;
+    height: 80%;
     flex-shrink: 0;
     border-radius: 97px;
     border: 1px solid rgba(255, 255, 255, 0.29);
     background: rgba(86, 86, 86, 0.30);
     backdrop-filter: blur(40.5px);
-    position: absolute;
+    position: fixed;
     left: 20px;
     top: 150px;
 }

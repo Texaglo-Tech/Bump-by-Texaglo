@@ -4,20 +4,12 @@ import Image from "next/image";
 //INTERNAL IMPORT
 import Style from "./UserProfile.module.css";
 import images from "../../assets";
+import NavProfile from "../NavProfile/NavProfile";
 
 const UserProfile = () => {
   return (
     <>
-      <div className={Style.profile_section}>
-        <div className={Style.profile_address_section}></div>
-        <div className={Style.profile_img_section}>
-          <Image
-            className={Style.profile_img}
-            src={images.profile_icon}
-            alt="image"
-          />
-        </div>
-      </div>
+      <NavProfile/>
 
       <div className={Style.user_details_section}>
         <div className={Style.user_details_first}>
@@ -33,7 +25,7 @@ const UserProfile = () => {
           <h1 className={Style.user_details_title}>YOUR SHARE</h1>
           <div className={Style.user_details_secound_card}>
             <h1>$100k</h1>
-            <p>Holder's Pool</p>
+            <p>{"Holder's Pool"}</p>
             <div className={Style.user_details_secound_card_bottom}>
               <div className={Style.user_details_secound_card_seekbar}>
                 <div className={Style.user_details_secound_card_innerbar}></div>
@@ -56,29 +48,29 @@ const UserProfile = () => {
               <button className={Style.user_address_button}>Copy</button>
             </div>
             <div className={Style.user_refer_list}>
-              <table class="two-column-table">
+              <table className="two-column-table">
                 <thead>
                   <tr>
-                    <th class="left-column-title">REFERRALS</th>
-                    <th class="right-column-title">TICKETS</th>
+                    <th className="left-column-title">REFERRALS</th>
+                    <th className="right-column-title">TICKETS</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="left-column">7HTB...yi5m</td>
-                    <td class="right-column">1</td>
+                    <td className="left-column">{"7HTB...yi5m"}</td>
+                    <td className="right-column">1</td>
                   </tr>
                   <tr>
-                    <td class="left-column">7HTB...yi5m</td>
-                    <td class="right-column">2</td>
+                    <td className="left-column">{"7HTB...yi5m"}</td>
+                    <td className="right-column">2</td>
                   </tr>
                   <tr>
-                    <td class="left-column">7HTB...yi5m</td>
-                    <td class="right-column">3</td>
+                    <td className="left-column">{"7HTB...yi5m"}</td>
+                    <td className="right-column">3</td>
                   </tr>
                   <tr>
-                    <td class="left-column">7HTB...yi5m</td>
-                    <td class="right-column">1</td>
+                  <td className="left-column">{"7HTB...yi5m"}</td>
+                    <td className="right-column">1</td>
                   </tr>
                 </tbody>
               </table>

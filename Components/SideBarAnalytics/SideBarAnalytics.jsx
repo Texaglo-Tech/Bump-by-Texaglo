@@ -4,12 +4,15 @@ import Image from "next/image";
 //INTERNAL IMPORT
 import Style from "./SideBarAnalytics.module.css";
 import images from "../../assets";
+import { useGlobal } from "../../context/GlobalContext";
 
 const SideBarAnalytics = ({ setIndex }) => {
+  const {activeSubMenu, activeSubMenuHandle} = useGlobal();
+
   return (
     <>
-      <div className={Style.Nav_analytics}>
-        <div className={Style.Nav_analytics_cancel_btn}>
+      <div className={Style.Nav_analytics} style={{ display: activeSubMenu? "block": "none" }}>
+        <div className={Style.Nav_analytics_cancel_btn} onClick={()=>activeSubMenuHandle()}>
           <Image
             className={Style.left_double_arrow}
             src={images.left_double_arrow}

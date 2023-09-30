@@ -23,7 +23,8 @@ const PostProduct = () => {
                     id="toggle-a"
                     type="radio"
                     name="switch"
-                    checked="checked"
+                    checked={true}
+                    onChange={()=>{}}
                   />
                   <label htmlFor="toggle-a">local product</label>
                   <input id="toggle-b" type="radio" name="switch" />
@@ -76,7 +77,8 @@ const PostProduct = () => {
                     id="toggle-a"
                     type="radio"
                     name="switch"
-                    checked="checked"
+                    checked={true}
+                    onChange={()=>{}}
                   />
                   <label htmlFor="toggle-a">local product</label>
                   <input id="toggle-b" type="radio" name="switch" />
@@ -100,7 +102,8 @@ const PostProduct = () => {
                     id="toggle-a"
                     type="radio"
                     name="switch"
-                    checked="checked"
+                    checked={true}
+                    onChange={()=>{}}
                   />
                   <label htmlFor="toggle-a">Dollars</label>
                   <input id="toggle-b" type="radio" name="switch" />
@@ -124,7 +127,8 @@ const PostProduct = () => {
                     id="toggle-a"
                     type="radio"
                     name="switch"
-                    checked="checked"
+                    checked={true}
+                    onChange={()=>{}}
                   />
                   <label htmlFor="toggle-a">Physical</label>
                   <input id="toggle-b" type="radio" name="switch" />

@@ -5,9 +5,9 @@
 } */
 
 .Nav {
-    width: 90.745px;
-    height: 915.583px;
-    position: absolute;
+    width: 90px;
+    height: 80%;
+    position: fixed;
     border-radius: 97px;
     border: 1px solid rgba(255, 255, 255, 0.29);
     background: rgba(86, 86, 86, 0.30);
@@ -25,11 +25,12 @@
     margin-top: 30px;
     width: 73.279px;
     height: 73.279px;
+    cursor: pointer;
 }
 
 .NavIcons {
     width: 100%;
-    height: 86%;
+    height: 80%;
     position: relative;
 }
 
@@ -57,6 +58,15 @@
     cursor: pointer;
 }
 
+.NavIconImg:hover {
+    width: 45.14px;
+    height: 45.14px;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1;
+    cursor: pointer;
+}
+
 .IconBottom {
     width: 100%;
     display: flex;
@@ -76,11 +86,10 @@
 @media screen and (max-width: 1600px) {
     .Nav {
         width: 80px;
-        height: 650px;
+        height: 80%;
     }
 
     .NavIcons {
         height: 82%;
-
     }
 }

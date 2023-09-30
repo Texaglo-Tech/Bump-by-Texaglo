@@ -41,28 +41,28 @@ const LogInSection = ({ setLoginComp }) => {
         <div className="wrapper">
           <form action="#" className="wrapper_form" onSubmit={handleSubmit}>
             <h2>Login</h2>
-            <div class="checkbox-wrapper-35">
+            <div className="checkbox-wrapper-35">
               <input
                 value="private"
                 name="switch"
                 id="switch"
                 type="checkbox"
-                class="switch"
+                className="switch"
                 onChange={() => {
                   if (checked) setData({ ...data, option: "phone" });
                   else setData({ ...data, option: "email" });
                   setChecked(!checked);
                 }}
               />
-              <label for="switch">
-                <span class="switch-x-text">Login with </span>
-                <span class="switch-x-toggletext">
-                  <span class="switch-x-unchecked">
-                    <span class="switch-x-hiddenlabel">Unchecked: </span>
+              <label htmlFor="switch">
+                <span className="switch-x-text">Login with </span>
+                <span className="switch-x-toggletext">
+                  <span className="switch-x-unchecked">
+                    <span className="switch-x-hiddenlabel">Unchecked: </span>
                     number
                   </span>
-                  <span class="switch-x-checked">
-                    <span class="switch-x-hiddenlabel">Checked: </span> email
+                  <span className="switch-x-checked">
+                    <span className="switch-x-hiddenlabel">Checked: </span> email
                   </span>
                 </span>
               </label>
@@ -99,7 +99,7 @@ const LogInSection = ({ setLoginComp }) => {
                   <label>Enter your password</label>
                 </div>
                 <div className="forget">
-                  <label for="remember">
+                  <label htmlFor="remember">
                     <input type="checkbox" id="remember" />
                     <p>Remember me</p>
                   </label>
@@ -113,7 +113,7 @@ const LogInSection = ({ setLoginComp }) => {
             </button>
             <div className="register">
               <p>
-                Don't have an account?{" "}
+                {"Don't have an account? "}
                 <a
                   href="#"
                   onClick={() => {

@@ -1,23 +1,29 @@
 import React, { useState, useContext } from "react";
 import Image from "next/image";
+import Link from 'next/link';    
 
 //INTERNAL IMPORT
 import Style from "./SideBar.module.css";
 import images from "../../assets";
+import { useGlobal } from "../../context/GlobalContext";
+import { useRouter } from "next/router";
 
 const SideBar = () => {
+  const {activeSubMenuHandle} = useGlobal();
+  const router = useRouter()
   return (
     <>
       <div className={Style.Nav}>
-        <a href="/login"><Image className={Style.NavPic} src={images.navpic} alt="image" /></a>
+        <Image className={Style.NavPic} src={images.navpic} alt="image" onClick={activeSubMenuHandle}/>
         <div className={Style.NavIcons}>
           <div className={Style.IconTop}>
             <hr />
-            <a href="/dashboard"><Image
+            <Image
               className={Style.NavIconImg}
               src={images.rocket}
               alt="image"
-            /></a>
+              onClick={()=> {}}
+            />
             <Image className={Style.NavIconImg} src={images.book} alt="image" />
             <Image className={Style.NavIconImg} src={images.tool} alt="image" />
             <Image

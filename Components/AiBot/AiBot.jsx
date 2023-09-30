@@ -28,22 +28,22 @@ const AiBot = () => {
   return (
     <>
       {openChat && (
-        <div class="chat-box">
-          <div class="chat-box-header">
+        <div className="chat-box">
+          <div className="chat-box-header">
             <h3>Talk With AI</h3>
             <p>
-              <i class="fa fa-times"></i>
+              <i className="fa fa-times"></i>
             </p>
           </div>
-          <div class="chat-box-body">
-            <div class="chat-box-body-receive">
+          <div className="chat-box-body">
+            <div className="chat-box-body-receive">
               {/* <p>{aiInputText}</p> */}
             </div>
-            <div class="chat-box-body-send">
+            <div className="chat-box-body-send">
               <p>{aiResponse}</p>
             </div>
           </div>
-          <div class="chat-box-footer">
+          <div className="chat-box-footer">
             <input
               placeholder="Enter Your Message"
               type="text"
@@ -65,7 +65,7 @@ const AiBot = () => {
       )}
 
       {!openChat ? (
-        <div class="chat-button" onClick={() => setOpenChat(true)}>
+        <div className="chat-button" onClick={() => setOpenChat(true)}>
           <Image
             src={images.botAI}
             alt="ai"
@@ -76,7 +76,7 @@ const AiBot = () => {
           <span></span>
         </div>
       ) : (
-        <div class="chat-button" onClick={() => setOpenChat(false)}>
+        <div className="chat-button" onClick={() => setOpenChat(false)}>
           <Image
             src={images.close}
             alt="ai"
