@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import VerificationInput from "../VerificationInput/VerificationInput";
-import axios from "axios";
+
+import { signinHandle, sentOTP, getCookie } from "../../api";
 
 const LogInSection = ({ setLoginComp }) => {
   const [checked, setChecked] = useState(false);
@@ -9,36 +10,28 @@ const LogInSection = ({ setLoginComp }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
+    option: "phone",
+    phone: "",
   });
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3002/api/auth/login",
-        data
-        // {
-        //   withCredentials: true,
-        // }
-      );
-      console.log("Response:", response.data);
-      if (response.data == "OK") {
-        console.log("Worked");
-        router.push("/");
+    if(data.option == "phone"){
+      if (data.phone == ""){
+        return;
       }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+      const res = await sentOTP(data)
+      if(res?.success){
+        setIsCodeSend(true)
+      }
 
-  console.log(checked);
-
-  const handleOTP = () => {
-    if (!checked) {
-      setIsCodeSend(true);
+    }else{
+      const res = await signinHandle(data);
+      if (res?.success) {
+        router.push("/dashboard");
+      }
     }
   };
 
@@ -55,7 +48,11 @@ const LogInSection = ({ setLoginComp }) => {
                 id="switch"
                 type="checkbox"
                 class="switch"
-                onChange={() => setChecked(!checked)}
+                onChange={() => {
+                  if (checked) setData({ ...data, option: "phone" });
+                  else setData({ ...data, option: "email" });
+                  setChecked(!checked);
+                }}
               />
               <label for="switch">
                 <span class="switch-x-text">Login with </span>
@@ -81,7 +78,10 @@ const LogInSection = ({ setLoginComp }) => {
               </div>
             ) : (
               <div className="input_field">
-                <input type="number" required />
+                <input
+                  onChange={(e) => setData({ ...data, phone: e.target.value })}
+                  required
+                />
                 <label>Enter your number</label>
               </div>
             )}
@@ -108,7 +108,7 @@ const LogInSection = ({ setLoginComp }) => {
               </>
             )}
 
-            <button type="submit" onClick={handleOTP}>
+            <button type="submit">
               Log In
             </button>
             <div className="register">
@@ -127,7 +127,7 @@ const LogInSection = ({ setLoginComp }) => {
           </form>
         </div>
       ) : (
-        <VerificationInput />
+        <VerificationInput data = {data} router={router}/>
       )}
     </>
   );

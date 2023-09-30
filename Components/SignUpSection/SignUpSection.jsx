@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { signupHandle } from "../../api";
 
 const SignUpSection = ({ setLoginComp }) => {
   const [data, setData] = useState({
@@ -12,18 +12,12 @@ const SignUpSection = ({ setLoginComp }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        "http://localhost:3002/api/auth/register",
-        data
-        // {
-        //   withCredentials: true,
-        // }
-      );
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error:", error);
+    const res = await signupHandle(data);
+
+    if(res?.success){
+      setLoginComp(true);
     }
+
   };
 
   console.log(data);

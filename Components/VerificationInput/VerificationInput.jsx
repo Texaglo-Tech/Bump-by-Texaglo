@@ -1,6 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
+import { verifyOTP } from "../../api";
 
-const VerificationInput = () => {
+const VerificationInput = ({data, router}) => {
+  const [code, setCode] = useState("");
+
+  const handleVerify = async() => {
+    console.log(data)
+    const code_data = {
+      ...data,
+      code: code
+    }
+    console.log(data)
+    const res = await verifyOTP(code_data)
+    if(res?.success){
+      router.push("/dashboard");
+    }
+  }
+
   return (
     <>
       <div className="wrapper">
@@ -8,11 +24,11 @@ const VerificationInput = () => {
           <h2>Verification Code</h2>
 
           <div className="input_field">
-            <input type="number" required />
+            <input type="number" required onChange={(e)=>setCode(e.target.value)}/>
             <label>Enter Verification Code</label>
           </div>
 
-          <button type="submit">Confirm</button>
+          <button onClick={handleVerify}>Confirm</button>
         </form>
       </div>
     </>
