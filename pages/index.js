@@ -16,8 +16,8 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Texaglo hackathon</title>
-        <meta name="description" content="Texaglo service" />
+        <title>Texaglo Hackathon</title>
+        <meta name="description" content="Texaglo Service" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeroSection />

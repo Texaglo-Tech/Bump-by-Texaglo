@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <ConnectionProvider endpoint={endpoint}>
         <GlobalProviders>
-          <WalletProvider wallets={wallets} autoConnect>
+          <WalletProvider wallets={wallets}>
             <WalletModalProvider>
               <ToastContainer />
               <SideBar />

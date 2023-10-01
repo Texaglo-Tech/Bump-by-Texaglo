@@ -136,6 +136,7 @@ export const sentOTP = async (data) => {
 }
 
 export const verifyOTP = async (data) => {
+    console.log("verify...")
     const id = toast.loading("Verify code", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000,
@@ -175,6 +176,7 @@ export const checkAuthentication = async (router) => {
 
         const res = (await axios.get(`${config.backend_url}/api/auth/whoami`)).data;
         if(!res?.success) {
+            localStorage.removeItem("token")
             toast.warning("Please login!", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000,
@@ -186,11 +188,12 @@ export const checkAuthentication = async (router) => {
             }
         }
     }catch(err){
-        toast.warning("Please login!", {
+        console.log(err)
+        toast.warning("Please login!!", {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3000,
         });
-        router.push("/login")
+        localStorage.removeItem("token")
         return {success:false, message: "Server Error"}
     }
 }
