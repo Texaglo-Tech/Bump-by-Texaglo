@@ -9,13 +9,11 @@
     position: fixed;
     left: 20px;
     top: 150px;
+    z-index: 10;
 }
 
 .Nav_analytics_cancel_btn {
-    width: 200px;
-    float: right;
     margin-top: 50px;
-    margin-right: 16px;
     display: flex;
     justify-content: right;
     cursor: pointer;
@@ -25,7 +23,11 @@
     width: 29px;
     height: 29px;
     margin-right: 5px;
+}
 
+.navbar_title {
+    display: flex;
+    justify-content: center;
 }
 
 .Nav_analytics_cancel_btn p {
@@ -36,7 +38,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-right: 13px;
+    margin-right: 20%;
 }
 
 .Nav_analytics_title {

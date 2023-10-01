@@ -4,12 +4,16 @@ const GlobalContext = createContext({
     address: '',
     setAddress: (addr) => {},
     activeSubMenu: false,
-    activeSubMenuHandle: () => {}
+    activeSubMenuHandle: () => {},
+    activeNavbar: 0,
+    activeNavbarHandle: (num) => {}
 });
 
 const GlobalProviders = (props) => {
     const [address, setWalletAddress] = useState("");
     const [activeSubMenu, setActiveSubMenu] = useState(false);
+    const [activeNavbar, setActiveNavbar] = useState(0);
+
     const setAddress = useCallback(
         async (addr) => {
             setWalletAddress(addr);
@@ -21,11 +25,17 @@ const GlobalProviders = (props) => {
         setActiveSubMenu(!activeSubMenu);
     }
 
+    const activeNavbarHandle = async (data) => {
+        setActiveNavbar(data);
+    }
+
     let wrapperValues = {
         address,
         activeSubMenu,
+        activeNavbar,
         setAddress,
-        activeSubMenuHandle
+        activeSubMenuHandle,
+        activeNavbarHandle
     };
 
     return (

@@ -9,7 +9,7 @@ import { useGlobal } from "../../context/GlobalContext";
 import { useRouter } from "next/router";
 
 const SideBar = () => {
-  const {activeSubMenuHandle} = useGlobal();
+  const { activeSubMenuHandle, activeNavbarHandle } = useGlobal();
   const router = useRouter()
   return (
     <>
@@ -22,20 +22,10 @@ const SideBar = () => {
               className={Style.NavIconImg}
               src={images.rocket}
               alt="image"
-              onClick={()=> {}}
+              onClick={()=> {activeNavbarHandle(0)}}
             />
-            <Image className={Style.NavIconImg} src={images.book} alt="image" />
-            <Image className={Style.NavIconImg} src={images.tool} alt="image" />
-            <Image
-              className={Style.NavIconImg}
-              src={images.sparkles}
-              alt="image"
-            />
-            <Image
-              className={Style.NavIconImg}
-              src={images.diamond}
-              alt="image"
-            />
+            <Image className={Style.NavIconImg} src={images.book} alt="image" onClick={()=> {activeNavbarHandle(1)}} />
+            <Image className={Style.NavIconImg} src={images.tool} alt="image" onClick={()=> {activeNavbarHandle(2)}} />
           </div>
           <div className={Style.IconBottom}>
             <hr />
