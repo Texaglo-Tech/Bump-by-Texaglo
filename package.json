@@ -17,10 +17,12 @@
     "@solana/wallet-adapter-react-ui": "^0.9.24",
     "@solana/wallet-adapter-wallets": "^0.19.9",
     "axios": "^1.5.0",
+    "html-to-image": "^1.11.11",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "react-qr-code": "^2.0.12",
     "react-toastify": "^8.2.0"
   },
   "devDependencies": {

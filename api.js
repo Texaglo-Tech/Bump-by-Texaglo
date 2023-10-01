@@ -50,7 +50,6 @@ export const signinHandle = async (data) => {
     return res
 }
 
-
 const signup = async (data) => {
     try {
         const res = await axios.post(`${config.backend_url}/api/auth/register`, data);
@@ -212,3 +211,56 @@ export const logout = async (router)=> {
 }
 
 
+export const createOrder = async (data) => {
+    console.log("create order...")
+    const id = toast.loading("Create order", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/create_order`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
+
+export const updateQuantity = async (data) => {
+    console.log("update quantity according to product..")
+    const id = toast.loading("Create Qrcode...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/update_quantity`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
