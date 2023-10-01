@@ -168,7 +168,7 @@ export const verifyOTP = async (data) => {
 
 export const checkAuthentication = async (router) => {
     try{
-        
+        console.log("checkauthentication")
         const token = localStorage.getItem("token");
         if (token) {
             setAuthToken(token);
@@ -188,12 +188,12 @@ export const checkAuthentication = async (router) => {
             }
         }
     }catch(err){
-        console.log(err)
-        toast.warning("Please login!!", {
+        toast.warning("Please login!", {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3000,
         });
         localStorage.removeItem("token")
+        router.push("/login")
         return {success:false, message: "Server Error"}
     }
 }

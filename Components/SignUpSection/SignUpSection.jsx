@@ -24,7 +24,7 @@ const SignUpSection = ({ setLoginComp }) => {
   return (
     <>
       <div className="wrapper">
-        <form action="#" className="wrapper_form" onSubmit={handleSubmit}>
+        <form className="wrapper_form" onSubmit={handleSubmit}>
           <h2>Sign Up</h2>
           <div className="input_field">
             <input

@@ -39,7 +39,7 @@ const LogInSection = ({ setLoginComp }) => {
     <>
       {!isCodeSend ? (
         <div className="wrapper">
-          <form action="#" className="wrapper_form" onSubmit={handleSubmit}>
+          <div className="wrapper_form">
             <h2>Login</h2>
             <div className="checkbox-wrapper-35">
               <input
@@ -108,7 +108,7 @@ const LogInSection = ({ setLoginComp }) => {
               </>
             )}
 
-            <button type="submit">
+            <button onClick={handleSubmit}>
               Log In
             </button>
             <div className="register">
@@ -124,7 +124,7 @@ const LogInSection = ({ setLoginComp }) => {
                 </a>
               </p>
             </div>
-          </form>
+          </div>
         </div>
       ) : (
         <VerificationInput data = {data} router={router}/>

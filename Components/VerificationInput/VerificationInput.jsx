@@ -5,6 +5,7 @@ const VerificationInput = ({data, router}) => {
   const [code, setCode] = useState("");
 
   const handleVerify = async() => {
+    if(code == "") return
     console.log(data)
     const code_data = {
       ...data,
@@ -20,7 +21,7 @@ const VerificationInput = ({data, router}) => {
   return (
     <>
       <div className="wrapper">
-        <form action="#" className="wrapper_form">
+        <div className="wrapper_form">
           <h2>Verification Code</h2>
 
           <div className="input_field">
@@ -29,7 +30,7 @@ const VerificationInput = ({data, router}) => {
           </div>
 
           <button onClick={handleVerify}>Confirm</button>
-        </form>
+        </div>
       </div>
     </>
   );
