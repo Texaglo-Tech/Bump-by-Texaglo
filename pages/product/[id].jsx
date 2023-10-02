@@ -6,7 +6,7 @@ import Style from "./Product.module.css";
 import images from "../../assets";
 import { toast } from "react-toastify";
 
-const Customize = () => {
+const Product = () => {
   const addFile = async (e) => {};
 
   const saveAndDeploy = async () => {};
@@ -32,8 +32,6 @@ const Customize = () => {
                     <button>OPEN PAGE</button>
                   </div>
                   <div className={Style.Product_post_card_img_content_btn_two}>
-                    {/* {product_data.website?<button onClick={()=>window.open(product_data.link, "_blank")}>Website</button>:null}
-                    {product_data.survey?<button>Survey questions</button>:null} */}
                   </div>
                 </div>
               </div>
@@ -45,4 +43,4 @@ const Customize = () => {
   );
 };
 
-export default Customize;
+export default Product;
