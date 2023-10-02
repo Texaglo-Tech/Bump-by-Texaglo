@@ -203,6 +203,7 @@
 
 .Product_post_card_box {
     width: 100%;
+    margin-right: 100px;
 }
 
 .Product_post_card_img_box {
@@ -226,7 +227,7 @@
 .Product_post_card {
     padding: 30px;
     margin-top: 20px;
-    width: 465px;
+    /* width: 465px; */
     /* height: 609px; */
     display: flex;
     flex-direction: column;

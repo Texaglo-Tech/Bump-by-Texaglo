@@ -375,12 +375,39 @@ export const addMembershipDiscount = async (data) => {
 
 export const customizeDeploy = async (data) => {
     console.log("deploy customized ...")
-    const id = toast.loading("save and deploying...", {
+    const id = toast.loading("Save and deploying...", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000,
     });
     try {
         const res = (await axios.post(`${config.backend_url}/api/product/customize_deploy`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
+
+export const surveyDeploy = async (data) => {
+    console.log("deploy customized ...")
+    const id = toast.loading("Save and deploying...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/survey_deploy`, data)).data;
 
         toast.update(id, {
             render: res.message,

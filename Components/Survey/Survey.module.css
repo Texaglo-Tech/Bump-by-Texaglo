@@ -158,6 +158,25 @@
     width: 100%;
 }
 
+.Product_add_answer_number {
+    margin-left: 40px;
+    width: 200px;
+    height: 30px;
+    border-radius: 34px;
+    background: #2f313f;
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .Product_add_question_number {
     width: 248px;
     height: 37px;
@@ -173,6 +192,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .Product_add_question_icon {
@@ -248,6 +268,7 @@
 
 .Product_post_card_box {
     width: 100%;
+    margin-right: 100px;
 }
 
 .Product_post_card_img_box {
@@ -271,7 +292,7 @@
 .Product_post_card {
     padding: 30px;
     margin-top: 20px;
-    width: 465px;
+    /* width: 465px; */
     /* height: 609px; */
     display: flex;
     flex-direction: column;
