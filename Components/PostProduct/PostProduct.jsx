@@ -12,6 +12,7 @@ import QRCode from "react-qr-code";
 const htmlToImage = require("html-to-image")
 
 import { createOrder, getUserIdFromToken, updateQuantity } from "../../api";
+import { useGlobal } from "../../context/GlobalContext";
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: "80px",
@@ -42,37 +43,27 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 const PostProduct = () => {
   const fileInputRef = useRef(null);
-
-  const [data, setData] = useState({
-    product_name: "",
-    product_cost: "",
-    product_desc: "",
-    product_type: "local",
-    product_link: "nfc",
-    product_payment: "dollar",
-    product_qrcode: "physical",
-    quantity: 0,
-  });
+  const { productDataHandle, product_data} = useGlobal()
 
   const [file, setFile] = useState(null);
   const [product_id, setProductId] = useState(null);
 
   const orderCreateHandle = async () => {
-    if (data.product_name == "") {
+    if (product_data.product_name == "") {
       toast.warning("Please input product name", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000,
       });
       return;
     }
-    if (data.product_cost == "") {
+    if (product_data.product_cost == "") {
       toast.warning("Please input the cost", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000,
       });
       return;
     }
-    if (data.product_desc == "") {
+    if (product_data.product_desc == "") {
       toast.warning("Please input the description", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000,
@@ -89,22 +80,23 @@ const PostProduct = () => {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("product_name", data.product_name);
-    formData.append("product_cost", data.product_cost);
-    formData.append("product_desc", data.product_desc);
-    formData.append("product_type", data.product_type);
-    formData.append("product_link", data.product_link);
-    formData.append("product_payment", data.product_payment);
-    formData.append("product_qrcode", data.product_qrcode);
+    formData.append("product_name", product_data.product_name);
+    formData.append("product_cost", product_data.product_cost);
+    formData.append("product_desc", product_data.product_desc);
+    formData.append("product_type", product_data.product_type);
+    formData.append("product_link", product_data.product_link);
+    formData.append("product_payment", product_data.product_payment);
+    formData.append("product_qrcode", product_data.product_qrcode);
     formData.append("user_id", getUserIdFromToken());
 
-    console.log(data);
+    console.log(product_data);
     console.log(formData);
 
     const res = await createOrder(formData);
     if (res.success) {
       console.log(res.data);
       console.log("created product id is ", res.data.product_id);
+      localStorage.setItem("product_id", res.data.product_id)
       setProductId(res.data.product_id);
     }
   };
@@ -125,7 +117,7 @@ const PostProduct = () => {
 
     const formData = {
       product_id,
-      quantity: data.quantity,
+      quantity: product_data.quantity,
     };
 
     console.log("formData-> ", formData)
@@ -139,7 +131,7 @@ const PostProduct = () => {
       .then((dataUrl) => {
         const link = document.createElement('a');
         link.href = dataUrl;
-        link.download = `${data.product_name}_qrcode.png`;
+        link.download = `${product_data.product_name}_qrcode.png`;
         link.click();
       })
       .catch((error) => {
@@ -166,11 +158,10 @@ const PostProduct = () => {
                     >
                       <AntSwitch
                         onChange={() => {
-                          setData({
-                            ...data,
-                            product_type:
-                              data.product_type == "local" ? "digital" : "local",
-                          });
+                          productDataHandle(
+                              "product_type",
+                              product_data.product_type == "local" ? "digital" : "local"
+                          );
                         }}
                         inputProps={{ "aria-label": "ant design" }}
                       />
@@ -187,7 +178,7 @@ const PostProduct = () => {
                         <label
                           style={{ fontSize: "17px", color: "white" }}
                           onClick={() => {
-                            setData({ ...data, product_type: "local" });
+                            productDataHandle("product_type", "local");
                           }}
                         >
                           local product
@@ -196,7 +187,7 @@ const PostProduct = () => {
                         <label
                           style={{ fontSize: "17px", color: "white" }}
                           onClick={() => {
-                            setData({ ...data, product_type: "digital" });
+                            productDataHandle("product_type", "digital");
                           }}
                         >
                           Digital product
@@ -205,14 +196,14 @@ const PostProduct = () => {
                     </div>
                   </div>
 
-                  <p onClick={() => console.log(data)}>I want my product to be :</p>
+                  <p>I want my product to be :</p>
 
                   <div className={Style.content_input}>
                     <label htmlFor="">named:</label>
                     <input
                       type="text"
                       onChange={(e) => {
-                        setData({ ...data, product_name: e.target.value });
+                        productDataHandle("product_name", e.target.value );
                       }}
                     />
                   </div>
@@ -221,7 +212,7 @@ const PostProduct = () => {
                     <input
                       type="text"
                       onChange={(e) => {
-                        setData({ ...data, product_cost: e.target.value });
+                        productDataHandle("product_cost", e.target.value );
                       }}
                     />
                   </div>
@@ -233,7 +224,7 @@ const PostProduct = () => {
                       rows="4"
                       cols="50"
                       onChange={(e) => {
-                        setData({ ...data, product_desc: e.target.value });
+                        productDataHandle("product_desc", e.target.value );
                       }}
                     ></textarea>
                   </div>
@@ -270,11 +261,10 @@ const PostProduct = () => {
                     >
                       <AntSwitch
                         onChange={() =>
-                          setData({
-                            ...data,
-                            product_link:
-                              data.product_link == "nfc" ? "qrcode" : "nfc",
-                          })
+                          productDataHandle(
+                            "product_link",
+                              product_data.product_link == "nfc" ? "qrcode" : "nfc",
+                          )
                         }
                         inputProps={{ "aria-label": "ant design" }}
                       />
@@ -313,13 +303,12 @@ const PostProduct = () => {
                     >
                       <AntSwitch
                         onChange={(e) => {
-                          setData({
-                            ...data,
-                            product_payment:
-                              data.product_payment == "dollar"
+                          productDataHandle(                            
+                            "product_payment",
+                              product_data.product_payment == "dollar"
                                 ? "crypto"
-                                : "dollar",
-                          });
+                                : "dollar"
+                          );
                         }}
                         inputProps={{ "aria-label": "ant design" }}
                       />
@@ -343,7 +332,7 @@ const PostProduct = () => {
                     </div>
                   </div>
                 </div>
-                {data.product_link=="nfc"?<></>:
+                {product_data.product_link=="nfc"?<></>:
                   <div className={Style.Product_post_toggle}>
                     <div className={Style.toggle_switch_container}>
                       <label className={Style.Product_post_toggle_title} htmlFor="">
@@ -359,13 +348,12 @@ const PostProduct = () => {
                       >
                         <AntSwitch
                           onChange={(e) => {
-                            setData({
-                              ...data,
-                              product_qrcode:
-                                data.product_qrcode == "physical"
+                            productDataHandle(
+                              "product_qrcode",
+                                product_data.product_qrcode == "physical"
                                   ? "digital"
-                                  : "physical",
-                            });
+                                  : "physical"
+                            );
                           }}
                           inputProps={{ "aria-label": "ant design" }}
                         />
@@ -398,12 +386,12 @@ const PostProduct = () => {
             </div>
             <div className={Style.Product_post_card_section}>
               <div className={Style.Product_post_card_box}>
-                <h1>{data.product_link=="nfc"?<>NFC Label</>:<>Qr Code</>}</h1>
+                <h1>{product_data.product_link=="nfc"?<>NFC Label</>:<>Qr Code</>}</h1>
                 <div className={Style.Product_post_card}>
                   <h1 className={Style.Product_post_card_title}>Cost: $0</h1>
                   <div className={Style.Product_post_card_img_box}>
                     { 
-                      data.product_link=="nfc"?<Image src={images.nfc} alt="image" />
+                      product_data.product_link=="nfc"?<Image src={images.nfc} alt="image" />
                         :
                       <QRCode
                         size={150}
@@ -421,10 +409,9 @@ const PostProduct = () => {
                       placeholder="quantity"
                       type="number"
                       onChange={(e) =>
-                        setData({
-                          ...data,
-                          quantity: e.target.value,
-                        })
+                        productDataHandle(
+                          "quantity", e.target.value
+                        )
                       }
                     />
                   </div>

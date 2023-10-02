@@ -11,6 +11,11 @@ export const getUserIdFromToken = ()=>{
     return decodedToken.id
 }
 
+export const getCurrentProductId = ()=>{
+    const id = localStorage.getItem("product_id");
+    return id
+}
+
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 export const exportToExcel = (exportFileName, data) => {
@@ -241,6 +246,31 @@ export const logout = async (router)=> {
     router.push("/login")
 }
 
+export const uploadImgForItem = async (data) => {
+    console.log("uploading Image for item...")
+    const id = toast.loading("uploading...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/upload_img_for_item`, data)).data;
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
 
 export const createOrder = async (data) => {
     console.log("create order...")
@@ -316,7 +346,6 @@ export const getSummary = async (data) => {
     }
 }
 
-
 export const addMembershipDiscount = async (data) => {
     console.log("add membership discount ...")
     const id = toast.loading("Create Qrcode...", {
@@ -325,6 +354,33 @@ export const addMembershipDiscount = async (data) => {
     });
     try {
         const res = (await axios.post(`${config.backend_url}/api/product/add_membership_discount`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
+
+export const customizeDeploy = async (data) => {
+    console.log("deploy customized ...")
+    const id = toast.loading("save and deploying...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/customize_deploy`, data)).data;
 
         toast.update(id, {
             render: res.message,

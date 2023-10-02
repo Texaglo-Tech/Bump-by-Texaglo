@@ -1,0 +1,371 @@
+.Product_section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+
+}
+
+.Product_post_section {
+    width: 65%;
+}
+
+.Product_post_section h1 {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+
+.Product_post_input {
+    width: 100%;
+    height: 450px;
+    display: flex;
+}
+
+.Product_data_input {
+    width: 470px;
+    height: 450px;
+}
+
+.Product_data_input p {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.content_input {
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content_input label {
+    width: 150px;
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.content_input input {
+    width: 300px;
+    height: 37px;
+    border-radius: 34px;
+    background: #303865;
+}
+
+.content_input textarea {
+    width: 348px;
+    height: 104px;
+    border-radius: 34px;
+    background: #303865;
+}
+
+.Product_file_input_box {
+    width: 100%;
+}
+
+.Product_file_input {
+    width: 300.955px;
+    height: 244px;
+    border-radius: 34px;
+    background: #1C2245;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    margin: auto;
+    margin-top: 30px;
+    position: relative;
+}
+
+.circle {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    stroke-width: 5px;
+    stroke: #3757F4;
+    filter: blur(0.5px) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Product_file_input span {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Product_file_input p {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.website_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.website_input label {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 20px;
+}
+
+
+
+.website_input input {
+    width: 216px;
+    height: 37px;
+    border-radius: 34px;
+    background: #303865;
+}
+
+.Product_post_options_btn {
+    display: flex;
+    align-items: center;
+}
+
+.Product_post_toggle_title {
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 7px;
+    margin-bottom: 20px !important;
+}
+
+.Product_order_btn {
+    width: 371px;
+    height: 37px;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Product_post_card_section {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.Product_post_card_box {
+    width: 100%;
+}
+
+.Product_post_card_img_box {
+    margin-top: 30px;
+    width: 340px;
+    border-radius: 15px;
+    background: #FFF;
+    padding-bottom: 30px;
+}
+
+.Product_post_card_box p {
+    margin-top: 20px;
+    color: #FFF;
+    font-family: Roboto Mono;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.Product_post_card {
+    padding: 30px;
+    margin-top: 20px;
+    width: 465px;
+    /* height: 609px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 34px;
+    background: white;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.card_save_btn {
+    width: 356px;
+    height: 37px;
+    border-radius: 22px;
+    background: #3556F4;
+    box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
+    color: #FFF;
+    text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.Product_post_card_img_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buy_now_btn {
+    display: flex;
+    cursor: pointer;
+    height: 24px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background: var(--Neon-Button, linear-gradient(90deg, #9851F9 23.68%, rgba(249, 81, 108, 0.80) 128.98%));
+    box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.10);
+    color: #FFF;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Source Sans Pro;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+}
+
+.c_v_ctrl_img {
+    width: 340px;
+}
+
+.Product_post_card_img_content h2 {
+    color: #121212;
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.Product_post_card_img_content p {
+    color: rgba(18, 18, 18, 0.77);
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 290px;
+}
+
+.Product_post_card_img_content_btn_one {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Product_post_card_img_content_btn_one button {
+    display: flex;
+    width: 130px;
+    height: 60px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background: var(--Neon-Button, linear-gradient(90deg, #9851F9 23.68%, rgba(249, 81, 108, 0.80) 128.98%));
+    box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.10);
+    color: #FFF;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Source Sans Pro;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    cursor: pointer;
+
+}
+
+.Product_post_card_img_content_btn_two button {
+    display: flex;
+    width: 285px;
+    height: 60px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background: var(--Neon-Button, linear-gradient(90deg, #9851F9 23.68%, rgba(249, 81, 108, 0.80) 128.98%));
+    box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.10);
+    color: #FFF;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Source Sans Pro;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    margin-top: 20px;
+    cursor: pointer;
+    /* 22.4px */
+}
+
+@media screen and (max-width: 1600px) {
+    .Product_section {
+        margin-top: 80px;
+    }
+}
