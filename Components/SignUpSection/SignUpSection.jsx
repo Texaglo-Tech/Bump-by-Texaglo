@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { signupHandle } from "../../api";
-
-const SignUpSection = ({ setLoginComp }) => {
+import { useRouter } from "next/router";
+const SignUpSection = () => {
+  const router = useRouter();
   const [data, setData] = useState({
     username: "",
     phone: "",
@@ -15,7 +16,7 @@ const SignUpSection = ({ setLoginComp }) => {
     const res = await signupHandle(data);
 
     if(res?.success){
-      setLoginComp(true);
+      router.push("/login")
     }
 
   };
@@ -65,9 +66,8 @@ const SignUpSection = ({ setLoginComp }) => {
             <p>
               Already have an account?{" "}
               <a
-                href="#"
                 onClick={() => {
-                  setLoginComp(true);
+                  router.push("/login")
                 }}
               >
                 Log In

@@ -209,6 +209,10 @@ export const checkAuthentication = async (router) => {
             setAuthToken(token);
         }
 
+        if(router.pathname.includes("product")|| router.pathname.includes("refer")){ // authenticate ignore whitelist 
+            return
+        }
+
         const res = (await axios.get(`${config.backend_url}/api/auth/whoami`)).data;
         if(!res?.success) {
             localStorage.removeItem("token")
@@ -427,7 +431,6 @@ export const surveyDeploy = async (data) => {
     }
 }
 
-
 export const aiDeploy = async (data) => {
     console.log("deploy ai bot ...")
     const id = toast.loading("Save and deploying...", {
@@ -454,4 +457,32 @@ export const aiDeploy = async (data) => {
         return {success:false, message: "Server Error"}
     }
 }
+
+export const forgotPassword = async (data) => {
+    console.log("forgotPassword...")
+    const id = toast.loading("Requesting forgot password...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/auth/forgot_password`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
+
 

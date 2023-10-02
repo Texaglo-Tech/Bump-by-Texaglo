@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LogInSection from "../Components/LogInSection/LogInSection";
-import SignUpSection from "../Components/SignUpSection/SignUpSection";
+import ForgetPasswordSection from "../Components/ForgetPasswordSection/ForgetPasswordSection";
 
 const Login = () => {
   const [loginComp, setLoginComp] = useState(true);
@@ -14,7 +14,7 @@ const Login = () => {
         {loginComp ? (
           <LogInSection setLoginComp={setLoginComp} />
         ) : (
-          <SignUpSection setLoginComp={setLoginComp} />
+          <ForgetPasswordSection setLoginComp={setLoginComp} />
         )}
       </div>
     </div>

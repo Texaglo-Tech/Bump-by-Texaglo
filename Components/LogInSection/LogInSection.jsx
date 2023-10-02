@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import VerificationInput from "../VerificationInput/VerificationInput";
 
-import { signinHandle, sentOTP, getCookie } from "../../api";
+import { signinHandle, sentOTP } from "../../api";
 
 const LogInSection = ({ setLoginComp }) => {
   const [checked, setChecked] = useState(false);
@@ -18,16 +18,15 @@ const LogInSection = ({ setLoginComp }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(data.option == "phone"){
-      if (data.phone == ""){
+    if (data.option == "phone") {
+      if (data.phone == "") {
         return;
       }
-      const res = await sentOTP(data)
-      if(res?.success){
-        setIsCodeSend(true)
+      const res = await sentOTP(data);
+      if (res?.success) {
+        setIsCodeSend(true);
       }
-
-    }else{
+    } else {
       const res = await signinHandle(data);
       if (res?.success) {
         router.push("/dashboard");
@@ -62,7 +61,8 @@ const LogInSection = ({ setLoginComp }) => {
                     number
                   </span>
                   <span className="switch-x-checked">
-                    <span className="switch-x-hiddenlabel">Checked: </span> email
+                    <span className="switch-x-hiddenlabel">Checked: </span>{" "}
+                    email
                   </span>
                 </span>
               </label>
@@ -103,21 +103,25 @@ const LogInSection = ({ setLoginComp }) => {
                     <input type="checkbox" id="remember" />
                     <p>Remember me</p>
                   </label>
-                  <a href="#">Forgot password?</a>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      setLoginComp(false);
+                    }}
+                  >
+                    Forgot password?
+                  </a>
                 </div>
               </>
             )}
 
-            <button onClick={handleSubmit}>
-              Log In
-            </button>
+            <button onClick={handleSubmit}>Log In</button>
             <div className="register">
               <p>
                 {"Don't have an account? "}
                 <a
-                  href="#"
                   onClick={() => {
-                    setLoginComp(false);
+                    router.push("/signup");
                   }}
                 >
                   Register
@@ -127,7 +131,7 @@ const LogInSection = ({ setLoginComp }) => {
           </div>
         </div>
       ) : (
-        <VerificationInput data = {data} router={router}/>
+        <VerificationInput data={data} router={router} />
       )}
     </>
   );
