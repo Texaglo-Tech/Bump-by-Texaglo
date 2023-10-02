@@ -7,7 +7,7 @@ import images from "../../assets";
 
 import { getSummary, exportToExcel, getUserIdFromToken } from "../../api";
 
-const { BarChart } = require('@mui/x-charts/BarChart');
+import { BarChart } from "@mui/x-charts/BarChart";
 
 const DataComp = () => {
 

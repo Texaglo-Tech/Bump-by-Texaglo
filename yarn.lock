@@ -525,7 +525,7 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
-"@mui/x-charts@^6.0.0-alpha.13":
+"@mui/x-charts@^6.0.0-alpha.9":
   version "6.0.0-alpha.13"
   resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-6.0.0-alpha.13.tgz#e9592f31dceb746e86e933abc7727735cfd7b5c2"
   integrity sha512-/FfH55kkhbP3IRbQczvcysp78iTMllqHC4RUDz4wskQVMVCep32slv77aTfgP+XWtMx9lEHPGse238OKwUKLEA==
