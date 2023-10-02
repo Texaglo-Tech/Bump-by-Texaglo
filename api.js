@@ -1,7 +1,38 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import jwt from 'jsonwebtoken';
 
 const config = require("./config.json");
+const XLSX = require('xlsx');
+const fileSaver = require('file-saver');
+
+export const getUserIdFromToken = ()=>{
+    const decodedToken = jwt.decode(localStorage.getItem("token"));
+    return decodedToken.id
+}
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+export const exportToExcel = (exportFileName, data) => {
+    var XLSX__default = /*#__PURE__*/_interopDefaultLegacy(XLSX);
+    var EXCEL_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+    var EXCEL_EXTENSION = ".xlsx";
+    var ws = XLSX__default['default'].utils.json_to_sheet(data);
+    var wb = {
+      Sheets: {
+        data: ws
+      },
+      SheetNames: ["data"]
+    };
+    var eb = XLSX__default['default'].write(wb, {
+      bookType: "xlsx",
+      type: "array"
+    });
+    var blob = new Blob([eb], {
+      type: EXCEL_TYPE
+    });
+    fileSaver.saveAs(blob, exportFileName + EXCEL_EXTENSION);
+  };
 
 const signin = async (data) => {
     try {
@@ -240,12 +271,60 @@ export const createOrder = async (data) => {
 
 export const updateQuantity = async (data) => {
     console.log("update quantity according to product..")
-    const id = toast.loading("Create Qrcode...", {
+    const id = toast.loading("Updating...", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000,
     });
     try {
         const res = (await axios.post(`${config.backend_url}/api/product/update_quantity`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return res
+    }catch(err){
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
+        return {success:false, message: "Server Error"}
+    }
+}
+
+export const getProductSummary = async (data) => {
+    console.log("get Product Summary..")
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/get_product_summary`, data)).data;
+        return res
+    }catch(err){
+        return {success:false, message: "Server Error"}
+    }
+}
+
+export const getSummary = async (data) => {
+    console.log("get Summary..")
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/get_summary`, data)).data;
+        return res
+    }catch(err){
+        return {success:false, message: "Server Error"}
+    }
+}
+
+
+export const addMembershipDiscount = async (data) => {
+    console.log("add membership discount ...")
+    const id = toast.loading("Create Qrcode...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/add_membership_discount`, data)).data;
 
         toast.update(id, {
             render: res.message,

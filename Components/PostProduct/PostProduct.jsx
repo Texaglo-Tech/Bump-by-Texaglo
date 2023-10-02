@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import QRCode from "react-qr-code";
 const htmlToImage = require("html-to-image")
 
-import { createOrder, updateQuantity } from "../../api";
+import { createOrder, getUserIdFromToken, updateQuantity } from "../../api";
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: "80px",
@@ -96,6 +96,7 @@ const PostProduct = () => {
     formData.append("product_link", data.product_link);
     formData.append("product_payment", data.product_payment);
     formData.append("product_qrcode", data.product_qrcode);
+    formData.append("user_id", getUserIdFromToken());
 
     console.log(data);
     console.log(formData);
