@@ -33,7 +33,8 @@ const GlobalProviders = (props) => {
         website: false,
         link: "",
 
-        survey: false
+        survey: false,
+        ai: false
     });
 
     const setAddress = useCallback(

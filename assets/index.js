@@ -29,6 +29,7 @@ import c_v_ctrl from "./c_v_ctrl.png";
 import circle from "./circle.png";
 import nfc from "./nfc.png";
 import left_double_arrow from "./left_double_arrow.png";
+import ai_help from "./ai_help.png";
 
 export default {
   navpic,
@@ -61,5 +62,6 @@ export default {
   c_v_ctrl,
   circle,
   left_double_arrow,
-  nfc
+  nfc,
+  ai_help
 };

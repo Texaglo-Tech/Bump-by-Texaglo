@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Image from "next/image";
-import Link from 'next/link';    
+import Link from "next/link";
 
 //INTERNAL IMPORT
 import Style from "./SideBar.module.css";
@@ -10,11 +10,16 @@ import { useRouter } from "next/router";
 
 const SideBar = () => {
   const { activeSubMenuHandle, activeNavbarHandle } = useGlobal();
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <div className={Style.Nav}>
-        <Image className={Style.NavPic} src={images.navpic} alt="image" onClick={activeSubMenuHandle}/>
+        <Image
+          className={Style.NavPic}
+          src={images.navpic}
+          alt="image"
+          onClick={activeSubMenuHandle}
+        />
         <div className={Style.NavIcons}>
           <div className={Style.IconTop}>
             <hr />
@@ -22,12 +27,34 @@ const SideBar = () => {
               className={Style.NavIconImg}
               src={images.rocket}
               alt="image"
-              onClick={()=> {activeNavbarHandle(0)}}
+              onClick={() => {
+                activeNavbarHandle(0);
+              }}
             />
-            <Image className={Style.NavIconImg} src={images.book} alt="image" onClick={()=> {activeNavbarHandle(1)}} />
-            <Image className={Style.NavIconImg} src={images.tool} alt="image" onClick={()=> {activeNavbarHandle(2)}} />
+            <Image
+              className={Style.NavIconImg}
+              src={images.book}
+              alt="image"
+              onClick={() => {
+                activeNavbarHandle(1);
+              }}
+            />
+            <Image
+              className={Style.NavIconImg}
+              src={images.tool}
+              alt="image"
+              onClick={() => {
+                activeNavbarHandle(2);
+              }}
+            />
           </div>
+
           <div className={Style.IconBottom}>
+            <Image
+              className={Style.NavIconImg}
+              src={images.discord}
+              alt="image"
+            />
             <hr />
             <Image
               className={Style.NavIconImg}
