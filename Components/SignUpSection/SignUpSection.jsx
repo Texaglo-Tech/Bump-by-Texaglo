@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { signupHandle } from "../../api";
 import { useRouter } from "next/router";
 const SignUpSection = () => {
@@ -8,6 +8,7 @@ const SignUpSection = () => {
     phone: "",
     email: "",
     password: "",
+    refer_id: ""
   });
 
   const handleSubmit = async (e) => {
@@ -17,11 +18,16 @@ const SignUpSection = () => {
 
     if(res?.success){
       router.push("/login")
+      localStorage.removeItem("refer_id")
     }
 
   };
 
-  console.log(data);
+  useEffect(()=>{
+    setData({ ...data, refer_id: localStorage.getItem("refer_id") })
+    console.log(data);
+  }, [])
+
   return (
     <>
       <div className="wrapper">

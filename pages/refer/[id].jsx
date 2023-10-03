@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 
 //INTERNAL IMPORT
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 
-const Refer = () => {
-  const router = useRouter();
+const Refer = ({ id }) => {
   useEffect(() => {
-    const { id } = router.query;
-    localStorage.setItem("refer_id", id);
+    console.log(id)
+    localStorage.setItem("refer_id", id); 
     toast.success(`Thanks for referring!`, {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 3000,
@@ -18,5 +16,16 @@ const Refer = () => {
 
   return <></>;
 };
+
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+
+  return {
+    props: {
+      id,
+    },
+  };
+}
 
 export default Refer;
