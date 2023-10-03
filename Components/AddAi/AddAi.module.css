@@ -1,14 +1,14 @@
-.Product_section {
+.product_section {
     margin-top: 120px;
     width: 100%;
     display: flex;
 }
 
-.Product_post_section {
+.product_post_section {
     width: 65%;
 }
 
-.Product_post_section h1 {
+.product_post_section h1 {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -20,17 +20,17 @@
 
 
 
-.Product_post_input {
+.product_post_input {
     width: 100%;
     display: flex;
 }
 
-.Product_data_input {
+.product_data_input {
     width: 470px;
     height: 450px;
 }
 
-.Product_data_input p {
+.product_data_input p {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -150,7 +150,7 @@
     top: 40px;
 }
 
-.Product_data_input p {
+.product_data_input p {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -165,11 +165,11 @@
 
 
 
-.Product_file_input_box {
+.product_file_input_box {
     width: 100%;
 }
 
-.Product_file_input {
+.product_file_input {
     width: 300.955px;
     height: 244px;
     border-radius: 34px;
@@ -192,7 +192,7 @@
     transform: translate(-50%, -50%);
 }
 
-.Product_file_input span {
+.product_file_input span {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -206,7 +206,7 @@
     transform: translate(-50%, -50%);
 }
 
-.Product_file_input p {
+.product_file_input p {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -219,12 +219,12 @@
     left: 30px;
 }
 
-.Product_post_options_btn {
+.product_post_options_btn {
     display: flex;
     align-items: center;
 }
 
-.Product_post_toggle_title {
+.product_post_toggle_title {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -236,7 +236,7 @@
     margin-bottom: 20px !important;
 }
 
-.Product_order_btn {
+.product_order_btn {
     width: 371px;
     height: 37px;
     border-radius: 22px;
@@ -256,18 +256,18 @@
     cursor: pointer;
 }
 
-.Product_post_card_section {
+.product_post_card_section {
     width: 35%;
     display: flex;
     justify-content: center;
 }
 
-.Product_post_card_box {
+.product_post_card_box {
     width: 100%;
     margin-right: 40px;
 }
 
-.Product_post_card_img_box {
+.product_post_card_img_box {
     border: solid #9851F9 1px;
     margin-top: 30px;
     width: 340px;
@@ -277,7 +277,7 @@
     padding-bottom: 30px;
 }
 
-.Product_post_card_box p {
+.product_post_card_box p {
     margin-top: 20px;
     color: #FFF;
     font-family: Roboto Mono;
@@ -287,7 +287,7 @@
     line-height: normal;
 }
 
-.Product_post_card {
+.product_post_card {
     padding: 30px;
     margin-top: 20px;
     /* width: 465px; */
@@ -321,7 +321,7 @@
     cursor: pointer;
 }
 
-.Product_post_card_img_content {
+.product_post_card_img_content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -351,7 +351,7 @@
     width: 340px;
 }
 
-.Product_post_card_img_content h2 {
+.product_post_card_img_content h2 {
     color: #121212;
     text-align: center;
     font-family: Source Sans Pro;
@@ -362,7 +362,7 @@
     margin-top: 20px;
 }
 
-.Product_post_card_img_content p {
+.product_post_card_img_content p {
     color: rgba(18, 18, 18, 0.77);
     text-align: center;
     font-family: Source Sans Pro;
@@ -373,14 +373,14 @@
     width: 290px;
 }
 
-.Product_post_card_img_content_btn_one {
+.product_post_card_img_content_btn_one {
     margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
 
-.Product_post_card_img_content_btn_one button {
+.product_post_card_img_content_btn_one button {
     display: flex;
     width: 130px;
     height: 60px;
@@ -401,7 +401,7 @@
 
 }
 
-.Product_post_card_img_content_btn_two button {
+.product_post_card_img_content_btn_two button {
     display: flex;
     width: 285px;
     height: 60px;
@@ -424,7 +424,7 @@
 }
 
 @media screen and (max-width: 1600px) {
-    .Product_section {
+    .product_section {
         margin-top: 80px;
     }
 }

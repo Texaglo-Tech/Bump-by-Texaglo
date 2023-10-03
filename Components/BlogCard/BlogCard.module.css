@@ -1,4 +1,4 @@
-.Blog_card {
+.blog_card {
     width: 384px;
     height: 501px;
     border-radius: 51px;
@@ -8,31 +8,31 @@
     margin-right: 30px;
 }
 
-.Blog_images_section {
+.blog_images_section {
     width: 100%;
     height: 191px;
     /* background-color: aquamarine; */
 }
 
-.Blog_images {
+.blog_images {
     height: 100%;
     width: 100%;
     border-radius: 51px 51px 0px 0px;
 }
 
-.Blog_content {
+.blog_content {
     padding: 24px;
     height: 265px;
     border-radius: 0px 0px 51px 51px;
 }
 
-.Blog_content_top {
+.blog_content_top {
     display: flex;
     /* margin: 10px 0px; */
     margin-bottom: 10px;
 }
 
-.Blog_content_top_btn {
+.blog_content_top_btn {
     display: flex;
     width: 79px;
     padding: 8.542px;
@@ -46,7 +46,7 @@
     margin-right: 10px;
 }
 
-.Blog_content h1 {
+.blog_content h1 {
     width: 333.938px;
     height: 65.045px;
     color: #D8D8D8;
@@ -56,7 +56,7 @@
     margin: 0px !important;
 }
 
-.Blog_content p {
+.blog_content p {
     color: rgba(255, 255, 255, 0.61);
     font-family: Zen Kaku Gothic Antique;
     font-size: 16px;
@@ -66,26 +66,26 @@
     /* 18.848px */
 }
 
-.Blog_content hr {
+.blog_content hr {
     width: 383.177px;
     height: 1px;
     margin-left: -25px;
     background: rgba(255, 255, 255, 0.09);
 }
 
-.Blog_content_bottom {
+.blog_content_bottom {
     position: relative;
     margin-top: 10px;
 }
 
-.Blog_content_bottom_img_1 {
+.blog_content_bottom_img_1 {
     position: absolute;
     width: 40.333px;
     height: 39.765px;
     border-radius: 70px;
 }
 
-.Blog_content_bottom_img_2 {
+.blog_content_bottom_img_2 {
     position: absolute;
     width: 40.333px;
     height: 39.765px;
@@ -93,7 +93,7 @@
     left: 30px;
 }
 
-.Blog_content_bottom_btn {
+.blog_content_bottom_btn {
     position: absolute;
     width: 106.985px;
     height: 45.327px;
@@ -104,12 +104,12 @@
     align-items: center;
 }
 
-.Blog_content_bottom_btn_eye {
+.blog_content_bottom_btn_eye {
     width: 17px;
     margin: 0px 12px;
 }
 
-.Blog_content_bottom_btn p {
+.blog_content_bottom_btn p {
     color: rgba(0, 0, 0, 0.85);
     text-align: center;
     font-family: Zen Kaku Gothic Antique;

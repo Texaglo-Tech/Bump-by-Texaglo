@@ -65,11 +65,11 @@ const Customize = () => {
 
   return (
     <>
-      <div className={Style.Product_section}>
-        <div className={Style.Product_post_section}>
+      <div className={Style.product_section}>
+        <div className={Style.product_post_section}>
           <h1>Customize Bump-me</h1>
-          <div className={Style.Product_post_input}>
-            <div className={Style.Product_data_input}>
+          <div className={Style.product_post_input}>
+            <div className={Style.product_data_input}>
               <div className={Style.content_input}>
                 <label htmlFor="">Bacground:</label>
                 <input
@@ -115,9 +115,9 @@ const Customize = () => {
                 />
               </div>
             </div>
-            <div className={Style.Product_file_input_box}>
+            <div className={Style.product_file_input_box}>
               <div
-                className={Style.Product_file_input}
+                className={Style.product_file_input}
                 onClick={()=>fileInputRef.current.click()}
                 onChange={addFile}
               >
@@ -131,7 +131,7 @@ const Customize = () => {
                 <input type="file" ref={fileInputRef} style={{display:"none"}}/>
               </div>
               <div
-                className={Style.Product_file_input}
+                className={Style.product_file_input}
                 onClick={() => {
                   productDataHandle("website", true);
                 }}
@@ -158,27 +158,27 @@ const Customize = () => {
             </div>
           </div>
         </div>
-        <div className={Style.Product_post_card_section}>
-          <div className={Style.Product_post_card_box}>
+        <div className={Style.product_post_card_section}>
+          <div className={Style.product_post_card_box}>
             <h1>Preview </h1>
-            <div className={Style.Product_post_card}>
-              <div className={Style.Product_post_card_img_box} style={{backgroundColor:product_data.background_color!=""?product_data.background_color:null}}>
+            <div className={Style.product_post_card}>
+              <div className={Style.product_post_card_img_box} style={{backgroundColor:product_data.background_color!=""?product_data.background_color:null}}>
                 <Image
                   className={Style.c_v_ctrl_img}
                   src={images.c_v_ctrl}
                   alt="image"
                 />
-                <div className={Style.Product_post_card_img_content}>
+                <div className={Style.product_post_card_img_content}>
                   <button className={Style.buy_now_btn} style={{backgroundColor:product_data.buy_color!=""?product_data.buy_color:null}}>BUY NOW</button>
                   <h2>{product_data.product_name}</h2>
                   <p>
                     {product_data.product_desc}
                   </p>
-                  <div className={Style.Product_post_card_img_content_btn_one}>
+                  <div className={Style.product_post_card_img_content_btn_one}>
                     <button style={{backgroundColor:product_data.button1_color!=""?product_data.button1_color:null}}>ADD TO CART</button>
                     <button style={{backgroundColor:product_data.button2_color!=""?product_data.button2_color:null}}>OPEN PAGE</button>
                   </div>
-                  <div className={Style.Product_post_card_img_content_btn_two}>
+                  <div className={Style.product_post_card_img_content_btn_two}>
                     {product_data.website?<button onClick={()=>window.open(product_data.link, "_blank")}>Website</button>:null}
                     {product_data.survey?<button>Survey questions</button>:null}
                   </div>

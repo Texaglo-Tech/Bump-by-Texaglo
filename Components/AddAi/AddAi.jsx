@@ -65,10 +65,10 @@ const AddAi = () => {
 
   return (
     <>
-      <div className={Style.Product_section}>
-        <div className={Style.Product_post_section}>
+      <div className={Style.product_section}>
+        <div className={Style.product_post_section}>
           <h1>Add Ai to Bump-me</h1>
-          <div className={Style.Product_post_input}>
+          <div className={Style.product_post_input}>
             <div className={Style.toggle_switch_container}>
               <div
                 style={{
@@ -124,9 +124,9 @@ const AddAi = () => {
               </div>
             </div>
           </div>
-          <div className={Style.Product_file_input_box}>
+          <div className={Style.product_file_input_box}>
             <div
-              className={Style.Product_file_input}
+              className={Style.product_file_input}
               onClick={() => fileInputRef.current.click()}
               onChange={() => setFile(e.target.files[0])}
             >
@@ -141,10 +141,10 @@ const AddAi = () => {
             </div>
           </div>
         </div>
-        <div className={Style.Product_post_card_section}>
-          <div className={Style.Product_post_card_box}>
+        <div className={Style.product_post_card_section}>
+          <div className={Style.product_post_card_box}>
             <h1>Preview </h1>
-            <div className={Style.Product_post_card}>
+            <div className={Style.product_post_card}>
               <h3
                 style={{ color: "white", padding: "20px", textAlign: "center" }}
               >
@@ -152,13 +152,13 @@ const AddAi = () => {
                 the keyword “Help Me”
               </h3>
 
-              <div className={Style.Product_post_card_img_box}>
-                <div className={Style.Product_post_card_img_content}>
+              <div className={Style.product_post_card_img_box}>
+                <div className={Style.product_post_card_img_content}>
                   <h3 style={{ color: "black" }}>How can I assist ?</h3>
                   <div style={{ marginTop: "30px" }}>
                     <Image src={images.ai_help} alt="image" />
                   </div>
-                  <div className={Style.Product_post_card_img_content_btn_two}>
+                  <div className={Style.product_post_card_img_content_btn_two}>
                     <button>Casper is Thinking</button>
                   </div>
                 </div>
