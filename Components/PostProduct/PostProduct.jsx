@@ -145,11 +145,11 @@ const PostProduct = () => {
 
   return (
     <>
-      <div className={Style.Product_section}>
-            <div className={Style.Product_post_section}>
+      <div className={Style.product_section}>
+            <div className={Style.product_post_section}>
               <h1>Post a product to Bump-me</h1>
-              <div className={Style.Product_post_input}>
-                <div className={Style.Product_data_input}>
+              <div className={Style.product_post_input}>
+                <div className={Style.product_data_input}>
                   <div className={Style.toggle_switch_container}>
                     <div
                       style={{
@@ -196,7 +196,7 @@ const PostProduct = () => {
                         </label>
                       </div>
                       <div
-                        className={Style.Product_file_input}
+                        className={Style.product_file_input}
                         onClick={() => fileInputRef.current.click()}
                         onChange={addFile}
                       >
@@ -248,10 +248,10 @@ const PostProduct = () => {
                 
               </div>
               
-              <div className={Style.Product_post_options_btn}>
-                <div className={Style.Product_post_toggle}>
+              <div className={Style.product_post_options_btn}>
+                <div className={Style.product_post_toggle}>
                   <div className={Style.toggle_switch_container}>
-                    <label htmlFor="" className={Style.Product_post_toggle_title}>
+                    <label htmlFor="" className={Style.product_post_toggle_title}>
                       Link Method:
                     </label>
 
@@ -292,9 +292,9 @@ const PostProduct = () => {
                     </div>
                   </div>
                 </div>
-                <div className={Style.Product_post_toggle}>
+                <div className={Style.product_post_toggle}>
                   <div className={Style.toggle_switch_container}>
-                    <label htmlFor="" className={Style.Product_post_toggle_title}>
+                    <label htmlFor="" className={Style.product_post_toggle_title}>
                       Payement type:
                     </label>
                     <div
@@ -336,9 +336,9 @@ const PostProduct = () => {
                   </div>
                 </div>
                 {product_data.product_link=="nfc"?<></>:
-                  <div className={Style.Product_post_toggle}>
+                  <div className={Style.product_post_toggle}>
                     <div className={Style.toggle_switch_container}>
-                      <label className={Style.Product_post_toggle_title} htmlFor="">
+                      <label className={Style.product_post_toggle_title} htmlFor="">
                         Qr Code Type:
                       </label>
 
@@ -383,16 +383,16 @@ const PostProduct = () => {
                 }
               </div>
 
-              <div className={Style.Product_order_btn} onClick={orderCreateHandle}>
+              <div className={Style.product_order_btn} onClick={orderCreateHandle}>
                 Order qr And Create Product
               </div>
             </div>
-            <div className={Style.Product_post_card_section}>
-              <div className={Style.Product_post_card_box}>
+            <div className={Style.product_post_card_section}>
+              <div className={Style.product_post_card_box}>
                 <h1>{product_data.product_link=="nfc"?<>NFC Label</>:<>Qr Code</>}</h1>
-                <div className={Style.Product_post_card}>
-                  <h1 className={Style.Product_post_card_title}>Cost: $0</h1>
-                  <div className={Style.Product_post_card_img_box}>
+                <div className={Style.product_post_card}>
+                  <h1 className={Style.product_post_card_title}>Cost: $0</h1>
+                  <div className={Style.product_post_card_img_box}>
                     { 
                       product_data.product_link=="nfc"?<Image src={images.nfc} alt="image" />
                         :
@@ -406,7 +406,7 @@ const PostProduct = () => {
                     
                   </div>
 
-                  <div className={Style.Product_card_btn_box}>
+                  <div className={Style.product_card_btn_box}>
                     <button>Order labels</button>
                     <input
                       placeholder="quantity"
@@ -420,7 +420,7 @@ const PostProduct = () => {
                   </div>
 
                   <div
-                    className={Style.Product_card_download_btn}
+                    className={Style.product_card_download_btn}
                     onClick={createQuantityAndDownload}
                   >
                     Create and Download
