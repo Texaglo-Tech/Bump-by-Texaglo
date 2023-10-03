@@ -5,7 +5,7 @@
 }
 
 .Product_post_section {
-    width: 60%;
+    width: 100%;
 }
 
 .Product_post_section h1 {
@@ -80,18 +80,18 @@
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 
 .Product_post_card_section {
-    width: 40%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .Product_post_card_box {
     width: 100%;
-    margin-right: 100px;
 }
 
 .Product_post_card_box h1 {
@@ -136,7 +136,9 @@
 }
 
 .Product_card_btn_box button:nth-child(1) {
-    width: 163px;
+    max-width: 163px;
+    min-width: 80px;
+    width: 100%;
     height: 37px;
     border-radius: 22px;
     background: #3556F4;
@@ -152,7 +154,9 @@
 }
 
 .Product_card_btn_box input {
-    width: 170px;
+    max-width: 163px;
+    min-width: 80px;
+    width: 100%;
     height: 37px;
     border-radius: 34px;
     background: #303865;
@@ -170,6 +174,8 @@
 
 .Product_card_download_btn {
     /* width: 356px; */
+    text-align: center;
+    width: 100%;
     height: 37px;
     border-radius: 22px;
     background: #3556F4;
@@ -205,18 +211,21 @@
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
-    font-size: 100px;
+    font-size: 10vw;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    top: 40%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin: 0px;
 }
 
 .card_circle {
-    width: 270px;
-    height: 270px;
+    max-width: 270px;
+    max-height: 270px;
+    width: 100%;
+    height: 100%;
     border-radius: 270px;
     filter: blur(0.5px);
 }
@@ -229,7 +238,8 @@
 }
 
 .Product_data_export_btn {
-    width: 371px;
+    max-width: 636px;
+    width: 95%;
     height: 37px;
     border-radius: 22px;
     background: #3556F4;
@@ -252,5 +262,6 @@
 @media screen and (max-width: 1600px) {
     .Product_section {
         margin-top: 80px;
+        margin-bottom: 30px;
     }
 }

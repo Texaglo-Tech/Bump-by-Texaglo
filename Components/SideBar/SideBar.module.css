@@ -21,6 +21,25 @@
     z-index: 100;
 }
 
+.NavResponsive {
+    /* width: 90px; */
+    /* height: 80%; */
+    position: fixed;
+    left: 35px;
+    top: 90px;
+    padding: 0px 8.73px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+}
+
+.NavResponsivePic {
+    cursor: pointer;
+    width:50px;
+    height:50px;
+}
+
 .NavPic {
     margin-top: 30px;
     width: 73.279px;

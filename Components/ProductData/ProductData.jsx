@@ -12,6 +12,7 @@ import {
   getUserIdFromToken,
 } from "../../api";
 import { toast } from "react-toastify";
+import { Grid } from '@mui/material';
 
 const ProductData = () => {
   const [summary_data, setSummaryData] = useState({
@@ -82,94 +83,100 @@ const ProductData = () => {
   return (
     <>
       <div className={Style.Product_section}>
-        <div className={Style.Product_post_section}>
-          <h1>Bump-me Product Data</h1>
-          <div className={Style.Product_data_box}>
-            <div className={Style.Product_data_single}>
-              <Image className={Style.circle} src={images.circle} alt="image" />
-              <p>{summary_data?.scans_cnt}</p>
-              <span>Scans</span>
-            </div>
-            <div className={Style.Product_data_single}>
-              <Image className={Style.circle} src={images.circle} alt="image" />
-              <p>{summary_data.clicks_cnt}</p>
-              <span>Clicks</span>
-            </div>
-          </div>
-          <div className={Style.Product_data_box}>
-            <div className={Style.Product_data_single}>
-              <Image className={Style.circle} src={images.circle} alt="image" />
-              <p>{summary_data.online_sales_cnt}</p>
-              <span>Online Sales</span>
-            </div>
-            <div className={Style.Product_data_single}>
-              <Image className={Style.circle} src={images.circle} alt="image" />
-              <p>{summary_data.local_sales_cnt}</p>
-              <span>Local Sales</span>
-            </div>
-          </div>
-          <button
-            onClick={exportData}
-            className={Style.Product_data_export_btn}
-          >
-            export data
-          </button>
-        </div>
-        <div className={Style.Product_post_card_section}>
-          <div className={Style.Product_post_card_box}>
-            <h1>memberships</h1>
-            <div className={Style.Product_post_card}>
-              <div className={Style.Product_post_card_img_box}>
-                <Image
-                  className={Style.card_circle}
-                  src={images.circle}
-                  alt="image"
-                />
-                <p>10</p>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <div className={Style.Product_post_section}>
+              <h1>Bump-me Product Data</h1>
+              <div className={Style.Product_data_box}>
+                <div className={Style.Product_data_single}>
+                  <Image className={Style.circle} src={images.circle} alt="image" />
+                  <p>{summary_data?.scans_cnt}</p>
+                  <span>Scans</span>
+                </div>
+                <div className={Style.Product_data_single}>
+                  <Image className={Style.circle} src={images.circle} alt="image" />
+                  <p>{summary_data.clicks_cnt}</p>
+                  <span>Clicks</span>
+                </div>
               </div>
-
-              <div className={Style.Product_card_btn_box}>
-                <button>Fee</button>
-                <input
-                  placeholder="Price"
-                  onChange={(e) =>
-                    setSummaryData({
-                      ...summary_data,
-                      fee: e.target.value,
-                    })
-                  }
-                  required
-                />
+              <div className={Style.Product_data_box}>
+                <div className={Style.Product_data_single}>
+                  <Image className={Style.circle} src={images.circle} alt="image" />
+                  <p>{summary_data.online_sales_cnt}</p>
+                  <span>Online Sales</span>
+                </div>
+                <div className={Style.Product_data_single}>
+                  <Image className={Style.circle} src={images.circle} alt="image" />
+                  <p>{summary_data.local_sales_cnt}</p>
+                  <span>Local Sales</span>
+                </div>
               </div>
-
-              <div className={Style.Product_card_btn_box}>
-                <button>Discount</button>
-                <input
-                  placeholder="Percent"
-                  onChange={(e) =>
-                    setSummaryData({
-                      ...summary_data,
-                      percent: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-              <div
-                onClick={addMemberDiscount}
-                className={Style.Product_card_download_btn}
+              <button
+                onClick={exportData}
+                className={Style.Product_data_export_btn}
               >
-                Add member discount
+                export data
+              </button>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <div className={Style.Product_post_card_section}>
+              <div className={Style.Product_post_card_box}>
+                <h1>memberships</h1>
+                <div className={Style.Product_post_card}>
+                  <div className={Style.Product_post_card_img_box}>
+                    <Image
+                      className={Style.card_circle}
+                      src={images.circle}
+                      alt="image"
+                    />
+                    <p>10</p>
+                  </div>
+
+                  <div className={Style.Product_card_btn_box}>
+                    <button>Fee</button>
+                    <input
+                      placeholder="Price"
+                      onChange={(e) =>
+                        setSummaryData({
+                          ...summary_data,
+                          fee: e.target.value,
+                        })
+                      }
+                      required
+                    />
+                  </div>
+
+                  <div className={Style.Product_card_btn_box}>
+                    <button>Discount</button>
+                    <input
+                      placeholder="Percent"
+                      onChange={(e) =>
+                        setSummaryData({
+                          ...summary_data,
+                          percent: e.target.value,
+                        })
+                      }
+                      required
+                    />
+                  </div>
+                  <div
+                    onClick={addMemberDiscount}
+                    className={Style.Product_card_download_btn}
+                  >
+                    Add member discount
+                  </div>
+                </div>
+                <p>
+                  -Each Item is equivalent to one label or NFC. <br /> <br />
+                  -When you post your item to Bump-me it is the item is tracked on
+                  the blockchain and when the qr code isscanned and marked as sold
+                  an nft will be minted as a receipt.
+                </p>
               </div>
             </div>
-            <p>
-              -Each Item is equivalent to one label or NFC. <br /> <br />
-              -When you post your item to Bump-me it is the item is tracked on
-              the blockchain and when the qr code isscanned and marked as sold
-              an nft will be minted as a receipt.
-            </p>
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </div>
     </>
   );

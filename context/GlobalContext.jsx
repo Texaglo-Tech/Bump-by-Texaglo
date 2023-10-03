@@ -16,7 +16,7 @@ const GlobalProviders = (props) => {
     const [activeSubMenu, setActiveSubMenu] = useState(false);
     const [activeNavbar, setActiveNavbar] = useState(0);
 
-    const [product_data, setProductData] = useState({
+    const [product_data, setProductData] = useState({        
         product_name: "",
         product_cost: "",
         product_desc: "",
@@ -44,6 +44,10 @@ const GlobalProviders = (props) => {
         [address]
     );
 
+    const downSubMenuHandle = async () => {
+        setActiveSubMenu(false);
+    }
+
     const activeSubMenuHandle = async () => {
         setActiveSubMenu(!activeSubMenu);
     }
@@ -67,7 +71,8 @@ const GlobalProviders = (props) => {
         setAddress,
         activeSubMenuHandle,
         activeNavbarHandle,
-        productDataHandle
+        productDataHandle,
+        downSubMenuHandle
     };
 
     return (

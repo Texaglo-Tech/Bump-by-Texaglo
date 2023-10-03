@@ -6,7 +6,7 @@ import Style from "./Product.module.css";
 import images from "../../assets";
 import { toast } from "react-toastify";
 
-const Product = () => {
+const Product = ({id}) => {
   const addFile = async (e) => {};
 
   const saveAndDeploy = async () => {};
@@ -42,5 +42,17 @@ const Product = () => {
     </>
   );
 };
+
+
+
+export async function getServerSideProps(context) {
+    const { id } = context.query;
+  
+    return {
+      props: {
+        id,
+      },
+    };
+  }
 
 export default Product;

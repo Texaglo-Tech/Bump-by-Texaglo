@@ -30,6 +30,7 @@ import circle from "./circle.png";
 import nfc from "./nfc.png";
 import left_double_arrow from "./left_double_arrow.png";
 import ai_help from "./ai_help.png";
+import down from "./down.png";
 
 export default {
   navpic,
@@ -63,5 +64,6 @@ export default {
   circle,
   left_double_arrow,
   nfc,
-  ai_help
+  ai_help,
+  down
 };
