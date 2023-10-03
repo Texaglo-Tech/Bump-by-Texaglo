@@ -1,4 +1,4 @@
-.Partners_Section {
+.partners_Section {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.Partners_Section h1 {
+.partners_Section h1 {
     color: #FFF;
     font-family: Monument Extended;
     font-size: 56.679px;
@@ -17,20 +17,20 @@
     text-transform: uppercase;
 }
 
-.Partners_images {
+.partners_images {
     width: 100%;
     display: flex;
     margin-top: 30px;
     justify-content: center;
 }
 
-.Partners_single_image {
+.partners_single_image {
     /* width: 206.26px;
     height: 53.999px; */
     margin-right: 35px;
 }
 
-.Partners_button {
+.partners_button {
     width: 250.233px;
     height: 56.634px;
     border-radius: 35px;
@@ -42,14 +42,14 @@
 
 }
 
-.Partners_button_img {
+.partners_button_img {
     width: 36.346px;
     margin-left: 20px;
     margin-right: 10px;
 
 }
 
-.Partners_button h3 {
+.partners_button h3 {
     color: #FFF;
     text-align: center;
     font-family: Zen Kaku Gothic Antique;

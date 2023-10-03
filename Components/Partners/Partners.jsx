@@ -8,38 +8,38 @@ import images from "../../assets";
 const Partners = () => {
   return (
     <>
-      <div className={Style.Partners_Section}>
+      <div className={Style.partners_Section}>
         <h1>partners</h1>
-        <div className={Style.Partners_images}>
+        <div className={Style.partners_images}>
           <Image
-            className={Style.Partners_single_image}
+            className={Style.partners_single_image}
             src={images.gitcoin}
             alt="image"
           />
           <Image
-            className={Style.Partners_single_image}
+            className={Style.partners_single_image}
             src={images.parcel}
             alt="image"
           />
           <Image
-            className={Style.Partners_single_image}
+            className={Style.partners_single_image}
             src={images.push}
             alt="image"
           />
           <Image
-            className={Style.Partners_single_image}
+            className={Style.partners_single_image}
             src={images.hedera}
             alt="image"
           />
           <Image
-            className={Style.Partners_single_image}
+            className={Style.partners_single_image}
             src={images.infura}
             alt="image"
           />
         </div>
-        <div className={Style.Partners_button}>
+        <div className={Style.partners_button}>
           <Image
-            className={Style.Partners_button_img}
+            className={Style.partners_button_img}
             src={images.hands}
             alt="image"
           />
