@@ -6,6 +6,20 @@ const config = require("./config.json");
 const XLSX = require('xlsx');
 const fileSaver = require('file-saver');
 
+const api = axios.create();
+
+// Add a request interceptor
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers['Authorization'] = token;
+    }
+        return config;
+    }, (error) => {
+    // Handle request error
+    return Promise.reject(error);
+});
+
 export const getUserIdFromToken = ()=>{
     const decodedToken = jwt.decode(localStorage.getItem("token"));
     return decodedToken.id
@@ -41,7 +55,7 @@ export const exportToExcel = (exportFileName, data) => {
 
 const signin = async (data) => {
     try {
-        const res = (await axios.post(`${config.backend_url}/api/auth/login`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/auth/login`, data)).data;
         if(res.success){
             localStorage.setItem("token", res.token);
         }
@@ -88,7 +102,7 @@ export const signinHandle = async (data) => {
 
 const signup = async (data) => {
     try {
-        const res = await axios.post(`${config.backend_url}/api/auth/register`, data);
+        const res = await api.post(`${config.backend_url}/api/auth/register`, data);
         return res.data
     }catch(err){
         return {success:false, message: "Server Error"}
@@ -151,7 +165,7 @@ export const sentOTP = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/auth/login`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/auth/login`, data)).data;
         toast.update(id, {
             render: res.message,
             type: res.success ? "success": "error",
@@ -177,7 +191,7 @@ export const verifyOTP = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/auth/verifycode`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/auth/verifycode`, data)).data;
 
         if(res.success){
             localStorage.setItem("token", res.token);
@@ -204,16 +218,12 @@ export const verifyOTP = async (data) => {
 export const checkAuthentication = async (router) => {
     try{
         console.log("checkauthentication")
-        const token = localStorage.getItem("token");
-        if (token) {
-            setAuthToken(token);
-        }
 
         if(router.pathname.includes("product")|| router.pathname.includes("refer")){ // authenticate ignore whitelist 
             return
         }
 
-        const res = (await axios.get(`${config.backend_url}/api/auth/whoami`)).data;
+        const res = (await api.get(`${config.backend_url}/api/auth/whoami`)).data;
         if(!res?.success) {
             localStorage.removeItem("token")
             toast.warning("Please login!", {
@@ -237,14 +247,6 @@ export const checkAuthentication = async (router) => {
     }
 }
 
-export const setAuthToken = token => {
-    if (token) {
-        axios.defaults.headers.common["Authorization"] = `${token}`;
-    }
-    else
-        delete axios.defaults.headers.common["Authorization"];
-}
-
 export const logout = async (router)=> {
     localStorage.removeItem("token");
     router.push("/login")
@@ -257,7 +259,7 @@ export const uploadImgForItem = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/upload_img_for_item`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/upload_img_for_item`, data)).data;
         toast.update(id, {
             render: res.message,
             type: res.success ? "success": "error",
@@ -283,7 +285,7 @@ export const createOrder = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/create_order`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/create_order`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -310,7 +312,7 @@ export const updateQuantity = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/update_quantity`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/update_quantity`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -333,7 +335,7 @@ export const updateQuantity = async (data) => {
 export const getProductSummary = async (data) => {
     console.log("get Product Summary..")
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/get_product_summary`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/get_product_summary`, data)).data;
         return res
     }catch(err){
         return {success:false, message: "Server Error"}
@@ -343,7 +345,7 @@ export const getProductSummary = async (data) => {
 export const getSummary = async (data) => {
     console.log("get Summary..")
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/get_summary`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/get_summary`, data)).data;
         return res
     }catch(err){
         return {success:false, message: "Server Error"}
@@ -357,7 +359,7 @@ export const addMembershipDiscount = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/add_membership_discount`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/add_membership_discount`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -384,7 +386,7 @@ export const customizeDeploy = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/customize_deploy`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/customize_deploy`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -411,7 +413,7 @@ export const surveyDeploy = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/survey_deploy`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/survey_deploy`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -438,7 +440,7 @@ export const aiDeploy = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/product/ai_deploy`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/ai_deploy`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -465,7 +467,7 @@ export const forgotPassword = async (data) => {
         autoClose: 3000,
     });
     try {
-        const res = (await axios.post(`${config.backend_url}/api/auth/forgot_password`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/auth/forgot_password`, data)).data;
 
         toast.update(id, {
             render: res.message,
@@ -485,4 +487,14 @@ export const forgotPassword = async (data) => {
     }
 }
 
+
+export const getRefer = async (data) => {
+    try {
+        const res = (await api.post(`${config.backend_url}/api/auth/get_refer`, data)).data;
+        return res
+    }catch(err){
+        console.log(err)
+        return {success:false, message: "Server Error"}
+    }
+}
 
