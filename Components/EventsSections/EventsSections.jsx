@@ -8,8 +8,8 @@ import EventCard from "../EventCard/EventCard";
 
 const EventsSections = () => {
   return (
-    <div className={Style.Events_Section}>
-      <h1 className={Style.Events_Section_title}>Events</h1>
+    <div className={Style.events_section}>
+      <h1 className={Style.events_section_title}>Events</h1>
       <div className={Style.events_card_list}>
         <EventCard />
         <EventCard />
