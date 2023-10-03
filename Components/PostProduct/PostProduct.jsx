@@ -14,6 +14,8 @@ const htmlToImage = require("html-to-image")
 import { createOrder, getUserIdFromToken, updateQuantity } from "../../api";
 import { useGlobal } from "../../context/GlobalContext";
 
+const config = require("./../../config.json")
+
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: "80px",
   height: "45px",
@@ -396,7 +398,7 @@ const PostProduct = () => {
                       <QRCode
                         size={150}
                         style={{ height: "auto", maxWidth: "50%", width: "50%" }}
-                        value={"value"}
+                        value={`${config.frontend_url}/product/${product_id}`}
                         viewBox={`0 0 150 150`}
                       />
                     }
