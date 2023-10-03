@@ -82,30 +82,30 @@ const ProductData = () => {
 
   return (
     <>
-      <div className={Style.Product_section}>
+      <div className={Style.product_section}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <div className={Style.Product_post_section}>
+            <div className={Style.product_post_section}>
               <h1>Bump-me Product Data</h1>
-              <div className={Style.Product_data_box}>
-                <div className={Style.Product_data_single}>
+              <div className={Style.product_data_box}>
+                <div className={Style.product_data_single}>
                   <Image className={Style.circle} src={images.circle} alt="image" />
                   <p>{summary_data?.scans_cnt}</p>
                   <span>Scans</span>
                 </div>
-                <div className={Style.Product_data_single}>
+                <div className={Style.product_data_single}>
                   <Image className={Style.circle} src={images.circle} alt="image" />
                   <p>{summary_data.clicks_cnt}</p>
                   <span>Clicks</span>
                 </div>
               </div>
-              <div className={Style.Product_data_box}>
-                <div className={Style.Product_data_single}>
+              <div className={Style.product_data_box}>
+                <div className={Style.product_data_single}>
                   <Image className={Style.circle} src={images.circle} alt="image" />
                   <p>{summary_data.online_sales_cnt}</p>
                   <span>Online Sales</span>
                 </div>
-                <div className={Style.Product_data_single}>
+                <div className={Style.product_data_single}>
                   <Image className={Style.circle} src={images.circle} alt="image" />
                   <p>{summary_data.local_sales_cnt}</p>
                   <span>Local Sales</span>
@@ -113,18 +113,18 @@ const ProductData = () => {
               </div>
               <button
                 onClick={exportData}
-                className={Style.Product_data_export_btn}
+                className={Style.product_data_export_btn}
               >
                 export data
               </button>
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={Style.Product_post_card_section}>
-              <div className={Style.Product_post_card_box}>
+            <div className={Style.product_post_card_section}>
+              <div className={Style.product_post_card_box}>
                 <h1>memberships</h1>
-                <div className={Style.Product_post_card}>
-                  <div className={Style.Product_post_card_img_box}>
+                <div className={Style.product_post_card}>
+                  <div className={Style.product_post_card_img_box}>
                     <Image
                       className={Style.card_circle}
                       src={images.circle}
@@ -133,7 +133,7 @@ const ProductData = () => {
                     <p>10</p>
                   </div>
 
-                  <div className={Style.Product_card_btn_box}>
+                  <div className={Style.product_card_btn_box}>
                     <button>Fee</button>
                     <input
                       placeholder="Price"
@@ -147,7 +147,7 @@ const ProductData = () => {
                     />
                   </div>
 
-                  <div className={Style.Product_card_btn_box}>
+                  <div className={Style.product_card_btn_box}>
                     <button>Discount</button>
                     <input
                       placeholder="Percent"
@@ -162,7 +162,7 @@ const ProductData = () => {
                   </div>
                   <div
                     onClick={addMemberDiscount}
-                    className={Style.Product_card_download_btn}
+                    className={Style.product_card_download_btn}
                   >
                     Add member discount
                   </div>
