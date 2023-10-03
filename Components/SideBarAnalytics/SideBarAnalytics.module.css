@@ -1,4 +1,4 @@
-.Nav_analytics {
+.nav_analytics {
     width: 327px;
     height: 80%;
     flex-shrink: 0;
@@ -12,7 +12,7 @@
     z-index: 10;
 }
 
-.Nav_analytics_cancel_btn {
+.nav_analytics_cancel_btn {
     margin-top: 50px;
     display: flex;
     justify-content: right;
@@ -30,7 +30,7 @@
     justify-content: center;
 }
 
-.Nav_analytics_cancel_btn p {
+.nav_analytics_cancel_btn p {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -41,7 +41,7 @@
     margin-right: 20%;
 }
 
-.Nav_analytics_title {
+.nav_analytics_title {
     width: 190px;
     float: right;
     margin-top: 50px;
@@ -52,7 +52,7 @@
     margin-bottom: 20px;
 }
 
-.Nav_analytics_title h1 {
+.nav_analytics_title h1 {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -62,7 +62,7 @@
     line-height: normal;
 }
 
-.Nav_analytics_title p {
+.nav_analytics_title p {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -73,12 +73,12 @@
 }
 
 
-.Nav_analytics_btn_list {
+.nav_analytics_btn_list {
     width: 100%;
     position: relative;
 }
 
-.Nav_analytics_btn_single {
+.nav_analytics_btn_single {
     width: 190px;
     height: 50px;
     border-radius: 97px;

@@ -11,8 +11,8 @@ const SideBarAnalytics = ({ setIndex }) => {
 
   return (
     <>
-      <div className={Style.Nav_analytics} style={{ display: activeSubMenu? "block": "none" }}>
-        <div className={Style.Nav_analytics_cancel_btn} onClick={()=>activeSubMenuHandle()}>
+      <div className={Style.nav_analytics} style={{ display: activeSubMenu? "block": "none" }}>
+        <div className={Style.nav_analytics_cancel_btn} onClick={()=>activeSubMenuHandle()}>
           <Image
             className={Style.left_double_arrow}
             src={images.left_double_arrow}
@@ -20,16 +20,16 @@ const SideBarAnalytics = ({ setIndex }) => {
           />
           <p>Cancel</p>
         </div>
-        <div className={Style.Nav_analytics_title}>
+        <div className={Style.nav_analytics_title}>
           {activeNavbar == 0? <h1 className="navbar_title" style={{ display: "flex",justifyContent: "center"}}>Post</h1>:null}
           {activeNavbar == 1? <h1 className="navbar_title" style={{ display: "flex",justifyContent: "center"}}>Analytics</h1>:null}
           {activeNavbar == 2? <h1 className="navbar_title" style={{ display: "flex",justifyContent: "center"}}>Design</h1>:null}
         </div>
-        <div className={Style.Nav_analytics_btn_list}>
+        <div className={Style.nav_analytics_btn_list}>
           {
             activeNavbar == 0? <>
               <div
-                className={Style.Nav_analytics_btn_single}
+                className={Style.nav_analytics_btn_single}
                 onClick={() => setIndex(1)}
               >
                 Post
@@ -39,13 +39,13 @@ const SideBarAnalytics = ({ setIndex }) => {
           {
             activeNavbar == 1? <>
                 <div
-                  className={Style.Nav_analytics_btn_single}
+                  className={Style.nav_analytics_btn_single}
                   onClick={() => setIndex(2)}
                 >
                   Product
                 </div>
                 <div
-                  className={Style.Nav_analytics_btn_single}
+                  className={Style.nav_analytics_btn_single}
                   onClick={() => setIndex(3)}
                 >
                   Data
@@ -56,19 +56,19 @@ const SideBarAnalytics = ({ setIndex }) => {
           {
             activeNavbar == 2? <>
               <div
-                className={Style.Nav_analytics_btn_single}
+                className={Style.nav_analytics_btn_single}
                 onClick={() => setIndex(4)}
               >
                 Customize
               </div>
               <div
-                className={Style.Nav_analytics_btn_single}
+                className={Style.nav_analytics_btn_single}
                 onClick={() => setIndex(5)}
               >
                 survey
               </div>
               <div
-                className={Style.Nav_analytics_btn_single}
+                className={Style.nav_analytics_btn_single}
                 onClick={() => setIndex(6)}
               >
                 Add Ai

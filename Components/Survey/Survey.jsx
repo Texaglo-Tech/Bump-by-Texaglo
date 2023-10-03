@@ -66,13 +66,13 @@ const Survey = () => {
 
   return (
     <>
-      <div className={Style.Product_section}>
-        <div className={Style.Product_post_section}>
+      <div className={Style.product_section}>
+        <div className={Style.product_post_section}>
           <h1>Add survey to Bump-me</h1>
-          <div className={Style.Product_post_input}>
-            <div className={Style.Product_file_input_box}>
+          <div className={Style.product_post_input}>
+            <div className={Style.product_file_input_box}>
               <div
-                className={Style.Product_file_input}
+                className={Style.product_file_input}
                 onClick={() => productDataHandle("survey", true)}
               >
                 <Image
@@ -85,7 +85,7 @@ const Survey = () => {
               </div>
 
               <div
-                className={Style.Product_add_page}
+                className={Style.product_add_page}
                 onClick={() => {
                   addQuestionHandle();
                 }}
@@ -94,12 +94,12 @@ const Survey = () => {
                 <p>Add question</p>
               </div>
             </div>
-            <div className={Style.Product_add_question}>
+            <div className={Style.product_add_question}>
               {questions &&
                 JSON.parse(questions).map((item, index) => (
                   <React.Fragment key={index}>
                     <input
-                      className={Style.Product_add_question_number}
+                      className={Style.product_add_question_number}
                       onChange={(e) => {
                         changeQuestionHandle(e, index);
                       }}
@@ -107,7 +107,7 @@ const Survey = () => {
                       value={item}
                     />
                     <div
-                      className={Style.Product_add_question_icon}
+                      className={Style.product_add_question_icon}
                       onClick={() => {
                         addAnswerHandle(index);
                       }}
@@ -121,7 +121,7 @@ const Survey = () => {
                       JSON.parse(answers)[index].map((_item, _index) => (
                         <React.Fragment key={_index}>
                           <input
-                            className={Style.Product_add_answer_number}
+                            className={Style.product_add_answer_number}
                             onChange={(e) => {
                               changeAnswerHandle(e, index, _index);
                             }}
@@ -135,25 +135,25 @@ const Survey = () => {
             </div>
           </div>
         </div>
-        <div className={Style.Product_post_card_section}>
-          <div className={Style.Product_post_card_box}>
+        <div className={Style.product_post_card_section}>
+          <div className={Style.product_post_card_box}>
             <h1>Preview </h1>
-            <div className={Style.Product_post_card}>
-              <div className={Style.Product_post_card_img_box}>
+            <div className={Style.product_post_card}>
+              <div className={Style.product_post_card_img_box}>
                 <Image
                   className={Style.c_v_ctrl_img}
                   src={images.c_v_ctrl}
                   alt="image"
                 />
-                <div className={Style.Product_post_card_img_content}>
+                <div className={Style.product_post_card_img_content}>
                   <button className={Style.buy_now_btn}>BUY NOW</button>
                   <h2>{product_data.product_name}</h2>
                   <p>{product_data.product_desc}</p>
-                  <div className={Style.Product_post_card_img_content_btn_one}>
+                  <div className={Style.product_post_card_img_content_btn_one}>
                     <button>ADD TO CART</button>
                     <button>OPEN PAGE</button>
                   </div>
-                  <div className={Style.Product_post_card_img_content_btn_two}>
+                  <div className={Style.product_post_card_img_content_btn_two}>
                     {product_data.website ? (
                       <button
                         onClick={() => window.open(product_data.link, "_blank")}
