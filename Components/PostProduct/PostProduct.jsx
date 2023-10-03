@@ -195,6 +195,20 @@ const PostProduct = () => {
                           Digital product
                         </label>
                       </div>
+                      <div
+                        className={Style.Product_file_input}
+                        onClick={() => fileInputRef.current.click()}
+                        onChange={addFile}
+                      >
+                        <input
+                          type="file"
+                          style={{ display: "none" }}
+                          ref={fileInputRef}
+                        />
+                        <Image className={Style.circle} src={images.circle} alt="image" />
+                        <span>+</span>
+                        <p>Add image</p>
+                      </div>
                     </div>
                   </div>
 
@@ -231,22 +245,9 @@ const PostProduct = () => {
                     ></textarea>
                   </div>
                 </div>
-
-                <div
-                  className={Style.Product_file_input}
-                  onClick={() => fileInputRef.current.click()}
-                  onChange={addFile}
-                >
-                  <input
-                    type="file"
-                    style={{ display: "none" }}
-                    ref={fileInputRef}
-                  />
-                  <Image className={Style.circle} src={images.circle} alt="image" />
-                  <span>+</span>
-                  <p>Add image</p>
-                </div>
+                
               </div>
+              
               <div className={Style.Product_post_options_btn}>
                 <div className={Style.Product_post_toggle}>
                   <div className={Style.toggle_switch_container}>
