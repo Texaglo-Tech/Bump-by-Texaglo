@@ -1,10 +1,10 @@
-/* .NavSection {
+/* .navSection {
     width: 100%;
     height: 300vh;
     position: relative;
 } */
 
-.Nav {
+.nav {
     width: 90px;
     height: 80%;
     position: fixed;
@@ -21,7 +21,7 @@
     z-index: 100;
 }
 
-.NavResponsive {
+.nav_responsive {
     /* width: 90px; */
     /* height: 80%; */
     position: fixed;
@@ -34,26 +34,26 @@
     z-index: 100;
 }
 
-.NavResponsivePic {
+.nav_responsive_pic {
     cursor: pointer;
     width:50px;
     height:50px;
 }
 
-.NavPic {
+.nav_pic {
     margin-top: 30px;
     width: 73.279px;
     height: 73.279px;
     cursor: pointer;
 }
 
-.NavIcons {
+.nav_icons {
     width: 100%;
     height: 80%;
     position: relative;
 }
 
-.IconTop {
+.icon_top {
     margin-top: 5px;
     width: 100%;
     display: flex;
@@ -63,21 +63,21 @@
     top: 0;
 }
 
-.IconTop hr {
+.icon_top hr {
     width: 45.797px;
     height: 1.197px;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.12);
 }
 
-.NavIconImg {
+.nav_icon_img {
     width: 41.14px;
     height: 41.14px;
     margin-top: 10px;
     cursor: pointer;
 }
 
-.NavIconImg:hover {
+.nav_icon_img:hover {
     width: 45.14px;
     height: 45.14px;
     margin-top: 10px;
@@ -86,7 +86,7 @@
     cursor: pointer;
 }
 
-.IconBottom {
+.icon_bottom {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@
     bottom: 0;
 }
 
-.IconBottom hr {
+.icon_bottom hr {
     width: 45.797px;
     height: 1.197px;
     border-radius: 24px;
@@ -103,12 +103,12 @@
 }
 
 @media screen and (max-width: 1600px) {
-    .Nav {
+    .nav {
         width: 80px;
         height: 80%;
     }
 
-    .NavIcons {
+    .nav_icons {
         height: 82%;
     }
 }

@@ -16,18 +16,18 @@ const SideBar = () => {
   return (
     <>
       <Hidden mdDown>
-        <div className={Style.Nav}>
+        <div className={Style.nav}>
           <Image
-            className={Style.NavPic}
+            className={Style.nav_pic}
             src={images.navpic}
             alt="image"
             onClick={activeSubMenuHandle}
           />
-          <div className={Style.NavIcons}>
+          <div className={Style.nav_ions}>
             <div className={Style.IconTop}>
               <hr />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.rocket}
                 alt="image"
                 onClick={() => {
@@ -35,7 +35,7 @@ const SideBar = () => {
                 }}
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.book}
                 alt="image"
                 onClick={() => {
@@ -43,7 +43,7 @@ const SideBar = () => {
                 }}
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.tool}
                 alt="image"
                 onClick={() => {
@@ -52,25 +52,25 @@ const SideBar = () => {
               />
             </div>
 
-            <div className={Style.IconBottom}>
+            <div className={Style.icon_bottom}>
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.discord}
                 alt="image"
               />
               <hr />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.twitter}
                 alt="image"
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.youtube}
                 alt="image"
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.github}
                 alt="image"
               />
@@ -79,27 +79,27 @@ const SideBar = () => {
         </div>
       </Hidden>
       <Hidden mdUp>
-        <div className={Style.NavResponsive}>
+        <div className={Style.nav_responsive}>
           <Image
-              className={Style.NavResponsivePic}
+              className={Style.nav_responsive_pic}
               src={images.down}
               alt="image"              
               onClick={()=>{downSubMenuHandle(); setVisible(!visible)}}
           />
         </div>
         {visible?
-        <div className={Style.Nav}>
+        <div className={Style.nav}>
           <Image
-            className={Style.NavPic}
+            className={Style.nav_pic}
             src={images.navpic}
             alt="image"
             onClick={activeSubMenuHandle}
           />
-          <div className={Style.NavIcons}>
-            <div className={Style.IconTop}>
+          <div className={Style.nav_icons}>
+            <div className={Style.icon_top}>
               <hr />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.rocket}
                 alt="image"
                 onClick={() => {
@@ -107,7 +107,7 @@ const SideBar = () => {
                 }}
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.book}
                 alt="image"
                 onClick={() => {
@@ -115,7 +115,7 @@ const SideBar = () => {
                 }}
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.tool}
                 alt="image"
                 onClick={() => {
@@ -124,25 +124,25 @@ const SideBar = () => {
               />
             </div>
 
-            <div className={Style.IconBottom}>
+            <div className={Style.icon_bottom}>
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.discord}
                 alt="image"
               />
               <hr />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.twitter}
                 alt="image"
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.youtube}
                 alt="image"
               />
               <Image
-                className={Style.NavIconImg}
+                className={Style.nav_icon_img}
                 src={images.github}
                 alt="image"
               />
