@@ -391,7 +391,7 @@ th {
   min-height: 100vh;
   width: 100%;
   padding: 0 10px;
-  background-color: linear-gradient(113deg, #090909 8.46%, #222 102.56%);
+  background: linear-gradient(113deg, #090909 8.46%, #222 102.56%);
 }
 
 .login_page_bump{
