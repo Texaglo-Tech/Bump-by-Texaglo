@@ -5,7 +5,7 @@
 ### Install dependencies
 `npm install`
 
-## To start server with hot reload 
+## To start with hot reload 
 `npm run dev`
 
 ## Project Config
