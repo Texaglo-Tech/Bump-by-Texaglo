@@ -15,11 +15,11 @@ import { customizeDeploy } from "../../api";
 
 const Customize = () => {
   const fileInputRef = useRef(null);
-  const { productDataHandle, product_data} = useGlobal()
+  const { productDataHandle, product_data } = useGlobal();
 
   const addFile = async (e) => {
     const selectedFile = e.target.files[0];
-    console.log("Current product id is ", getCurrentProductId())
+    console.log("Current product id is ", getCurrentProductId());
     if (!getCurrentProductId()) {
       toast.warning("Please create the product first", {
         position: toast.POSITION.TOP_RIGHT,
@@ -39,9 +39,9 @@ const Customize = () => {
     }
   };
 
-  const saveAndDeploy = async() => {
-    console.log("deploying...")
-    console.log("Current product id is ", getCurrentProductId())
+  const saveAndDeploy = async () => {
+    console.log("deploying...");
+    console.log("Current product id is ", getCurrentProductId());
     if (!getCurrentProductId()) {
       toast.warning("Please create the product first", {
         position: toast.POSITION.TOP_RIGHT,
@@ -57,11 +57,11 @@ const Customize = () => {
       website: product_data.website,
       link: product_data.link,
       product_id: getCurrentProductId(),
-      user_id: getUserIdFromToken()
-    }
+      user_id: getUserIdFromToken(),
+    };
 
-    await customizeDeploy(data)
-  }
+    await customizeDeploy(data);
+  };
 
   return (
     <>
@@ -75,9 +75,7 @@ const Customize = () => {
                 <input
                   type="text"
                   onChange={(e) => {
-                    productDataHandle(
-                      "background_color", e.target.value
-                    );
+                    productDataHandle("background_color", e.target.value);
                   }}
                 />
               </div>
@@ -86,9 +84,7 @@ const Customize = () => {
                 <input
                   type="text"
                   onChange={(e) => {
-                    productDataHandle(
-                      "button1_color", e.target.value
-                    );
+                    productDataHandle("button1_color", e.target.value);
                   }}
                 />
               </div>
@@ -97,9 +93,7 @@ const Customize = () => {
                 <input
                   type="text"
                   onChange={(e) => {
-                    productDataHandle(
-                      "button2_color", e.target.value
-                    );
+                    productDataHandle("button2_color", e.target.value);
                   }}
                 />
               </div>
@@ -108,9 +102,7 @@ const Customize = () => {
                 <input
                   type="text"
                   onChange={(e) => {
-                    productDataHandle(
-                      "buy_color", e.target.value
-                    );
+                    productDataHandle("buy_color", e.target.value);
                   }}
                 />
               </div>
@@ -118,7 +110,7 @@ const Customize = () => {
             <div className={Style.product_file_input_box}>
               <div
                 className={Style.product_file_input}
-                onClick={()=>fileInputRef.current.click()}
+                onClick={() => fileInputRef.current.click()}
                 onChange={addFile}
               >
                 <Image
@@ -128,7 +120,11 @@ const Customize = () => {
                 />
                 <span>+</span>
                 <p>Add image</p>
-                <input type="file" ref={fileInputRef} style={{display:"none"}}/>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                />
               </div>
               <div
                 className={Style.product_file_input}
@@ -149,9 +145,7 @@ const Customize = () => {
                 <input
                   type="text"
                   onChange={(e) => {
-                    productDataHandle(
-                      "link", e.target.value,
-                    );
+                    productDataHandle("link", e.target.value);
                   }}
                 />
               </div>
@@ -162,29 +156,82 @@ const Customize = () => {
           <div className={Style.product_post_card_box}>
             <h1>Preview </h1>
             <div className={Style.product_post_card}>
-              <div className={Style.product_post_card_img_box} style={{backgroundColor:product_data.background_color!=""?product_data.background_color:null}}>
-                <Image
-                  className={Style.c_v_ctrl_img}
-                  src={images.c_v_ctrl}
-                  alt="image"
-                />
+              <div
+                className={Style.product_post_card_img_box}
+                style={{
+                  backgroundColor:
+                    product_data.background_color != ""
+                      ? product_data.background_color
+                      : null,
+                }}
+              >
+                {product_data.product_file ? (
+                  <img
+                    src={product_data.product_file}
+                    alt="product"
+                    className={Style.c_v_ctrl_img}
+                  />
+                ) : (
+                  <Image
+                    className={Style.c_v_ctrl_img}
+                    src={images.c_v_ctrl}
+                    alt="image"
+                  />
+                )}
+
                 <div className={Style.product_post_card_img_content}>
-                  <button className={Style.buy_now_btn} style={{background:product_data.buy_color!=""?product_data.buy_color:null}}>BUY NOW</button>
+                  <button
+                    className={Style.buy_now_btn}
+                    style={{
+                      background:
+                        product_data.buy_color != ""
+                          ? product_data.buy_color
+                          : null,
+                    }}
+                  >
+                    BUY NOW
+                  </button>
                   <h2>{product_data.product_name}</h2>
-                  <p>
-                    {product_data.product_desc}
-                  </p>
+                  <p>{product_data.product_desc}</p>
                   <div className={Style.product_post_card_img_content_btn_one}>
-                    <button style={{background:product_data.button1_color!=""?product_data.button1_color:null}}>{product_data.button1_color}ADD TO CART</button>
-                    <button style={{background:product_data.button2_color!=""?product_data.button2_color:null}}>OPEN PAGE</button>
+                    <button
+                      style={{
+                        background:
+                          product_data.button1_color != ""
+                            ? product_data.button1_color
+                            : null,
+                      }}
+                    >
+                      {product_data.button1_color}ADD TO CART
+                    </button>
+                    <button
+                      style={{
+                        background:
+                          product_data.button2_color != ""
+                            ? product_data.button2_color
+                            : null,
+                      }}
+                    >
+                      OPEN PAGE
+                    </button>
                   </div>
                   <div className={Style.product_post_card_img_content_btn_two}>
-                    {product_data.website?<button onClick={()=>window.open(product_data.link, "_blank")}>Website</button>:null}
-                    {product_data.survey?<button>Survey questions</button>:null}
+                    {product_data.website ? (
+                      <button
+                        onClick={() => window.open(product_data.link, "_blank")}
+                      >
+                        Website
+                      </button>
+                    ) : null}
+                    {product_data.survey ? (
+                      <button>Survey questions</button>
+                    ) : null}
                   </div>
                 </div>
               </div>
-              <div className={Style.card_save_btn} onClick={saveAndDeploy}>Save and Deploy</div>
+              <div className={Style.card_save_btn} onClick={saveAndDeploy}>
+                Save and Deploy
+              </div>
             </div>
             <p>
               -Each Item is equivalent to one label or NFC. <br /> <br />

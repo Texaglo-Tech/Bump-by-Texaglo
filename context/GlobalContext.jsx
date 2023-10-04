@@ -34,7 +34,9 @@ const GlobalProviders = (props) => {
         link: "",
 
         survey: false,
-        ai: false
+        ai: false,
+
+        product_file: null
     });
 
     const setAddress = useCallback(

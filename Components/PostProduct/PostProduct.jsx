@@ -9,11 +9,12 @@ import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import { toast } from "react-toastify";
 import QRCode from "react-qr-code";
-const htmlToImage = require("html-to-image")
 
 import { createOrder, getUserIdFromToken, updateQuantity } from "../../api";
 import { useGlobal } from "../../context/GlobalContext";
+import { Grid } from "@mui/material";
 
+const htmlToImage = require("html-to-image")
 const config = require("./../../config.json")
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -49,7 +50,8 @@ const PostProduct = () => {
 
   const [file, setFile] = useState(null);
   const [product_id, setProductId] = useState(null);
-  const [qrcode_value, setQrcodeValue] = useState("")
+  const [qrcode_value, setQrcodeValue] = useState("");
+
 
   const orderCreateHandle = async () => {
     if (product_data.product_name == "") {
@@ -108,6 +110,10 @@ const PostProduct = () => {
   const addFile = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
+    productDataHandle(
+      "product_file",
+      URL.createObjectURL(selectedFile)
+  );
   };
 
   const createQuantityAndDownload = async() => {
@@ -157,200 +163,115 @@ const PostProduct = () => {
   return (
     <>
       <div className={Style.product_section}>
-            <div className={Style.product_post_section}>
-              <h1>Post a product to Bump-me</h1>
-              <div className={Style.product_post_input}>
-                <div className={Style.product_data_input}>
-                  <div className={Style.toggle_switch_container}>
-                    <div
-                      style={{
-                        display: "flex",
-                        marginLeft: "-30px",
-                        marginTop: "30px",
-                      }}
-                    >
-                      <AntSwitch
-                        onChange={() => {
-                          productDataHandle(
-                              "product_type",
-                              product_data.product_type == "local" ? "digital" : "local"
-                          );
-                        }}
-                        inputProps={{ "aria-label": "ant design" }}
-                      />
-
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={7} sx={{padding:"30px"}}>
+              <div className={Style.product_post_section}>
+                <h1>Post a product to Bump-me</h1>
+                <div className={Style.product_post_input}>
+                  <div className={Style.product_data_input}>
+                    <div className={Style.toggle_switch_container}>
                       <div
                         style={{
-                          marginLeft: "-15px",
-                          marginTop: "-5px",
                           display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "space-between",
+                          marginLeft: "-30px",
+                          marginTop: "30px",
                         }}
                       >
-                        <label
-                          style={{ fontSize: "17px", color: "white" }}
-                          onClick={() => {
-                            productDataHandle("product_type", "local");
+                        <AntSwitch
+                          onChange={() => {
+                            productDataHandle(
+                                "product_type",
+                                product_data.product_type == "local" ? "digital" : "local"
+                            );
                           }}
-                        >
-                          local product
-                        </label>
-                        <span style={{ height: "10px" }}></span>
-                        <label
-                          style={{ fontSize: "17px", color: "white" }}
-                          onClick={() => {
-                            productDataHandle("product_type", "digital");
-                          }}
-                        >
-                          Digital product
-                        </label>
-                      </div>
-                      <div
-                        className={Style.product_file_input}
-                        onClick={() => fileInputRef.current.click()}
-                        onChange={addFile}
-                      >
-                        <input
-                          type="file"
-                          style={{ display: "none" }}
-                          ref={fileInputRef}
+                          inputProps={{ "aria-label": "ant design" }}
                         />
-                        <Image className={Style.circle} src={images.circle} alt="image" />
-                        <span>+</span>
-                        <p>Add image</p>
+
+                        <div
+                          style={{
+                            marginLeft: "-15px",
+                            marginTop: "-5px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <label
+                            style={{ fontSize: "17px", color: "white" }}
+                            onClick={() => {
+                              productDataHandle("product_type", "local");
+                            }}
+                          >
+                            local product
+                          </label>
+                          <span style={{ height: "10px" }}></span>
+                          <label
+                            style={{ fontSize: "17px", color: "white" }}
+                            onClick={() => {
+                              productDataHandle("product_type", "digital");
+                            }}
+                          >
+                            Digital product
+                          </label>
+                        </div>
+                        <div
+                          className={Style.product_file_input}
+                          onClick={() => fileInputRef.current.click()}
+                          onChange={addFile}
+                        >
+                          <input
+                            type="file"
+                            style={{ display: "none" }}
+                            ref={fileInputRef}
+                          />
+                          <Image className={Style.circle} src={images.circle} alt="image" />
+                          <span>+</span>
+                          <p>Add image</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <p>I want my product to be :</p>
+                    <p>I want my product to be :</p>
 
-                  <div className={Style.content_input}>
-                    <label htmlFor="">named:</label>
-                    <input
-                      type="text"
-                      onChange={(e) => {
-                        productDataHandle("product_name", e.target.value );
-                      }}
-                    />
+                    <div className={Style.content_input}>
+                      <label htmlFor="">named:</label>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          productDataHandle("product_name", e.target.value );
+                        }}
+                      />
+                    </div>
+                    <div className={Style.content_input}>
+                      <label htmlFor="">cost:</label>
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          productDataHandle("product_cost", e.target.value );
+                        }}
+                      />
+                    </div>
+                    <div className={Style.content_input}>
+                      <label htmlFor="">Described: </label>
+                      <textarea
+                        id="w3review"
+                        name="w3review"
+                        rows="4"
+                        cols="50"
+                        onChange={(e) => {
+                          productDataHandle("product_desc", e.target.value );
+                        }}
+                      ></textarea>
+                    </div>
                   </div>
-                  <div className={Style.content_input}>
-                    <label htmlFor="">cost:</label>
-                    <input
-                      type="text"
-                      onChange={(e) => {
-                        productDataHandle("product_cost", e.target.value );
-                      }}
-                    />
-                  </div>
-                  <div className={Style.content_input}>
-                    <label htmlFor="">Described: </label>
-                    <textarea
-                      id="w3review"
-                      name="w3review"
-                      rows="4"
-                      cols="50"
-                      onChange={(e) => {
-                        productDataHandle("product_desc", e.target.value );
-                      }}
-                    ></textarea>
-                  </div>
+                  
                 </div>
                 
-              </div>
-              
-              <div className={Style.product_post_options_btn}>
-                <div className={Style.product_post_toggle}>
-                  <div className={Style.toggle_switch_container}>
-                    <label htmlFor="" className={Style.product_post_toggle_title}>
-                      Link Method:
-                    </label>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        marginLeft: "-25px",
-                        marginTop: "25px",
-                      }}
-                    >
-                      <AntSwitch
-                        onChange={() =>
-                          productDataHandle(
-                            "product_link",
-                              product_data.product_link == "nfc" ? "qrcode" : "nfc",
-                          )
-                        }
-                        inputProps={{ "aria-label": "ant design" }}
-                      />
-
-                      <div
-                        style={{
-                          marginLeft: "-15px",
-                          marginTop: "-5px",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <label style={{ fontSize: "17px", color: "white" }}>
-                          NFC
-                        </label>
-                        <span style={{ height: "10px" }}></span>
-                        <label style={{ fontSize: "17px", color: "white" }}>
-                          QR Code
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={Style.product_post_toggle}>
-                  <div className={Style.toggle_switch_container}>
-                    <label htmlFor="" className={Style.product_post_toggle_title}>
-                      Payement type:
-                    </label>
-                    <div
-                      style={{
-                        display: "flex",
-                        marginLeft: "-25px",
-                        marginTop: "25px",
-                      }}
-                    >
-                      <AntSwitch
-                        onChange={(e) => {
-                          productDataHandle(                            
-                            "product_payment",
-                              product_data.product_payment == "dollar"
-                                ? "crypto"
-                                : "dollar"
-                          );
-                        }}
-                        inputProps={{ "aria-label": "ant design" }}
-                      />
-                      <div
-                        style={{
-                          marginLeft: "-15px",
-                          marginTop: "-5px",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <label style={{ fontSize: "17px", color: "white" }}>
-                          Dollars
-                        </label>
-                        <span style={{ height: "10px" }}></span>
-                        <label style={{ fontSize: "17px", color: "white" }}>
-                          Crypto
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {product_data.product_link=="nfc"?<></>:
+                <div className={Style.product_post_options_btn}>
                   <div className={Style.product_post_toggle}>
                     <div className={Style.toggle_switch_container}>
-                      <label className={Style.product_post_toggle_title} htmlFor="">
-                        Qr Code Type:
+                      <label htmlFor="" className={Style.product_post_toggle_title}>
+                        Link Method:
                       </label>
 
                       <div
@@ -361,12 +282,54 @@ const PostProduct = () => {
                         }}
                       >
                         <AntSwitch
-                          onChange={(e) => {
+                          onChange={() =>
                             productDataHandle(
-                              "product_qrcode",
-                                product_data.product_qrcode == "physical"
-                                  ? "digital"
-                                  : "physical"
+                              "product_link",
+                                product_data.product_link == "nfc" ? "qrcode" : "nfc",
+                            )
+                          }
+                          inputProps={{ "aria-label": "ant design" }}
+                        />
+
+                        <div
+                          style={{
+                            marginLeft: "-15px",
+                            marginTop: "-5px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <label style={{ fontSize: "17px", color: "white" }}>
+                            NFC
+                          </label>
+                          <span style={{ height: "10px" }}></span>
+                          <label style={{ fontSize: "17px", color: "white" }}>
+                            QR Code
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={Style.product_post_toggle}>
+                    <div className={Style.toggle_switch_container}>
+                      <label htmlFor="" className={Style.product_post_toggle_title}>
+                        Payement type:
+                      </label>
+                      <div
+                        style={{
+                          display: "flex",
+                          marginLeft: "-25px",
+                          marginTop: "25px",
+                        }}
+                      >
+                        <AntSwitch
+                          onChange={(e) => {
+                            productDataHandle(                            
+                              "product_payment",
+                                product_data.product_payment == "dollar"
+                                  ? "crypto"
+                                  : "dollar"
                             );
                           }}
                           inputProps={{ "aria-label": "ant design" }}
@@ -381,70 +344,119 @@ const PostProduct = () => {
                           }}
                         >
                           <label style={{ fontSize: "17px", color: "white" }}>
-                            Physical
+                            Dollars
                           </label>
                           <span style={{ height: "10px" }}></span>
                           <label style={{ fontSize: "17px", color: "white" }}>
-                            Digital
+                            Crypto
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
-                }
-              </div>
+                  {product_data.product_link=="nfc"?<></>:
+                    <div className={Style.product_post_toggle}>
+                      <div className={Style.toggle_switch_container}>
+                        <label className={Style.product_post_toggle_title} htmlFor="">
+                          Qr Code Type:
+                        </label>
 
-              <div className={Style.product_order_btn} onClick={orderCreateHandle}>
-                Order qr And Create Product
-              </div>
-            </div>
-            <div className={Style.product_post_card_section}>
-              <div className={Style.product_post_card_box}>
-                <h1>{product_data.product_link=="nfc"?<>NFC Label</>:<>Qr Code</>}</h1>
-                <div className={Style.product_post_card}>
-                  <h1 className={Style.product_post_card_title}>Cost: $0</h1>
-                  <div className={Style.product_post_card_img_box}>
-                    { 
-                      product_data.product_link=="nfc"?<Image src={images.nfc} alt="image" id="nfc"/>
-                        :
-                      <QRCode
-                        size={150}
-                        style={{ height: "auto", maxWidth: "50%", width: "50%" }}
-                        value={`${qrcode_value}`}
-                        viewBox={`0 0 150 150`}
-                      />
-                    }
-                    
-                  </div>
-
-                  <div className={Style.product_card_btn_box}>
-                    <button>Order labels</button>
-                    <input
-                      placeholder="quantity"
-                      type="number"
-                      onChange={(e) =>
-                        productDataHandle(
-                          "quantity", e.target.value
-                        )
-                      }
-                    />
-                  </div>
-
-                  <div
-                    className={Style.product_card_download_btn}
-                    onClick={createQuantityAndDownload}
-                  >
-                    Create and Download
-                  </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            marginLeft: "-25px",
+                            marginTop: "25px",
+                          }}
+                        >
+                          <AntSwitch
+                            onChange={(e) => {
+                              productDataHandle(
+                                "product_qrcode",
+                                  product_data.product_qrcode == "physical"
+                                    ? "digital"
+                                    : "physical"
+                              );
+                            }}
+                            inputProps={{ "aria-label": "ant design" }}
+                          />
+                          <div
+                            style={{
+                              marginLeft: "-15px",
+                              marginTop: "-5px",
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <label style={{ fontSize: "17px", color: "white" }}>
+                              Physical
+                            </label>
+                            <span style={{ height: "10px" }}></span>
+                            <label style={{ fontSize: "17px", color: "white" }}>
+                              Digital
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  }
                 </div>
-                <p>
-                  -Each Item is equivalent to one label or NFC. <br /> <br />
-                  -When you post your item to Bump-me it is the item is tracked on
-                  the blockchain and when the qr code isscanned and marked as sold
-                  an nft will be minted as a receipt.
-                </p>
+
+                <div className={Style.product_order_btn} onClick={orderCreateHandle}>
+                  Order qr And Create Product
+                </div>
               </div>
-            </div>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <div className={Style.product_post_card_section}>
+                <div className={Style.product_post_card_box}>
+                  <h1>{product_data.product_link=="nfc"?<>NFC Label</>:<>Qr Code</>}</h1>
+                  <div className={Style.product_post_card}>
+                    <h1 className={Style.product_post_card_title}>Cost: $0</h1>
+                    <div className={Style.product_post_card_img_box}>
+                      { 
+                        product_data.product_link=="nfc"?<Image src={images.nfc} alt="image" id="nfc"/>
+                          :
+                        <QRCode
+                          size={150}
+                          style={{ height: "auto", maxWidth: "50%", width: "50%" }}
+                          value={`${qrcode_value}`}
+                          viewBox={`0 0 150 150`}
+                        />
+                      }
+                      
+                    </div>
+
+                    <div className={Style.product_card_btn_box}>
+                      <button>Order labels</button>
+                      <input
+                        placeholder="quantity"
+                        type="number"
+                        onChange={(e) =>
+                          productDataHandle(
+                            "quantity", e.target.value
+                          )
+                        }
+                      />
+                    </div>
+
+                    <div
+                      className={Style.product_card_download_btn}
+                      onClick={createQuantityAndDownload}
+                    >
+                      Create and Download
+                    </div>
+                  </div>
+                  <p>
+                    -Each Item is equivalent to one label or NFC. <br /> <br />
+                    -When you post your item to Bump-me it is the item is tracked on
+                    the blockchain and when the qr code isscanned and marked as sold
+                    an nft will be minted as a receipt.
+                  </p>
+                </div>
+              </div>
+            </Grid>
+          </Grid>
       </div>
     </>
   );

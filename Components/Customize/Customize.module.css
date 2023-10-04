@@ -285,7 +285,9 @@
 }
 
 .c_v_ctrl_img {
-    width: 340px;
+    object-fit: cover;
+    max-width: 340px;
+    width: 100%;
 }
 
 .product_post_card_img_content h2 {

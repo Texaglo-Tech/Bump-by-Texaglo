@@ -5,6 +5,7 @@ import Image from "next/image";
 import Style from "./SideBarAnalytics.module.css";
 import images from "../../assets";
 import { useGlobal } from "../../context/GlobalContext";
+import { Grid, Hidden } from '@mui/material';
 
 const SideBarAnalytics = ({ setIndex }) => {
   const {activeSubMenu, activeSubMenuHandle, activeNavbar} = useGlobal();
