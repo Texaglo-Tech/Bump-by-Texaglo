@@ -525,3 +525,13 @@ export const getRefer = async (data) => {
     }
 }
 
+
+export const aiChat = async (data) => {
+    console.log("ai chat..")
+    try {
+        const res = (await api.post(`${config.backend_url}/api/product/ai_chat`, data)).data;
+        return res
+    }catch(err){
+        return {success:false, message: "Server Error"}
+    }
+}

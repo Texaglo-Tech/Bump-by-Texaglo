@@ -14,7 +14,7 @@ import AiBot from "../Components/AiBot/AiBot";
 export default function Home() {
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{padding:"0% 10%"}}>
       <Head>
         <title>Texaglo Hackathon</title>
         <meta name="description" content="Texaglo Service" />

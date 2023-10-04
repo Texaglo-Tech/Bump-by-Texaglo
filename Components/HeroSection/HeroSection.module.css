@@ -27,7 +27,8 @@
 }
 
 .hero_content p {
-    width: 968.856px;
+    max-width: 968px;
+    width: 100%;
     color: rgba(255, 255, 255, 0.61);
     text-align: center;
     font-family: Poppins;
@@ -39,6 +40,7 @@
 
 .hero_buttons {
     display: flex;
+    margin-top: 30px;
 }
 
 .hero_button_one {

@@ -285,7 +285,7 @@ body {
 
 .chat-button {
   position: fixed;
-  top: 80vh;
+  bottom: 100px;
   right: 0;
   padding: 13px 8px;
   background: #2A59A4;

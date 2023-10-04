@@ -1,7 +1,10 @@
-.blog_Section {
+.blog_section {
     width: 100%;
     margin: 40px 0px;
-    padding-left: 80px;
+    /* padding-left: 200px; */
+    /* display: inline-grid;
+    align-items: center;
+    justify-content: center; */
 }
 
 .blog_section_title {
@@ -16,4 +19,6 @@
 
 .blog_card_list {
     display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
