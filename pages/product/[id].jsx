@@ -32,7 +32,7 @@ const Product = ({id}) => {
               <div className={Style.Product_post_card_img_box} style={{background:product?.background_color?product.background_color:null}}>
                 {product?.product_file ? (
                       <img
-                        src={product_data.product_file}
+                        src={product.product_file}
                         alt="product"
                         className={Style.c_v_ctrl_img}
                       />
