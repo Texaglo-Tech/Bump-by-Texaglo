@@ -10,9 +10,8 @@ import { useRouter } from "next/router";
 import { Grid, Hidden } from '@mui/material';
 
 const SideBar = () => {
-  const { activeSubMenuHandle, activeNavbarHandle, downSubMenuHandle } = useGlobal();
+  const { activeSubMenuHandle, activeNavbarHandle, downSubMenuHandle, responseVisible, responsiveVisibleHandle } = useGlobal();
   const router = useRouter();
-  const [visible, setVisible] = useState(false);
   return (
     <>
       <Hidden mdDown>
@@ -84,10 +83,10 @@ const SideBar = () => {
               className={Style.nav_responsive_pic}
               src={images.down}
               alt="image"              
-              onClick={()=>{downSubMenuHandle(); setVisible(!visible)}}
+              onClick={()=>{downSubMenuHandle(); responsiveVisibleHandle()}}
           />
         </div>
-        {visible?
+        {responseVisible?
         <div className={Style.nav}>
           <Image
             className={Style.nav_pic}

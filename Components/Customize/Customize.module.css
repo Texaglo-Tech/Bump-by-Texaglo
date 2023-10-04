@@ -5,30 +5,29 @@
 }
 
 .product_post_section {
-    width: 65%;
+    width: 100%;
 }
 
 .product_post_section h1 {
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
-    font-size: 40px;
+    font-size: 35px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-
-
 .product_post_input {
     width: 100%;
-    height: 450px;
     display: flex;
+    gap: 15px;
 }
 
 .product_data_input {
-    width: 470px;
+    width: 100%;
     height: 450px;
+    margin-top: 10px;
 }
 
 .product_data_input p {
@@ -50,7 +49,7 @@
 }
 
 .content_input label {
-    width: 150px;
+    min-width: 130px;
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -61,7 +60,8 @@
 }
 
 .content_input input {
-    width: 300px;
+    width: 100%;
+    min-width: 130px;
     height: 37px;
     border-radius: 34px;
     background: #303865;
@@ -79,7 +79,8 @@
 }
 
 .product_file_input {
-    width: 300.955px;
+    width: 100%;
+    min-width: 180px;
     height: 244px;
     border-radius: 34px;
     background: #1C2245;
@@ -87,6 +88,7 @@
     margin: auto;
     margin-top: 30px;
     position: relative;
+    text-align: center;
 }
 
 .circle {
@@ -152,7 +154,7 @@
 
 
 .website_input input {
-    width: 216px;
+    width: 100%;
     height: 37px;
     border-radius: 34px;
     background: #303865;
@@ -196,19 +198,18 @@
 }
 
 .product_post_card_section {
-    width: 35%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .product_post_card_box {
     width: 100%;
-    margin-right: 100px;
 }
 
 .product_post_card_img_box {
     margin-top: 30px;
-    width: 340px;
+    width: 100%;
     border-radius: 15px;
     background: #FFF;
     padding-bottom: 30px;
@@ -226,7 +227,7 @@
 
 .product_post_card {
     padding: 30px;
-    margin-top: 20px;
+    margin-top: 40px;
     /* width: 465px; */
     /* height: 609px; */
     display: flex;
@@ -239,7 +240,7 @@
 }
 
 .card_save_btn {
-    width: 356px;
+    width: 100%;
     height: 37px;
     border-radius: 22px;
     background: #3556F4;
@@ -286,7 +287,9 @@
 
 .c_v_ctrl_img {
     object-fit: cover;
-    max-width: 340px;
+    /* max-width: 340px; */
+    max-height: 400px;
+    height: 100%;
     width: 100%;
 }
 
@@ -365,5 +368,6 @@
 @media screen and (max-width: 1600px) {
     .product_section {
         margin-top: 80px;
+        margin-bottom: 30px;
     }
 }

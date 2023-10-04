@@ -8,13 +8,17 @@ const GlobalContext = createContext({
     activeNavbar: 0,
     activeNavbarHandle: (num) => {},
     product_data:{},
-    productDataHandle:(key, value) =>{}
+    productDataHandle:(key, value) =>{},
+    downSubMenuHandle:()=>{},
+    responseVisible: false,
+    responsiveVisibleHandle:()=>{}
 });
 
 const GlobalProviders = (props) => {
     const [address, setWalletAddress] = useState("");
     const [activeSubMenu, setActiveSubMenu] = useState(false);
     const [activeNavbar, setActiveNavbar] = useState(0);
+    const [responseVisible, setResponseVisible] = useState(false);
 
     const [product_data, setProductData] = useState({        
         product_name: "",
@@ -50,6 +54,10 @@ const GlobalProviders = (props) => {
         setActiveSubMenu(false);
     }
 
+    const responsiveVisibleHandle = async () => {
+        setResponseVisible(!responseVisible);
+    }
+
     const activeSubMenuHandle = async () => {
         setActiveSubMenu(!activeSubMenu);
     }
@@ -70,11 +78,13 @@ const GlobalProviders = (props) => {
         activeSubMenu,
         activeNavbar,
         product_data,
+        responseVisible,
         setAddress,
         activeSubMenuHandle,
         activeNavbarHandle,
         productDataHandle,
-        downSubMenuHandle
+        downSubMenuHandle,
+        responsiveVisibleHandle
     };
 
     return (
