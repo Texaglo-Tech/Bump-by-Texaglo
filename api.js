@@ -349,13 +349,6 @@ export const getProduct = async (data, router) => {
         });
         return res
     }catch(err){
-        console.log(err)
-        if(err.response.status == 401) {
-            toast.warning("Please login!", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000,
-            });
-        }
         toast.update(id, {
             render: "Server Error",
             type: "error",
