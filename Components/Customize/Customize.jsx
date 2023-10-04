@@ -169,14 +169,14 @@ const Customize = () => {
                   alt="image"
                 />
                 <div className={Style.product_post_card_img_content}>
-                  <button className={Style.buy_now_btn} style={{backgroundColor:product_data.buy_color!=""?product_data.buy_color:null}}>BUY NOW</button>
+                  <button className={Style.buy_now_btn} style={{background:product_data.buy_color!=""?product_data.buy_color:null}}>BUY NOW</button>
                   <h2>{product_data.product_name}</h2>
                   <p>
                     {product_data.product_desc}
                   </p>
                   <div className={Style.product_post_card_img_content_btn_one}>
-                    <button style={{backgroundColor:product_data.button1_color!=""?product_data.button1_color:null}}>ADD TO CART</button>
-                    <button style={{backgroundColor:product_data.button2_color!=""?product_data.button2_color:null}}>OPEN PAGE</button>
+                    <button style={{background:product_data.button1_color!=""?product_data.button1_color:null}}>{product_data.button1_color}ADD TO CART</button>
+                    <button style={{background:product_data.button2_color!=""?product_data.button2_color:null}}>OPEN PAGE</button>
                   </div>
                   <div className={Style.product_post_card_img_content_btn_two}>
                     {product_data.website?<button onClick={()=>window.open(product_data.link, "_blank")}>Website</button>:null}
