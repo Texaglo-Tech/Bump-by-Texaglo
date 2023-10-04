@@ -332,12 +332,36 @@ export const updateQuantity = async (data) => {
     }
 }
 
-export const getProductSummary = async (data) => {
-    console.log("get Product Summary..")
+export const getProduct = async (data, router) => {
+    console.log("get product...")
+    const id = toast.loading("Getting product...", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+    });
     try {
-        const res = (await api.post(`${config.backend_url}/api/product/get_product_summary`, data)).data;
+        const res = (await api.post(`${config.backend_url}/api/product/get_product`, data)).data;
+
+        toast.update(id, {
+            render: res.message,
+            type: res.success ? "success": "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
         return res
     }catch(err){
+        console.log(err)
+        if(err.response.status == 401) {
+            toast.warning("Please login!", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            });
+        }
+        toast.update(id, {
+            render: "Server Error",
+            type: "error",
+            autoClose: 2000,
+            isLoading: false,
+        });
         return {success:false, message: "Server Error"}
     }
 }
