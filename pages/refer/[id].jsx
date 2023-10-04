@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 
 //INTERNAL IMPORT
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const Refer = ({ id }) => {
+  const router = useRouter()
+
   useEffect(() => {
     console.log(id)
     localStorage.setItem("refer_id", id); 
