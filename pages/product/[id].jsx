@@ -30,7 +30,7 @@ const Product = ({id}) => {
           <div className={Style.Product_post_card_box}>
             <div className={Style.Product_post_card}>
               <div className={Style.Product_post_card_img_box} style={{background:product?.background_color?product.background_color:null}}>
-                {product.product_file ? (
+                {product?.product_file ? (
                       <img
                         src={product_data.product_file}
                         alt="product"
