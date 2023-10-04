@@ -23,8 +23,8 @@ const SideBar = () => {
             alt="image"
             onClick={activeSubMenuHandle}
           />
-          <div className={Style.nav_ions}>
-            <div className={Style.IconTop}>
+          <div className={Style.nav_icons}>
+            <div className={Style.icon_top}>
               <hr />
               <Image
                 className={Style.nav_icon_img}
