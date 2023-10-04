@@ -49,6 +49,7 @@ const PostProduct = () => {
 
   const [file, setFile] = useState(null);
   const [product_id, setProductId] = useState(null);
+  const [qrcode_value, setQrcodeValue] = useState("")
 
   const orderCreateHandle = async () => {
     if (product_data.product_name == "") {
@@ -95,6 +96,7 @@ const PostProduct = () => {
     console.log(formData);
 
     const res = await createOrder(formData);
+    setQrcodeValue()
     if (res.success) {
       console.log(res.data);
       console.log("created product id is ", res.data.product_id);
@@ -117,6 +119,8 @@ const PostProduct = () => {
       return;
     }
 
+    setQrcodeValue(`${config.frontend_url}/product/${product_id}`)
+
     const formData = {
       product_id,
       quantity: product_data.quantity,
@@ -124,24 +128,31 @@ const PostProduct = () => {
 
     console.log("formData-> ", formData)
 
-    const qrCodeSvg = document.querySelector('svg');
-
     const res = await updateQuantity(formData);
 
-    if(res.success){
-      htmlToImage.toPng(qrCodeSvg)
-      .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = `${product_data.product_name}_qrcode.png`;
-        link.click();
-      })
-      .catch((error) => {
-        console.error('Error while converting SVG to PNG:', error);
-      });  
+    if(res.success && product_data.product_link != "nfc"){
+      exportPNG(document.querySelector('svg'), `${product_data.product_name}_qrcode.png`)
+    }
+
+    if(res.success && product_data.product_link == "nfc"){
+      const qrCodeSvg = document.getElementById("nfc")
+      exportPNG(document.getElementById("nfc"), `${product_data.product_name}_nfc.png`)
     }
     
   };
+
+  const exportPNG = (dom, file_name)=>{
+    htmlToImage.toPng(dom)
+    .then((dataUrl) => {
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = file_name;
+      link.click();
+    })
+    .catch((error) => {
+      console.error('Error while converting SVG to PNG:', error);
+    });  
+  }
 
   return (
     <>
@@ -394,12 +405,12 @@ const PostProduct = () => {
                   <h1 className={Style.product_post_card_title}>Cost: $0</h1>
                   <div className={Style.product_post_card_img_box}>
                     { 
-                      product_data.product_link=="nfc"?<Image src={images.nfc} alt="image" />
+                      product_data.product_link=="nfc"?<Image src={images.nfc} alt="image" id="nfc"/>
                         :
                       <QRCode
                         size={150}
                         style={{ height: "auto", maxWidth: "50%", width: "50%" }}
-                        value={`${config.frontend_url}/product/${product_id}`}
+                        value={`${qrcode_value}`}
                         viewBox={`0 0 150 150`}
                       />
                     }
