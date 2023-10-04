@@ -1,4 +1,3 @@
-import SideBar from "../Components/SideBar/SideBar";
 import "../styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,7 +36,6 @@ function MyApp({ Component, pageProps }) {
           <WalletProvider wallets={wallets}>
             <WalletModalProvider>
               <ToastContainer />
-              <SideBar />
               <Component {...pageProps} />
             </WalletModalProvider>
           </WalletProvider>

@@ -7,12 +7,15 @@ import Survey from "../Components/Survey/Survey";
 import AddAi from "../Components/AddAi/AddAi";
 import NavProfile from "../Components/NavProfile/NavProfile";
 import SideBarAnalytics from "../Components/SideBarAnalytics/SideBarAnalytics";
+import SideBar from "../Components/SideBar/SideBar";
 
 const Dashboard = () => {
   const [index, setIndex] = useState(1);
 
   return (
     <>
+      <SideBar />
+
       <SideBarAnalytics setIndex={setIndex}/>
 
       <div className="dashboard_page">

@@ -6,6 +6,9 @@ import Style from "./Product.module.css";
 import images from "../../assets";
 import { toast } from "react-toastify";
 import { getProduct } from "../../api";
+import { Grid } from "@mui/material";
+
+const config = require("./../../config.json");
 
 const Product = ({id}) => {
   const [product, setProduct] = useState(null)
@@ -26,13 +29,16 @@ const Product = ({id}) => {
   return (
     <>
       <div className={Style.Product_section}>
-        <div className={Style.Product_post_card_section}>
+        <Grid container spacing={2}>
+        <Grid item xs={1} sm={3} md={4} >
+        </Grid>
+          <Grid item xs={10} sm={6} md={4} >
           <div className={Style.Product_post_card_box}>
             <div className={Style.Product_post_card}>
               <div className={Style.Product_post_card_img_box} style={{background:product?.background_color?product.background_color:null}}>
                 {product?.product_file ? (
                       <img
-                        src={product.product_file}
+                        src={`${config.backend_url}/${product.product_file}`}
                         alt="product"
                         className={Style.c_v_ctrl_img}
                       />
@@ -57,7 +63,10 @@ const Product = ({id}) => {
               </div>
             </div>
           </div>
-        </div>
+          </Grid>
+          <Grid item xs={1} sm={3} md={4} >
+        </Grid>
+          </Grid>
       </div>
     </>
   );
