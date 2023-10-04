@@ -8,6 +8,7 @@ import images from "../../assets";
 import { getSummary, exportToExcel, getUserIdFromToken } from "../../api";
 
 import { BarChart } from "@mui/x-charts/BarChart";
+import { Grid } from '@mui/material';
 
 const DataComp = () => {
 
@@ -69,44 +70,50 @@ const DataComp = () => {
           </div>
         </div>
         <div className={Style.data_information_box}>
-          <div className={Style.data_bars}>
-            <h3>Data collected </h3>
-            <div className={Style.data_bars_single}>
-              <p>Reviews</p>
-              <progress id="p0" value={summary_data.review} max="100"></progress>
-            </div>
-            <div className={Style.data_bars_single}>
-              <p>Male</p>
-              <progress id="p0" value={summary_data.male} max="100"></progress>
-            </div>
-            <div className={Style.data_bars_single}>
-              <p>Female</p>
-              <progress id="p0" value={summary_data.female} max="100"></progress>
-            </div>
-            <div className={Style.data_bars_single}>
-              <p>Happy</p>
-              <progress id="p0" value={summary_data.happy} max="100"></progress>
-            </div>
-            <div className={Style.data_bars_single}>
-              <p>unhappy</p>
-              <progress id="p0" value={summary_data.unhappy} max="100"></progress>
-            </div>
-            <div className={Style.data_bars_single}>
-              <p>clicks to </p>
-              <progress id="p0" value={summary_data.click_to} max="100"></progress>
-            </div>
-          </div>
-          <div className={Style.data_graph}>
-            <h3>Data collected </h3>
-            <div className={Style.data_graph_box}>
-            <BarChart
-              series={[
-                { data: summary_data.collected_data, stack: 'A', label: 'Months' },
-              ]}
-              height={300}
-            />
-            </div>
-          </div>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6} sx={{ paddingLeft: "45px !important", paddingRight: "30px"}}>
+              <div className={Style.data_bars}>
+                <h3>Data collected </h3>
+                <div className={Style.data_bars_single}>
+                  <p>Reviews</p>
+                  <progress id="p0" value={summary_data.review} max="100"></progress>
+                </div>
+                <div className={Style.data_bars_single}>
+                  <p>Male</p>
+                  <progress id="p0" value={summary_data.male} max="100"></progress>
+                </div>
+                <div className={Style.data_bars_single}>
+                  <p>Female</p>
+                  <progress id="p0" value={summary_data.female} max="100"></progress>
+                </div>
+                <div className={Style.data_bars_single}>
+                  <p>Happy</p>
+                  <progress id="p0" value={summary_data.happy} max="100"></progress>
+                </div>
+                <div className={Style.data_bars_single}>
+                  <p>unhappy</p>
+                  <progress id="p0" value={summary_data.unhappy} max="100"></progress>
+                </div>
+                <div className={Style.data_bars_single}>
+                  <p>clicks to </p>
+                  <progress id="p0" value={summary_data.click_to} max="100"></progress>
+                </div>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <div className={Style.data_graph}>
+                <h3>Data collected </h3>
+                <div className={Style.data_graph_box}>
+                <BarChart
+                  series={[
+                    { data: summary_data.collected_data, stack: 'A', label: 'Months' },
+                  ]}
+                  height={300}
+                />
+                </div>
+              </div>
+            </Grid>
+          </Grid>
         </div>
         <div className={Style.data_export_btn} onClick={exportDataHandle}>Export Data</div>
       </div>
