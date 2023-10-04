@@ -1,6 +1,6 @@
 {
-    "backend_url1": "https://crossmint-backend.texaglo.com",
-    "backend_url": "http://127.0.0.1:7000",
+    "backend_url": "https://crossmint-backend.texaglo.com",
+    "backend_url_dev": "http://127.0.0.1:7000",
     "frontend_url": "http://127.0.0.1:3000",
     "devnetRPC": "https://api.devnet.solana.com",
     "mainnetRPC":"https://api.mainnet-beta.solana.com",
