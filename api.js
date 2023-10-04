@@ -359,6 +359,16 @@ export const getProduct = async (data, router) => {
     }
 }
 
+export const getProductSummary = async (data) => {
+    console.log("get Product Summary..")
+    try {
+        const res = (await axios.post(`${config.backend_url}/api/product/get_product_summary`, data)).data;
+        return res
+    }catch(err){
+        return {success:false, message: "Server Error"}
+    }
+}
+
 export const getSummary = async (data) => {
     console.log("get Summary..")
     try {

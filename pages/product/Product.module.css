@@ -231,7 +231,8 @@
 .Product_post_card {
     padding: 30px;
     margin-top: 20px;
-    width: 465px;
+    min-width: 300px;
+    width: 100%;
     /* height: 609px; */
     display: flex;
     flex-direction: column;
