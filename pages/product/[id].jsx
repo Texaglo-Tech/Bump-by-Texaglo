@@ -30,11 +30,19 @@ const Product = ({id}) => {
           <div className={Style.Product_post_card_box}>
             <div className={Style.Product_post_card}>
               <div className={Style.Product_post_card_img_box} style={{background:product?.background_color?product.background_color:null}}>
-                <Image
-                  className={Style.c_v_ctrl_img}
-                  src={images.c_v_ctrl}
-                  alt="image"
-                />
+                {product.product_file ? (
+                      <img
+                        src={product_data.product_file}
+                        alt="product"
+                        className={Style.c_v_ctrl_img}
+                      />
+                    ) : (
+                      <Image
+                        className={Style.c_v_ctrl_img}
+                        src={images.c_v_ctrl}
+                        alt="image"
+                      />
+                    )}
                 <div className={Style.Product_post_card_img_content}>
                   <button className={Style.buy_now_btn} style={{background:product?.buy_color?product.buy_color:null}}>BUY NOW</button>
                   <h2>{ product?.product_name } </h2>
