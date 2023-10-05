@@ -9,6 +9,7 @@ import { styled } from "@mui/material/styles";
 import { useGlobal } from "../../context/GlobalContext";
 import { aiDeploy } from "../../api";
 import { Grid } from '@mui/material';
+import { getCurrentProductId, getUserIdFromToken } from "../../api";
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: "80px",
@@ -131,7 +132,7 @@ const AddAi = () => {
                 <div
                   className={Style.product_file_input}
                   onClick={() => fileInputRef.current.click()}
-                  onChange={() => setFile(e.target.files[0])}
+                  onChange={(e) => setFile(e.target.files[0])}
                 >
                   <Image className={Style.circle} src={images.circle} alt="image" />
                   <span>+</span>

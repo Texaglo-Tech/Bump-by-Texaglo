@@ -38,7 +38,7 @@ const GlobalProviders = (props) => {
         link: "",
 
         survey: false,
-        ai: false,
+        ai: true,
 
         product_file: null
     });

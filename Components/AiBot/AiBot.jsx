@@ -24,7 +24,8 @@ const AiBot = () => {
 
     const data = {
       msg: type == "voice"? transcript: aiInputText,
-      type: config.type
+      type: config.ai_type,
+      product_id: "technoking"
     }
     setChat([...chat, { user: type == "voice"? transcript: aiInputText, bot: "plz wait..." }]);  
 

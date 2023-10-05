@@ -13,6 +13,7 @@ import QRCode from "react-qr-code";
 import { createOrder, getUserIdFromToken, updateQuantity } from "../../api";
 import { useGlobal } from "../../context/GlobalContext";
 import { Grid } from "@mui/material";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const htmlToImage = require("html-to-image")
 const config = require("./../../config.json")
@@ -45,6 +46,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const PostProduct = () => {
+  const { publicKey } = useWallet();
   const fileInputRef = useRef(null);
   const { productDataHandle, product_data} = useGlobal()
 
@@ -54,6 +56,13 @@ const PostProduct = () => {
 
 
   const orderCreateHandle = async () => {
+    if (!publicKey) {
+      toast.warning("Please connect the wallet", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+      return;
+    }
     if (product_data.product_name == "") {
       toast.warning("Please input product name", {
         position: toast.POSITION.TOP_RIGHT,
@@ -92,6 +101,7 @@ const PostProduct = () => {
     formData.append("product_link", product_data.product_link);
     formData.append("product_payment", product_data.product_payment);
     formData.append("product_qrcode", product_data.product_qrcode);
+    formData.append("wallet", publicKey.toBase58());
     formData.append("user_id", getUserIdFromToken());
 
     console.log(product_data);
