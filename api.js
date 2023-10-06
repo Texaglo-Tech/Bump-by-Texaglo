@@ -332,6 +332,17 @@ export const updateQuantity = async (data) => {
     }
 }
 
+
+export const getProducts = async () => {
+    console.log("get products...")
+    try {
+        const res = (await api.post(`${config.backend_url}/api/product/get_products`)).data;
+        return res
+    }catch(err){
+        return {success:false, message: "Server Error"}
+    }
+}
+
 export const getProduct = async (data, router) => {
     console.log("get product...")
     const id = toast.loading("Getting product...", {
