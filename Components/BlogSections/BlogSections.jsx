@@ -23,7 +23,7 @@ const BlogSections = () => {
       <div className={Style.blog_card_list}>
       <Grid container spacing={2}>
         {products.map((product, index)=>(
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} key={index}>
             <BlogCard product={product} />
           </Grid>
         ))}
