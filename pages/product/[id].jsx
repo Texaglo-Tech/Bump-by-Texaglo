@@ -15,7 +15,8 @@ const Product = ({id}) => {
 
   const getProductInfo = async () => {
     const data = {
-      product_id: id
+      product_id: id,
+      type: "web"
     }
     getProduct(data).then(res=>{
       if(res.success) setProduct(res.data)
