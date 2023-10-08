@@ -1,9 +1,3 @@
-/* .navSection {
-    width: 100%;
-    height: 300vh;
-    position: relative;
-} */
-
 .nav {
     width: 90px;
     height: 80%;
@@ -22,8 +16,6 @@
 }
 
 .nav_responsive {
-    /* width: 90px; */
-    /* height: 80%; */
     position: fixed;
     left: 35px;
     top: 90px;

@@ -6,7 +6,6 @@
     align-items: center;
     align-self: center;
     align-content: center;
-
 }
 
 .Product_post_section {
@@ -22,8 +21,6 @@
     font-weight: 700;
     line-height: normal;
 }
-
-
 
 .Product_post_input {
     width: 100%;
@@ -154,8 +151,6 @@
     margin-right: 20px;
 }
 
-
-
 .website_input input {
     width: 216px;
     height: 37px;
@@ -186,7 +181,6 @@
     border-radius: 22px;
     background: #3556F4;
     box-shadow: 4px 4px 48px 0px rgba(0, 0, 0, 0.15);
-
     color: #FFF;
     text-shadow: 0px 4px 20px rgba(255, 255, 255, 0.40);
     font-family: Montserrat;
@@ -211,12 +205,10 @@
 }
 
 .Product_post_card_img_box {
-    /* margin-top: 30px; */
     max-width: 340px;
     width: 100%;
     border-radius: 15px;
     background: #FFF;
-    /* padding-bottom: 30px; */
 }
 
 .Product_post_card_box p {
@@ -234,7 +226,6 @@
     margin-top: 30%;
     min-width: 250px;
     width: 100%;
-    /* height: 609px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -294,7 +285,6 @@
 .c_v_ctrl_img {
     max-width: 340px;
     width: 100%;
-    /* padding-top: 20px; */
     border-radius: 5px;
 }
 
@@ -367,7 +357,6 @@
     line-height: 140%;
     margin-top: 20px;
     cursor: pointer;
-    /* 22.4px */
 }
 
 @media screen and (max-width: 1600px) {

@@ -18,8 +18,6 @@
     line-height: normal;
 }
 
-
-
 .product_post_input {
     width: 100%;
     display: flex;
@@ -40,8 +38,6 @@
     line-height: normal;
     margin-top: 30px;
 }
-
-/* ====================== */
 
 .toggle_switch_container {
     align-content: center;
@@ -160,10 +156,6 @@
     line-height: normal;
     margin-top: 30px;
 }
-
-
-
-
 
 .product_file_input_box {
     width: 100%;
@@ -293,8 +285,6 @@
 .product_post_card {
     padding: 30px;
     margin-top: 20px;
-    /* width: 465px; */
-    /* height: 609px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -428,7 +418,6 @@
     line-height: 140%;
     margin-top: 20px;
     cursor: pointer;
-    /* 22.4px */
 }
 
 @media screen and (max-width: 1600px) {

@@ -390,7 +390,6 @@ th {
   justify-content: space-around;
   min-height: 100vh;
   width: 100%;
-  /* padding: 0 10px; */
   background: linear-gradient(113deg, #090909 8.46%, #222 102.56%);
 }
 
@@ -634,7 +633,6 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 0px 30px; */
   position: absolute;
 }
 
