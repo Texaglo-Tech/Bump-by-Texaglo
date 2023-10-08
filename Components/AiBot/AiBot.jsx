@@ -126,7 +126,7 @@ const AiBot = () => {
       {!openChat ? (
         <div className="chat-button" onClick={() => setOpenChat(true)}>
           <Image
-            src={images.botAI}
+            src={images.texaglo_ai}
             alt="ai"
             width={50}
             height={50}
