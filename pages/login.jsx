@@ -8,7 +8,7 @@ const Login = () => {
 
   return (
     <div className="login_page">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} style={{padding: "10%"}}>
         <Grid
           item
           xs={12}
@@ -23,7 +23,7 @@ const Login = () => {
           <div className="login_page_bump">Bump me</div>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div>
+          <div style={{display:"flex", justifyContent:"center"}}>
             {loginComp ? (
               <LogInSection setLoginComp={setLoginComp} />
             ) : (

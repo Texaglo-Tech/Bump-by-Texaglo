@@ -29,7 +29,7 @@ const LogInSection = ({ setLoginComp }) => {
     } else {
       const res = await signinHandle(data);
       if (res?.success) {
-        router.push("/dashboard");
+        router.push("/");
       }
     }
   };
