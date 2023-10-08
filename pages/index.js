@@ -14,7 +14,7 @@ export default function Home() {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className={styles.container} style={{ padding: "0% 10%" }}>
+    <div className={styles.container} style={{ padding: "0% 10%", background:"black" }}>
       <Head>
         <title>Texaglo Hackathon</title>
         <meta name="description" content="Texaglo Service" />
