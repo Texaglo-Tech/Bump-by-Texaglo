@@ -111,6 +111,7 @@
     right: 0;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .blog_content_bottom_btn_eye {

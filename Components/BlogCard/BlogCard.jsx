@@ -41,7 +41,7 @@ const BlogCard = ({ product }) => {
               src={images.profile_pic}
               alt="image"
             />
-            <div className={Style.blog_content_bottom_btn}>
+            <div className={Style.blog_content_bottom_btn} onClick={()=>{window.open(`product/${product?.product_id}`, "_blank")}}>
               <Image
                 className={Style.blog_content_bottom_btn_eye}
                 src={images.eye}
