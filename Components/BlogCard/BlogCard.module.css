@@ -99,16 +99,19 @@
 }
 
 .blog_content_bottom_btn {
-    position: absolute;
-    top: 0px;
+    /* position: absolute; */
     width: 106.985px;
     height: 45.327px;
     border-radius: 46px;
     background: #FFF;
-    right: 0;
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+.blog_button_container {
+    display:flex;
+    justify-content:space-between
 }
 
 .blog_content_bottom_btn_eye {

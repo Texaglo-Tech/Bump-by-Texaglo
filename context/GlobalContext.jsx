@@ -11,7 +11,10 @@ const GlobalContext = createContext({
     productDataHandle:(key, value) =>{},
     downSubMenuHandle:()=>{},
     responseVisible: false,
-    responsiveVisibleHandle:()=>{}
+    responsiveVisibleHandle:()=>{},
+    editProduct: false,
+    editProductHandle: ()=>{},
+    editproductDataHandle: ()=>{}
 });
 
 const GlobalProviders = (props) => {
@@ -19,6 +22,8 @@ const GlobalProviders = (props) => {
     const [activeSubMenu, setActiveSubMenu] = useState(false);
     const [activeNavbar, setActiveNavbar] = useState(0);
     const [responseVisible, setResponseVisible] = useState(false);
+
+    const [editProduct, setEditProduct] = useState(false);
 
     const [product_data, setProductData] = useState({        
         product_name: "",
@@ -40,7 +45,8 @@ const GlobalProviders = (props) => {
         survey: false,
         ai: true,
 
-        product_file: null
+        product_file: null,
+        product_id:""
     });
 
     const setAddress = useCallback(
@@ -49,6 +55,10 @@ const GlobalProviders = (props) => {
         },
         [address]
     );
+
+    const editProductHandle = (data)=>{
+        setEditProduct(data)
+    }
 
     const downSubMenuHandle = async () => {
         setActiveSubMenu(false);
@@ -66,6 +76,13 @@ const GlobalProviders = (props) => {
         setActiveNavbar(data);
     }
 
+    const editproductDataHandle = async(data) => {
+        setProductData({
+            ...product_data,
+            ...data
+        })
+    }
+
     const productDataHandle = async(key, value) => {
         setProductData({
             ...product_data,
@@ -79,12 +96,15 @@ const GlobalProviders = (props) => {
         activeNavbar,
         product_data,
         responseVisible,
+        editProduct,
         setAddress,
         activeSubMenuHandle,
         activeNavbarHandle,
         productDataHandle,
         downSubMenuHandle,
-        responsiveVisibleHandle
+        responsiveVisibleHandle,
+        editProductHandle,
+        editproductDataHandle
     };
 
     return (

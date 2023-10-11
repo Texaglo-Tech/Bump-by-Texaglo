@@ -7,11 +7,42 @@ import images from "../../assets";
 import { toast } from "react-toastify";
 import { getProduct } from "../../api";
 import { Grid } from "@mui/material";
+import jwt from 'jsonwebtoken';
 
 const config = require("./../../config.json");
 
 const Product = ({id}) => {
   const [product, setProduct] = useState(null)
+
+  // Encryption function
+  const encryptMessage = (message, shift) => {
+    let encryptedMessage = '';
+    for (let i = 0; i < message.length; i++) {
+      let charCode = message.charCodeAt(i);
+      if (charCode >= 65 && charCode <= 90) {
+        charCode = ((charCode - 65 + shift) % 26) + 65;
+      } else if (charCode >= 97 && charCode <= 122) {
+        charCode = ((charCode - 97 + shift) % 26) + 97;
+      }
+      encryptedMessage += String.fromCharCode(charCode);
+    }
+    return encryptedMessage;
+  };
+
+  const payHandle = async () => {
+    
+    const decodedToken = jwt.decode(localStorage.getItem("token"));
+    
+    const user_id = decodedToken.id;
+    const data = {
+      user_id,
+      products: [id],
+    };
+    const encodedData = Buffer.from(JSON.stringify(data)).toString("base64");
+    const key = encryptMessage(encodedData, 5);
+    console.log("encryptKey", key);
+    window.open(`${config.CROSSMINT_PAYMENT}/?${key}`, "_blank");
+  };
 
   const getProductInfo = async () => {
     const data = {
@@ -23,9 +54,15 @@ const Product = ({id}) => {
     })
   };
 
+  const downloadHandle = async () =>{
+    window.open(config.app, "_blank")
+  }
+
   useEffect(()=>{
     getProductInfo()
   }, [])
+
+
 
   return (
     <>
@@ -51,12 +88,12 @@ const Product = ({id}) => {
                       />
                     )}
                 <div className={Style.Product_post_card_img_content}>
-                  <button className={Style.buy_now_btn} style={{background:product?.buy_color?product.buy_color:null}}>BUY NOW</button>
+                  <button className={Style.buy_now_btn} style={{background:product?.buy_color?product.buy_color:null}} onClick={payHandle}>BUY NOW</button>
                   <h2>{ product?.product_name } </h2>
                   <p>{ product?.product_desc } </p>
                   <div className={Style.Product_post_card_img_content_btn_one}>
-                    <button style={{background:product?.button1_color?product.button1_color:null}}>ADD TO CART</button>
-                    <button style={{background:product?.button2_color?product.button2_color:null}}>OPEN PAGE</button>
+                    <button style={{background:product?.button1_color?product.button1_color:null}} onClick={downloadHandle}>ADD TO CART</button>
+                    <button style={{background:product?.button2_color?product.button2_color:null}} onClick={downloadHandle}>OPEN PAGE</button>
                   </div>
                   <div className={Style.Product_post_card_img_content_btn_two}>
                   </div>
