@@ -41,7 +41,7 @@ const Product = ({id}) => {
     const encodedData = Buffer.from(JSON.stringify(data)).toString("base64");
     const key = encryptMessage(encodedData, 5);
     console.log("encryptKey", key);
-    window.open(`${config.CROSSMINT_PAYMENT}/?${key}`, "_blank");
+    window.open(`${config.crossmint}/?${key}`, "_blank");
   };
 
   const getProductInfo = async () => {
