@@ -8,35 +8,14 @@ import images from "../../assets";
 const HeroSection = () => {
   return (
     <>
-      <div className={Style.hero_section}>
-        <div className={Style.hero_content}>
-          <h1>Bump Sub Dao</h1>
-          <br/>
-          <br/>
-          <p>
-          Bump is a proposed Sub Dao of Developer Dao formed by members  who are web3 Commerce builders. Join Developer Dao to Create the future and Help with bump
-          </p>
+      <div className={Style.HeroSection}>
+        <div className={Style.HeroContent}>
+          <h1>Voice Recognition Ai Bot</h1>
+          {/* <p>
+            Developer DAO is a community of thousands of web3 builders creating
+            a better internet. Join us and help create the future!
+          </p> */}
         </div>
-        <div className={Style.hero_buttons}>
-          <div className={Style.hero_button_one}>Claim $CODE</div>
-          <div className={Style.hero_button_two} onClick={()=>{window.open("https://www.guild.xyz/dd", "_blank")}}>
-            <Image
-              className={Style.button_icon}
-              src={images.discord}
-              alt="image"
-            />
-            <div className={Style.hero_button_two_content} >
-              <p>
-                Join Discord <br /> <span>(via Guild.xyz)</span>{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-        <Image
-          className={Style.scrool_down}
-          src={images.scrool_down}
-          alt="image"
-        />
       </div>
     </>
   );

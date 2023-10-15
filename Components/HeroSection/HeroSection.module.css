@@ -1,20 +1,21 @@
-.hero_section {
+.HeroSection {
     width: 100%;
     height: 100vh;
     background-image: url("/bg-img/hero_topology.png") !important;
     background-position: center;
     background-repeat: no-repeat;
+    /* background-size: 400px; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.hero_content {
+.HeroContent {
     text-align: center;
 }
 
-.hero_content h1 {
+.HeroContent h1 {
     color: #FFF;
     text-align: center;
     font-family: Clash Display;
@@ -25,9 +26,8 @@
     letter-spacing: 0.75px;
 }
 
-.hero_content p {
-    max-width: 968px;
-    width: 100%;
+.HeroContent p {
+    width: 968.856px;
     color: rgba(255, 255, 255, 0.61);
     text-align: center;
     font-family: Poppins;
@@ -37,12 +37,11 @@
     line-height: normal;
 }
 
-.hero_buttons {
+.HeroButtons {
     display: flex;
-    margin-top: 30px;
 }
 
-.hero_button_one {
+.HeroButton_one {
     width: 209.766px;
     height: 56.634px;
     border-radius: 35px;
@@ -55,7 +54,7 @@
     align-items: center;
 }
 
-.hero_button_two {
+.HeroButton_two {
     width: 222.964px;
     height: 56.634px;
     border-radius: 35px;
@@ -73,17 +72,17 @@
     margin-right: 25px;
 }
 
-.hero_button_two_content {
+.HeroButton_two_content {
     text-align: center;
 }
 
-.hero_button_two_content p {
+.HeroButton_two_content p {
     font-size: 21.28px;
     font-weight: 500;
     line-height: 0.7;
 }
 
-.hero_button_two_content p span {
+.HeroButton_two_content p span {
     color: rgba(255, 255, 255, 0.65);
     font-family: Zen Kaku Gothic Antique;
     font-size: 12.391px;

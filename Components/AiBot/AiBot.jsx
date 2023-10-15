@@ -1,115 +1,116 @@
 import { useState, useEffect } from "react";
+import "regenerator-runtime/runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 import Image from "next/image";
 import axios from "axios";
 import { IoPaperPlaneSharp, IoMic, IoMicOff } from "react-icons/io5";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition"; // Updated import
-import { useSpeechSynthesis } from "react-speech-kit";
 
 //INTERNAL IMPORT
 import images from "../../assets";
-import { aiChat } from "../../api";
-const config = require("./../../config.json");
 
 const AiBot = () => {
-  const { speak } = useSpeechSynthesis();
-  const { transcript, resetTranscript, startListening, stopListening } =
-    useSpeechRecognition();
   const [openChat, setOpenChat] = useState(false);
   const [isOpenMic, setIsOpenMic] = useState(false);
   const [isAiRespond, setIsAiRespond] = useState(true);
   const [aiInputText, setAiInputText] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
+  const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
 
-  const handleSentAI = async (aiInputText, type) => {
-    setIsAiRespond(false);
-    const data = {
-      msg: type == "voice" ? transcript : aiInputText,
-      type: config.ai_type,
-      product_id: "technoking",
-    };
-    setChat([
-      ...chat,
-      { user: type == "voice" ? transcript : aiInputText, bot: "plz wait..." },
-    ]);
+  const { transcript, resetTranscript, startListening, stopListening } =
+    useSpeechRecognition();
 
-    const res = await aiChat(data);
-    if (!res.success) {
-      setChat([
-        ...chat,
-        {
-          user: type == "voice" ? transcript : aiInputText,
-          bot: "Please try again",
-        },
-      ]);
-    } else {
-      console.log(res.data);
+  const HandleStartListening = () => {
+    setIsOpenMic(true);
+    SpeechRecognition.startListening({ continuous: true, language: "en-US" });
+  };
+  const HandleStopListening = () => {
+    setIsOpenMic(false);
+    SpeechRecognition.stopListening();
+    resetTranscript();
+  };
+
+  const handleSentAI = async (aiInputText) => {
+    setIsAiRespond(false);
+    const res = await axios.post("http://localhost:80/aiResponse", {
+      msg: aiInputText,
+      url: "",
+    });
+    setAiResponse(res.data.response);
+
+    const botMessage = res.data.response;
+    setChat([...chat, { user: message, bot: botMessage }]);
+    const utterance = new SpeechSynthesisUtterance(botMessage);
+    speechSynthesis.speak(utterance);
+
+    if (res.data.response) {
+      console.log("worked");
       setIsAiRespond(true);
-      setChat([
-        ...chat,
-        {
-          user: type == "voice" ? transcript : `${aiInputText}`,
-          bot: `${res.data}`,
-        },
-      ]);
-      speak({ text: res.data });
     }
-    setAiInputText("");
+    setMessage("");
+    console.log(res.data.response);
   };
 
   const handleInputText = (e) => {
     setAiInputText(e.target.value);
   };
 
+  // useEffect(() => {
+  //   if ("speechSynthesis" in window) {
+  //     setSynthesis(window.speechSynthesis);
+  //   }
+  // }, []);
+
+  console.log(message);
   useEffect(() => {
-    console.log(transcript);
-    if (transcript && isOpenMic) {
-      console.log("awesome, this is voice recoding script: ", transcript);
-      handleSentAI(transcript, "voice");
+    if (transcript && isAiRespond) {
+      setMessage(transcript);
     }
-  }, [transcript, isOpenMic]);
+  }, [transcript, isAiRespond]);
 
   useEffect(() => {
-    speechSynthesis.cancel();
-  }, []);
+    let timeoutId;
 
-  const handleVoiceStart = () => {
-    try {
-      setIsOpenMic(true);
-      SpeechRecognition.startListening({ continuous: true, language: "en-US" });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    const handleChange = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        if (message) {
+          resetTranscript();
+          setMessage("");
+          handleSentAI(message);
+        }
+        console.log("Value remained unchanged for 10 seconds:", message);
+      }, 3000); // 3 seconds in milliseconds
+    };
 
-  const handleVoiceStop = () => {
-    try {
-      setIsOpenMic(false);
-      SpeechRecognition.stopListening();
-      resetTranscript();
-    } catch (err) {
-      console.log(err);
+    if (message) {
+      handleChange();
     }
-  };
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [message]);
 
   return (
     <>
       {openChat && (
-        <div className="chat-box">
-          <div className="chat-box-header">
+        <div class="chat-box">
+          <div class="chat-box-header">
             <h3>Talk With AI</h3>
             <p>
-              <i className="fa fa-times"></i>
+              <i class="fa fa-times"></i>
             </p>
           </div>
-          <div className="chat-box-body">
+          <div class="chat-box-body">
             {chat.map((entry, index) => (
               <div key={index}>
-                <div className="chat-box-body-receive">
-                  <p>You: {entry.user}</p>
+                <div class="chat-box-body-receive">
+                  <p>User: {entry.user}</p>
                 </div>
-                <div className="chat-box-body-send">
+                <div class="chat-box-body-send">
                   <p>Bot: {entry.bot}</p>
                 </div>
               </div>
@@ -137,35 +138,33 @@ const AiBot = () => {
               </div>
             )}
           </div>
-          <div className="chat-box-footer">
+          <div class="chat-box-footer">
             <input
               placeholder="Enter Your Message"
               type="text"
-              value={aiInputText}
               onChange={handleInputText}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleSentAI(aiInputText, "text");
-                }
-              }}
+              value={message}
             />
             <IoPaperPlaneSharp
               className="chatbob_icon"
               onClick={() => {
-                handleSentAI(aiInputText, "text");
+                handleSentAI(aiInputText);
               }}
             />
             {isOpenMic ? (
-              <IoMicOff className="chatbob_icon" onClick={handleVoiceStop} />
+              <IoMicOff
+                className="chatbob_icon"
+                onClick={HandleStopListening}
+              />
             ) : (
-              <IoMic className="chatbob_icon" onClick={handleVoiceStart} />
+              <IoMic className="chatbob_icon" onClick={HandleStartListening} />
             )}
           </div>
         </div>
       )}
 
       {!openChat ? (
-        <div className="chat-button" onClick={() => setOpenChat(true)}>
+        <div class="chat-button" onClick={() => setOpenChat(true)}>
           <Image
             src={images.botAI}
             alt="ai"
@@ -176,7 +175,7 @@ const AiBot = () => {
           <span></span>
         </div>
       ) : (
-        <div className="chat-button" onClick={() => setOpenChat(false)}>
+        <div class="chat-button" onClick={() => setOpenChat(false)}>
           <Image
             src={images.close}
             alt="ai"
