@@ -60,7 +60,7 @@ const BlogSections = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {products.map((product, index) => (
-              <BlogCard product={product} />
+              <BlogCard product={product} key={index}/>
           ))}
         </Carousel>
         </div>

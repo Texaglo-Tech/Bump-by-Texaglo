@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import HeroSection from "../Components/HeroSection/HeroSection";
-import Partners from "../Components/Partners/Partners";
-import BlogSections from "../Components/BlogSections/BlogSections";
-import EventsSections from "../Components/EventsSections/EventsSections";
-import ProjectsSections from "../Components/ProjectsSections/ProjectsSections";
-import AiBot from "../Components/AiBot/AiBot";
-import SideBar from "../Components/SideBar/SideBar";
+import HeroSection from "../components/HeroSection/HeroSection";
+import Partners from "../components/Partners/Partners";
+import BlogSections from "../components/BlogSections/BlogSections";
+import EventsSections from "../components/EventsSections/EventsSections";
+import ProjectsSections from "../components/ProjectsSections/ProjectsSections";
+import AiBot from "../components/AiBot/AiBot";
+import SideBar from "../components/SideBar/SideBar";
 
 export default function Home() {
   const [index, setIndex] = useState(0);

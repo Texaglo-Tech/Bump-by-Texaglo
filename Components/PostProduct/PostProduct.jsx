@@ -16,7 +16,7 @@ import { Grid } from "@mui/material";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 const htmlToImage = require("html-to-image");
-const config = require("./../../config.json");
+const config = require("../../config.json");
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: "80px",

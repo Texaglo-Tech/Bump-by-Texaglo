@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import LogInSection from "../Components/LogInSection/LogInSection";
-import ForgetPasswordSection from "../Components/ForgetPasswordSection/ForgetPasswordSection";
+import LogInSection from "../components/LogInSection/LogInSection";
+import ForgetPasswordSection from "../components/ForgetPasswordSection/ForgetPasswordSection";
 import { Grid } from "@mui/material";
 
 const Login = () => {
