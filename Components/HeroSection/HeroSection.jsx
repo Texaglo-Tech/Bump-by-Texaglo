@@ -10,10 +10,11 @@ const HeroSection = () => {
     <>
       <div className={Style.hero_section}>
         <div className={Style.hero_content}>
-          <h1>BUIDL WEB3 __ WITH FRENS</h1>
+          <h1>Bump Sub Dao</h1>
+          <br/>
+          <br/>
           <p>
-            Developer DAO is a community of thousands of web3 builders creating
-            a better internet. Join us and help create the future!
+          Bump is a proposed Sub Dao of Developer Dao formed by members  who are web3 Commerce builders. Join Developer Dao to Create the future and Help with bump
           </p>
         </div>
         <div className={Style.hero_buttons}>

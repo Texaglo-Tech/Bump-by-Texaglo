@@ -60,7 +60,7 @@ const BlogSections = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {products.map((product, index) => (
-            <Grid key={index} style={{ margin: "5px", height: "90%" }}>
+            <Grid key={index} style={{ margin: "5px 20px", height: "90%" }}>
               <BlogCard product={product} />
             </Grid>
           ))}
