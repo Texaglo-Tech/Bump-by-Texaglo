@@ -3,8 +3,10 @@
 # Bump By Texaglo
 `Bump is a Ecommerce Mobile application enabled ecosystem. Bump is intended to support Trade of phyical items and to facilitate transactions using the power of the solana blockchain.`
 
-### Install dependencies
-`npm install`
+### How to use the app
+`To use this application you just need to setup an account on the application found here: `
+https://drive.google.com/file/d/1oLIWJUYaPRp4bW6dlRzhThcLSuOpyBoF/view?usp=drive_link
+
 
 ## To start with hot reload 
 `npm run dev`
