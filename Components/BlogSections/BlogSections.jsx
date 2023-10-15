@@ -7,28 +7,65 @@ import BlogCard from "../BlogCard/BlogCard";
 
 import { getProducts } from "../../api";
 import { Grid } from "@mui/material";
+
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const BlogSections = () => {
+  const [products, setProducts] = useState([]);
 
-  const [products, setProducts] = useState([])
-
-  useEffect(()=>{
-    getProducts().then((data)=>{
-      if(data.success)setProducts(data.message)
-    })
-  }, [])
+  useEffect(() => {
+    getProducts().then((data) => {
+      if (data.success) setProducts(data.message);
+    });
+  }, []);
 
   return (
     <div className={Style.blog_section}>
       <h1 className={Style.blog_section_title}>Products</h1>
-      <div className={Style.blog_card_list}>
-      <Grid container spacing={2}>
-        {products.map((product, index)=>(
-          <Grid item xs={12} md={4} key={index}>
-            <BlogCard product={product} />
-          </Grid>
-        ))}
-        </Grid>
-      </div>
+      <Grid>
+        <Carousel
+          swipeable={false}
+          draggable={false}
+          showDots={true}
+          responsive={responsive}
+          ssr={true}
+          infinite={true}
+          autoPlaySpeed={1000}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+          {products.map((product, index) => (
+            <Grid key={index} style={{ margin: "5px", height: "90%" }}>
+              <BlogCard product={product} />
+            </Grid>
+          ))}
+        </Carousel>
+      </Grid>
     </div>
   );
 };
