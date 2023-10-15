@@ -14,7 +14,12 @@ const SignUpSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await signupHandle(data);
+    const form_data = {
+      ...data,
+      phone: data.phone.replace(/\s+/g, '')
+    }
+
+    const res = await signupHandle(form_data);
 
     if(res?.success){
       router.push("/login")
