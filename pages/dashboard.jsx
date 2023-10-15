@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PostProduct from "../components/PostProduct/index";
-import ProductData from "../components/ProductData/index";
+import PostProduct from "./../components/PostProduct";
+import ProductData from "./../components/ProductData/index";
 import DataComp from "../components/DataComp/index";
 import Customize from "../components/Customize/index";
 import Survey from "../components/Survey/index";
