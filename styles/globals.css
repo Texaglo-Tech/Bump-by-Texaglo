@@ -803,3 +803,7 @@ th {
 }
 
 /*========= Dashboard top nav bar End========= */
+
+.react-multi-carousel-item {
+  margin: 30px;
+}
