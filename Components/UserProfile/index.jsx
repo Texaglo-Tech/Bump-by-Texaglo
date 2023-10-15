@@ -4,14 +4,14 @@ import Image from "next/image";
 //INTERNAL IMPORT
 import Style from "./UserProfile.module.css";
 import images from "../../assets";
-import NavProfile from "../NavProfile/NavProfile";
+import NavProfile from "../NavProfile";
 import { Connection } from "@solana/web3.js";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { getRefer, getUserIdFromToken } from "../../api";
 import { toast } from "react-toastify";
 
-const config = require("./../../config.json");
+const config = require("../../config.json");
 
 const UserProfile = () => {
   const { publicKey } = useWallet();

@@ -10,7 +10,7 @@ import { useSpeechSynthesis } from "react-speech-kit";
 //INTERNAL IMPORT
 import images from "../../assets";
 import { aiChat } from "../../api";
-const config = require("./../../config.json");
+const config = require("../../config.json");
 
 const AiBot = () => {
   const { speak } = useSpeechSynthesis();

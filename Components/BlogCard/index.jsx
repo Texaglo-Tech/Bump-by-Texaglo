@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 import { useGlobal } from "../../context/GlobalContext";
 import { useRouter } from "next/router";
 
-const config = require("./../../config.json");
+const config = require("../../config.json");
 
 const BlogCard = ({ product }) => {
 

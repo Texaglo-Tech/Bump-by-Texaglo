@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import VerificationInput from "../VerificationInput/VerificationInput";
+import VerificationInput from "../VerificationInput";
 
 import { signinHandle, sentOTP } from "../../api";
 
