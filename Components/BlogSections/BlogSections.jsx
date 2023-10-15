@@ -44,15 +44,15 @@ const BlogSections = () => {
       <h1 className={Style.blog_section_title}>Products</h1>
       <Grid>
         <Carousel
-          swipeable={false}
-          draggable={false}
-          showDots={true}
+          swipeable={true}
+          draggable={true}
+          // showDots={true}
           responsive={responsive}
           ssr={true}
           infinite={true}
           autoPlaySpeed={1000}
           keyBoardControl={true}
-          customTransition="all .5"
+          customTransition="all .15"
           transitionDuration={500}
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile"]}
