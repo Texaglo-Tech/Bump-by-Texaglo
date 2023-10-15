@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 //INTERNAL IMPORT
-import Style from "./BlogCard.module.css";
+import Style from "./ProductCard.module.css";
 import images from "../../assets";
 import jwt from 'jsonwebtoken';
 
@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 const config = require("../../config.json");
 
-const BlogCard = ({ product }) => {
+const ProductCard = ({ product }) => {
 
   const router = useRouter()
   const { editProductHandle, productDataHandle, editproductDataHandle, product_data } = useGlobal();
@@ -91,4 +91,4 @@ const BlogCard = ({ product }) => {
   );
 };
 
-export default BlogCard;
+export default ProductCard;
