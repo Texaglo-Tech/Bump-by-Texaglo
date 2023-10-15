@@ -24,7 +24,7 @@ https://api.texaglo.com
 
 # Demo Video: 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xA44b-VlhW4?si=IBZISxhQgq7QOF9l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[<iframe width="560" height="315" src="https://www.youtube.com/embed/xA44b-VlhW4?si=IBZISxhQgq7QOF9l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>](https://www.youtube.com/watch?v=xA44b-VlhW4)
 
 ## Story Behind the project
   This project has been built by a Devloper DAO Member and is inspired from experiences working with the DAO and other Clients during the carreer of the Team. We are Dedicated to making the experience of those that come in contact with our application better specifically those doing commerce online. We have made it our focus to create applications that make interacting with the blockchain convient for Regular individuals with limited Software skills and this application is one of many applications built with consumers in mind. We are happy to present our latest application 
