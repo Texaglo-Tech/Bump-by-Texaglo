@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 //INTERNAL IMPORT
-import Style from "./BlogSections.module.css";
-import BlogCard from "./../BlogCard";
+import Style from "./ProductSections.module.css";
+import BlogCard from "../ProductCard";
 
 import { getProducts } from "../../api";
 import { Grid } from "@mui/material";
@@ -30,7 +30,7 @@ const responsive = {
   },
 };
 
-const BlogSections = () => {
+const ProductSections = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -68,4 +68,4 @@ const BlogSections = () => {
   );
 };
 
-export default BlogSections;
+export default ProductSections;

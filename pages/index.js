@@ -4,7 +4,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import HeroSection from "../components/HeroSection";
 import Partners from "../components/Partners";
-import BlogSections from "../components/BlogSections";
+import ProductSections from "../components/ProductSections";
 import EventsSections from "../components/EventsSections";
 import ProjectsSections from "../components/ProjectsSections";
 import AiBot from "../components/AiBot";
@@ -23,7 +23,7 @@ export default function Home() {
       <SideBar />
       <HeroSection />
       <Partners />
-      <BlogSections />
+      <ProductSections />
       <EventsSections />
       <ProjectsSections />
       <AiBot />
