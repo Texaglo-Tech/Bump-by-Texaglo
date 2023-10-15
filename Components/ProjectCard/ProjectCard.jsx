@@ -7,7 +7,7 @@ import images from "../../assets";
 
 const ProjectCard = () => {
   return (
-    <div className={Style.project_card}>
+    <div className={Style.project_card} style={{ margin: "5px 20px", height: "90%" }}>
       <div className={Style.project_images_section}>
         {/* <Image
           className={Style.project_images}

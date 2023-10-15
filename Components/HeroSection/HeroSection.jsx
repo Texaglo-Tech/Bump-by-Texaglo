@@ -25,7 +25,7 @@ const HeroSection = () => {
               src={images.discord}
               alt="image"
             />
-            <div className={Style.hero_button_two_content}>
+            <div className={Style.hero_button_two_content} onClick={()=>{window.open("https://www.guild.xyz/dd", "_blank")}}>
               <p>
                 Join Discord <br /> <span>(via Guild.xyz)</span>{" "}
               </p>

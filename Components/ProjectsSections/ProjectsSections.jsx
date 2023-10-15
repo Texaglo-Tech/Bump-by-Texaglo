@@ -13,7 +13,6 @@ const ProjectsSections = () => {
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
-        <ProjectCard />
       </div>
     </div>
   );

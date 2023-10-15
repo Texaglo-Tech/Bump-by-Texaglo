@@ -7,7 +7,7 @@ import images from "../../assets";
 
 const EventCard = () => {
   return (
-    <div className={Style.event_card}>
+    <div className={Style.event_card} style={{ margin: "5px 20px", height: "90%" }}>
       <div className={Style.event_images_section}>
         <Image
           className={Style.event_images}
