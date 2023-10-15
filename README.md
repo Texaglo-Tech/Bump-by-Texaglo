@@ -1,6 +1,7 @@
-# Solana Texaglo Frontend - Developed with Next.js
+# Solana Hyperdrive Submission Documentation
 
-## Project Running
+# Bump By Texaglo
+`Bump is a Ecommerce Mobile application enabled ecosystem. Bump is intended to support Trade of phyical items and to facilitate transactions using the power of the solana blockchain.`
 
 ### Install dependencies
 `npm install`
