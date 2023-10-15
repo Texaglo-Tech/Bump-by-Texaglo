@@ -31,7 +31,7 @@ const BlogCard = ({ product }) => {
   
   return (
     <>
-      <div className={Style.blog_card}>
+      <div className={Style.blog_card}  style={{ margin: "5px 20px", height: "90%" }}>
         <div className={Style.blog_images_section}>
           {product?.product_file != "" ? (
             <img src={`${config.backend_url}/${product?.product_file}`}  className={Style.blog_images} alt="image"/>
