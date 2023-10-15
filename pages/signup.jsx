@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SignUpSection from "../components/SignUpSection";
+import SignUpSection from "../Components/SignUpSection/SignUpSection";
 
 const Signup = () => {
 

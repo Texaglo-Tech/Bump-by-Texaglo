@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 //INTERNAL IMPORT
-import Style from "./ProductCard.module.css";
+import Style from "./BlogCard.module.css";
 import images from "../../assets";
 import jwt from 'jsonwebtoken';
 
 import { useGlobal } from "../../context/GlobalContext";
 import { useRouter } from "next/router";
 
-const config = require("../../config.json");
+const config = require("./../../config.json");
 
-const ProductCard = ({ product }) => {
+const BlogCard = ({ product }) => {
 
   const router = useRouter()
   const { editProductHandle, productDataHandle, editproductDataHandle, product_data } = useGlobal();
@@ -91,4 +91,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default BlogCard;

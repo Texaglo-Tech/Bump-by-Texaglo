@@ -9,7 +9,7 @@ import { useGlobal } from "../../context/GlobalContext";
 import { useRouter } from "next/router";
 import { Grid, Hidden } from "@mui/material";
 
-const config = require("../../config.json");
+const config = require("./../../config.json");
 
 const SideBar = () => {
   const {

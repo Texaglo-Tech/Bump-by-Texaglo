@@ -4,7 +4,7 @@ import Image from "next/image";
 //INTERNAL IMPORT
 import Style from "./EventsSections.module.css";
 import images from "../../assets";
-import EventCard from "../EventCard";
+import EventCard from "../EventCard/EventCard";
 
 const EventsSections = () => {
   return (

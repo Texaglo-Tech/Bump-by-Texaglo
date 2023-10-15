@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import PostProduct from "./../components/PostProduct";
-import ProductData from "./../components/ProductData/index";
-import DataComp from "../components/DataComp/index";
-import Customize from "../components/Customize/index";
-import Survey from "../components/Survey/index";
-import AddAi from "../components/AddAi/index";
-import NavProfile from "../components/NavProfile/index";
-import SideBarAnalytics from "../components/SideBarAnalytics/index";
-import SideBar from "../components/SideBar/index";
+import PostProduct from "../Components/PostProduct/PostProduct";
+import ProductData from "../Components/ProductData/ProductData";
+import DataComp from "../Components/DataComp/DataComp";
+import Customize from "../Components/Customize/Customize";
+import Survey from "../Components/Survey/Survey";
+import AddAi from "../Components/AddAi/AddAi";
+import NavProfile from "../Components/NavProfile/NavProfile";
+import SideBarAnalytics from "../Components/SideBarAnalytics/SideBarAnalytics";
+import SideBar from "../Components/SideBar/SideBar";
 
 const Dashboard = () => {
   const [index, setIndex] = useState(1);

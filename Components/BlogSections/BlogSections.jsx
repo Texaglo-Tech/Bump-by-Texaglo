@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 //INTERNAL IMPORT
-import Style from "./ProductSections.module.css";
-import BlogCard from "../ProductCard";
+import Style from "./BlogSections.module.css";
+import BlogCard from "../BlogCard/BlogCard";
 
 import { getProducts } from "../../api";
 import { Grid } from "@mui/material";
@@ -30,7 +30,7 @@ const responsive = {
   },
 };
 
-const ProductSections = () => {
+const BlogSections = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const ProductSections = () => {
           itemClass="carousel-item-padding-40-px"
         >
           {products.map((product, index) => (
-              <BlogCard product={product} key={index}/>
+              <BlogCard product={product} />
           ))}
         </Carousel>
         </div>
@@ -68,4 +68,4 @@ const ProductSections = () => {
   );
 };
 
-export default ProductSections;
+export default BlogSections;
