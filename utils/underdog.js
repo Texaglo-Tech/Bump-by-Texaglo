@@ -1,5 +1,5 @@
 
-const config = require("./../config");
+const config = require("../config");
 const axios = require("axios")
 
 const createProjectWithUnderdog = async (network) => {
@@ -44,8 +44,10 @@ const createNFTWithUnderdog = async (network, uri = "https://dev.updg8.com/imgda
 	  },
 	  data : body
 	};
+
+	console.log(req)
 	
-	return await axios(req).then((data)=>{return {success: true, message: data.data}}).catch((error) => { console.log(error); return { success: false, message: error } });
+	return await axios(req).then((data)=>{return {success: true, message: data.data}}).catch((error) => { console.log(error.message); return { success: false} });
 }
 
 module.exports = { createProjectWithUnderdog, createNFTWithUnderdog }

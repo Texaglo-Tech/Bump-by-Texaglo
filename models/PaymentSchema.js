@@ -27,8 +27,24 @@ const PaymentSchema = new Schema({
         default: 0
     },
 
-    total: {
+    product_id: {
+        type: String
+    },
 
+    transaction: {
+        type: String
+    },
+
+    action_id: {
+        type: String,
+    },
+
+    metadata: {
+        type: Object,
+    },
+
+    nft_status: {
+        type: String,
     },
 
     created_at: {

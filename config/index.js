@@ -1,0 +1,23 @@
+module.exports = {
+    mongoURI: "mongodb://yourdatabase",
+    JWT_SECRET: "your database secret",
+    SERVICE_SID: '',
+    AccountSid: '',
+    AuthToken: '',
+    product_images: 'uploads',
+    chatpdf_api_key: 'your api key from chatpdf',
+    chatgpt_api_key: "",
+    backend: "https://crossmint-backend.texaglo.com",
+    points: 20,
+    STRIPE_PUBKEY: "",
+    STRIPE_SECKEY: "",
+    STRIPE_CLIENT_ID: "",
+    UNDERDOG_KEY: "",
+    RPC_URL: "",
+    LOCAL_PAYER_JSON_ABSPATH: "",
+    CROSSMINT_SECRET_KEY:"",
+    CROSSMINT_COLLECTION_ID:"your crossmint collection id",
+    CROSSMINT_PROJECT_ID:"Your crossmint project id",    
+    FRONTEND_URL: "https://solana-texaglo.vercel.app",
+};
+  

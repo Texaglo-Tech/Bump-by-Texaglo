@@ -14,6 +14,15 @@ const MessageSchema = new Schema({
         type: String
     },
 
+    read: {
+        type: Boolean,
+        default: false
+    },
+
+    message: {
+        type: String,
+    },
+
     created_at: {
         type: Date,
         required: true

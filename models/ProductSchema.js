@@ -108,7 +108,7 @@ const ProductSchema = new Schema({
         type: String,
     },
 
-    payment_status: {       // 0: unclaimed,  1: claimed, 2: unpaid, 3: paid
+    payment_status: {       // 0: unclaimed,  1: claimed, 2: paid
         type: Number,
         default: 0    
     },

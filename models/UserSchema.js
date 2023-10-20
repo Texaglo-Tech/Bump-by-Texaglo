@@ -45,6 +45,18 @@ const UserSchema = new Schema({
         type: String,
     },
 
+    stripe_account:{
+        type: String
+    },
+
+    secretKey: {
+        type: String,
+    },
+
+    publicKey: {
+        type: String,
+    },
+
     created_at: {
         type: Date,
         required: true

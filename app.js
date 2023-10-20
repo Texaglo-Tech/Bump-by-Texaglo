@@ -29,4 +29,7 @@ app.use('/api/message', messagesRouter);
 app.use('/api/payment', paymentRouter);
 app.use('/api/nft', nftRouter);
 
+require('./services/swagger-setup')(app);
+require('./services/cron')
+
 module.exports = app;

@@ -14,10 +14,11 @@ const Product = require('../models/ProductSchema'),
 	Payment = require('./../models/PaymentSchema'),
 	config = require('../config');
 
-const socketIO = require("./../socket.io");
 const stripe = require('stripe')(`${config.STRIPE_SECKEY}`);
 
 const FormData = require('form-data');
+const { createNFTWithUnderdog } = require('../utils/underdog');
+const { mint } = require('../utils/crossmint');
 
 const storage =  multer.diskStorage({
 	destination: function (req, file, callback) {      
@@ -33,36 +34,6 @@ const storage =  multer.diskStorage({
 
 const upload = multer({ storage : storage})
 
-// Encryption function
-const encryptMessage = (message, shift) => {
-	let encryptedMessage = '';
-	for (let i = 0; i < message.length; i++) {
-	  let charCode = message.charCodeAt(i);
-	  if (charCode >= 65 && charCode <= 90) {
-		charCode = ((charCode - 65 + shift) % 26) + 65;
-	  } else if (charCode >= 97 && charCode <= 122) {
-		charCode = ((charCode - 97 + shift) % 26) + 97;
-	  }
-	  encryptedMessage += String.fromCharCode(charCode);
-	}
-	return encryptedMessage;
-};
-
-// Decryption function
-const decryptMessage = (encryptedMessage, shift) => {
-	let decryptedMessage = '';
-	for (let i = 0; i < encryptedMessage.length; i++) {
-	  let charCode = encryptedMessage.charCodeAt(i);
-	  if (charCode >= 65 && charCode <= 90) {
-		charCode = ((charCode - 65 - shift + 26) % 26) + 65;
-	  } else if (charCode >= 97 && charCode <= 122) {
-		charCode = ((charCode - 97 - shift + 26) % 26) + 97;
-	  }
-	  decryptedMessage += String.fromCharCode(charCode);
-	}
-	return decryptedMessage;
-};
-
 /* GET Payment index */
 router.get('/', (req, res) => {
 	res.status(200).json({
@@ -71,85 +42,43 @@ router.get('/', (req, res) => {
 	})
 });
 
-/* POST Payment create order the product */
-router.post('/create', async(req, res) => {
-	try{
-		const { email, wallet, key } = req.body;	 
-
-		const decoded = decryptMessage(key, 5);
-		const data = JSON.parse(Buffer.from(decoded, 'base64').toString());
-
-		const products = data.products
-		const user_id = data.user_id		
-		console.log("products: ", products);
-
-		socketIO.gotPayment({succes: true, message:"Got paid"})
-
-		for (let i = 0; i< products.length; i++){
-			const product_id = products[i].id;
-			const product_cost = products[i].cost;
-			if(await Payment.findOne({product_id})) continue;
-			let newPayment = new Payment();
-			newPayment.user_id = user_id;
-			newPayment.product_id = product_id;
-			newPayment.email = email;
-			newPayment.wallet = wallet;
-			newPayment.amount = product_cost;
-			newPayment.created_at = new Date();
-			newPayment.save(function (err, saved) {
-				if (err) {
-					console.log(err)
-				}
-			})
-		}
-		res.status(200).json({
-			success: true,
-			message: "Successfully created",
-		})
-
-
-	}catch(err){
-		console.log("create_payment error-> ", err)
-		res.status(500).json({
-			success: false, 
-			message: "Something has gone wrong",
-			system_error: err
-		})
-	}
-});
-
 /* POST Payment confirm payment by scanner */
-router.post('/confirm', auth.isAuthenticated, async (req, res) => {
+router.post('/confirm', async (req, res) => {
 	try{
-		const { product_id } = req.body;
+		const { product_id, user_id } = req.body;
 
 		const product = await Product.findOne({ product_id });
 
-		let newPayment = new Payment();
-		newPayment.user_id = product?.user_id;
-		newPayment.product_id = product_id;
-		newPayment.email = "";
-		newPayment.wallet = "";
-		newPayment.amount = product?.cost;
-		newPayment.status = 1;    // confirm
-		newPayment.created_at = new Date();
+		product.payment_status = 2; // release
+		product.save();
 		
-		newPayment.save(function (err, saved) {
-				if (err) {
-					console.log(err)
-					return res.status(500).json({
-						success: false, 
-						message: "Something has gone wrong!",
-						system_error: err
-					})
-				}
-				res.status(200).json({
-					success: true,
-					message: "Successfully confirmed",
-				})
+		const payment = await Payment.findOne({ product_id: product_id, user_id: user_id });
+		payment.status = 1; // release milestone
+		payment.save();
+
+
+		const user = await User.findOne({_id: product.user_id});
+		
+		// calling transfter to vendor
+		
+		const balance = await stripe.balance.retrieve();
+		console.log("balanace: ", balance)
+		
+		const transfer = await stripe.transfers.create({
+			amount: product.product_cost,
+			currency: 'usd',
+			destination: user.stripe_account,
+		});
+ 
+		console.log(transfer);
+		console.log(transfer?.balance_transaction);
+
+		res.status(200).json({
+			success: true,
+			message: "Successfully confirmed",
 		})
 	}catch(err){
-		console.log("confirm_payment error-> ", err)
+		console.log("confirm_payment error:", err)
 		res.status(500).json({
 			success: false, 
 			message: "Something has gone wrong",
@@ -162,35 +91,31 @@ router.post('/confirm', auth.isAuthenticated, async (req, res) => {
 /* POST Payment refund payment */
 router.post('/refund', auth.isAuthenticated, async (req, res) => {
 	try{
-		const { product_id } = req.body;
+		const { product_id, user_id } = req.body;
+		const payment = await Payment.findOne({product_id, user_id})		
+			
+		const refund = await stripe.refunds.create({
+			charge: payment.transaction,
+		});
 
-		const product = await Product.findOne({ product_id });
+		payment.status = 2;
+		payment.save();
 
-		let newPayment = new Payment();
-		newPayment.user_id = product?.buy_id;
-		newPayment.username = username;
-		newPayment.email = email;
-		newPayment.wallet = wallet;
-		newPayment.amount = product?.cost;
-		newPayment.status = 2;    // refund
-		newPayment.created_at = new Date();
+		console.log('Refund ID:', refund.id);
+		console.log('Refund Amount:', refund.amount);
+
+		const product = await Product.findOne({product_id});
+		product.buy_id = "";
+		product.payment_status = 0;
+		product.save();
 		
-		newPayment.save(function (err, saved) {
-				if (err) {
-					console.log(err)
-					return res.status(500).json({
-						success: false, 
-						message: "Something has gone wrong!",
-						system_error: err
-					})
-				}
-				res.status(200).json({
-					success: true,
-					message: "Successfully refund",
-				})
+		res.status(200).json({
+			success: true,
+			message: "Successfully refund",
 		})
+
 	}catch(err){
-		console.log("refund_payment error-> ", err)
+		console.log("refund_payment error", err)
 		res.status(500).json({
 			success: false, 
 			message: "Something has gone wrong",
@@ -227,7 +152,7 @@ router.post('/get', (req, res) => {
 
 /* POST Payment get all payment */
 router.post('/get_all', (req, res) => {
-	Payment.findOne((error, payments) => {
+	Payment.find((error, payments) => {
 		if (error) return res.status(500).json({
 			success: false,
 			message: "There is something wrong with the system. Please contact Administrator immediately",
@@ -248,11 +173,24 @@ router.post('/get_all', (req, res) => {
 	})
 });
 
-/* POST get refer */
-router.post('/create_payment', auth.isAuthenticated, (req, res) => {
+/* POST get create_payment */
+router.post('/create_payment', auth.isAuthenticated, async(req, res) => {
 	const {user_id, amount, cart_data} = req.body;
 	
 	console.log(user_id, amount);
+
+	const products = JSON.parse(cart_data)?.products;
+	let flag = false;  // check the product payment status
+	for(let i = 0; i<products.length; i++){
+		const product = await Product.findOne({product_id: products[i]})
+		if(product?.payment_status == 1 || product?.payment_status == 2) flag = true;
+	}
+
+	if(flag) return res.status(200).json({
+		success: false,
+		message: "It's already claimed"
+	})
+	
 
 	User.findOne({
 		_id: user_id
@@ -271,7 +209,7 @@ router.post('/create_payment', auth.isAuthenticated, (req, res) => {
 				); 
 
 				const paymentIntent = await stripe.paymentIntents.create({
-					amount: amount, // Amount in cents
+					amount: Number(amount) * 100, // Amount in cents
 					currency: 'usd',
 					payment_method_types: ['card'],
 					customer: user.customer_id,
@@ -303,10 +241,11 @@ router.post('/create_payment', auth.isAuthenticated, (req, res) => {
 						); 
 
 						const paymentIntent = await stripe.paymentIntents.create({
-							amount: amount, // Amount in cents
+							amount: Number(amount) * 100, // Amount in cents
 							currency: 'usd',
 							payment_method_types: ['card'],
-							product_id: cart_data
+							customer: user.customer_id,
+							description: cart_data
 						});
 
 						res.status(200).json({
@@ -321,7 +260,7 @@ router.post('/create_payment', auth.isAuthenticated, (req, res) => {
 						})
 					})
 					.catch(error => {
-					console.error('Error creating customer:', error);
+						console.error('Error creating customer:', error);
 						res.status(500).json({
 							success: false,
 							message: "Got Error",
@@ -337,35 +276,61 @@ router.post('/create_payment', auth.isAuthenticated, (req, res) => {
 	})
 });
 
-
 /* POST Payment stripe hook */
-router.post('/hook', async (req, res) => {
-	console.log(req.body);
+router.post('/hook', async (req, res) => {	
 	// const sig = req.headers["stripe-signature"];
 
 	if (req.body["type"] === "charge.succeeded") {
+		const id = req.body["data"]["object"]["id"];
 		const cus_id = req.body["data"]["object"]["customer"];
 		const amount = req.body["data"]["object"]["amount"];
 		const description = req.body["data"]["object"]["description"];
 		console.log(cus_id);
 
 		const user = await User.findOne({ customer_id: cus_id });
-		let newPayment = new Payment();
-		newPayment.user_id = user._id.toString();
-		newPayment.product_id = description;
-		newPayment.email = "";
-		newPayment.wallet = "";
-		newPayment.amount = amount;
-		newPayment.status = 1;    // confirm
-		newPayment.created_at = new Date();
 		
-		newPayment.save(function (err, saved) {
-				if (err) {
-					console.log(err)
-				}else{
-					console.log("saved payment history")
-				}
+		console.log(req.body)
+		console.log(description)
+
+		const products = JSON.parse(description)?.products;
+		const products_cost = JSON.parse(description)?.products_cost;		
+		const products_img = JSON.parse(description)?.products_img;		
+		products.map(async(item, index) => {
+			const data = await mint("", user?.publicKey, `${config.backend}/${products_img[index]}`);
+			
+			console.log(data);
+			console.log("item: ", item);
+
+			
+			const product = await Product.findOne({ product_id: item });
+			product.payment_status = 1; 
+			product.buy_id = user._id.toString();
+			product.save();
+
+			let newPayment = new Payment();
+			newPayment.user_id = user._id.toString();
+			newPayment.product_id = item;
+			newPayment.email = user.email;
+			newPayment.wallet = user.publicKey;
+			newPayment.amount = products_cost[index];
+			newPayment.status = 0;    // confirm
+			newPayment.transaction = id;  // transaction
+			newPayment.created_at = new Date();
+
+			newPayment.nft_status = "pending";  
+			if(data.success){ 
+				newPayment.action_id = data?.message?.actionId;  // crossmint actionId
+			}
+			
+			newPayment.save(function (err, saved) {
+					if (err) {
+						console.log(err)
+					}else{
+						console.log("saved payment history")
+					}
+			})
 		})
+		
 		return res.status(200).json({
 			success: true,
 			message: "Get successfully",
@@ -378,5 +343,52 @@ router.post('/hook', async (req, res) => {
 	});
 
 });
+
+
+/* POST Payment get_oauth */
+router.post("/get_oauth", async (req, res) => {
+	const {user_id} = req.body;
+	const args = new URLSearchParams({
+	  state:user_id,
+	  client_id: config.STRIPE_CLIENT_ID,
+	  scope: "read_write",
+	  response_type: "code",
+	})
+	const url = `https://connect.stripe.com/oauth/authorize?${args.toString()}`;
+	return res.send({success: true, message:url});
+});
+
+/* GET Payment authorize_oauth */
+router.get("/authorize_oauth", async (req, res) => {
+	const { code, state } = req.query;
+	console.log(code, state)
+	if(!state) {
+		return res.redirect(301, `${config.FRONTEND_URL}/error`)
+	}
+  
+	// Send the authorization code to Stripe's API.
+	stripe.oauth.token({
+	  grant_type: 'authorization_code',
+	  code
+	}).then(
+	  async(response) => {
+		var connected_account_id = response.stripe_user_id;
+		const user = await User.findOne({_id: state});
+		user.stripe_account = connected_account_id;
+		user.save();
+
+		console.log(connected_account_id)
+		// Render frontend page.
+		return res.redirect(301, `${config.FRONTEND_URL}/success`)
+	  },
+		(err) => {
+			console.log(err)
+			return res.redirect(301, `${config.FRONTEND_URL}/error`)
+	  }
+	);
+  });
+  
+
+
 
 module.exports = router; 

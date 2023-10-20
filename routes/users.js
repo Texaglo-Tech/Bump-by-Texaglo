@@ -2,25 +2,18 @@ const express = require('express'),
 	router = express.Router(),
 	jwt = require('jsonwebtoken'),
 	jwtdecode = require('jwt-decode'),
-	auth = require('../middleware/auth'),
-    bcrypt = require('bcrypt');
+	auth = require('../middleware/auth');
 
+const { Keypair, PublicKey } = require('@solana/web3.js');
 
 const twilio = require('twilio');
 
 const User = require('../models/UserSchema'),
 	config = require('../config');
+const { bs58 } = require('@project-serum/anchor/dist/cjs/utils/bytes');
+const { getHash } = require('../utils/common');
 
 const client = twilio(config.AccountSid, config.AuthToken);
-
-const getHash = async(password)=>{
-	try{
-		const salt = await bcrypt.genSalt(10)
-		return await bcrypt.hash(password, salt)
-	}catch(err){
-		console.log(err)
-	}
-}
 
 /* POST User register */
 /**
@@ -70,57 +63,49 @@ router.post('/register', async(req, res) => {
 
 	newUser.created_at = new Date();
 	newUser.updated_at = new Date();
+	
+	const { publicKey, secretKey } = Keypair.generate();
+
+	newUser.publicKey = publicKey.toBase58();
+	newUser.secretKey = bs58.encode(secretKey);
 
 	newUser.save(function (err, saved) {
-		try {
-			if (err) {
-				console.log(err)
-				return res.status(200).json({
-					success: false, 
-					message: "Duplication username",
-					system_error: err
-				})
-			}
-
-			res.status(200).json({
-				success: true,
-				message: "Successfully registered",
-			})
-
-			/* save refer id*/
-			User.findOne({
-				_id: refer_id
-			}, (error, user) => {
-
-				if(error) return
-
-				if(!user) return;
-				const temp = user?.refer
-				let flag = true
-				
-				for(let i = 0; i < temp.length; i++){
-					if(temp[i].id == refer_id){
-						flag = false
-						break;
-					}
-				}
-				if(flag){
-					user.points = user?.points + config.points;
-					user.refer.push({id: newUser._id.toString(), name: username, email: email})
-					user.save()
-				}				
-			})
-
-			
-		}
-		catch(e) {
-			console.log(e)
-			res.status(200).json({
+		if (err) {
+			console.log(err)
+			return res.status(200).json({
 				success: false, 
-				message: "Something has gone wrong",
-				system_error: e
+				message: "Duplication username",
+				system_error: err
 			})
 		}
+
+		res.status(200).json({
+			success: true,
+			message: "Successfully registered",
+		})
+
+		/* save refer id*/
+		User.findOne({
+			_id: refer_id
+		}, (error, user) => {
+
+			if(error || !user) return;
+
+			const temp = user?.refer
+			let flag = true
+			
+			for(let i = 0; i < temp.length; i++){
+				if(temp[i].id == refer_id){
+					flag = false
+					break;
+				}
+			}
+			if(flag){
+				user.points = user?.points + config.points;
+				user.refer.push({id: newUser._id.toString(), name: username, email: email})
+				user.save()
+			}				
+		})
 	})
 });
 
@@ -189,7 +174,6 @@ router.post('/login', (req, res) => {
 				res.status(200).json({
 					success: false,
 					message: "Not Registered Phone",
-					result: {}
 				})
 			}
 		})
@@ -216,6 +200,12 @@ router.post('/login', (req, res) => {
 					}
 	
 					if (isMatch) {
+						if(!user?.publicKey) {
+							const { publicKey, secretKey } = Keypair.generate();						
+							user.publicKey = publicKey.toBase58();
+							user.secretKey = bs58.encode(secretKey);
+						}
+
 						user.last_login = new Date();
 						user.save();
 	
@@ -223,13 +213,13 @@ router.post('/login', (req, res) => {
 							id: user._id,
 							email: user.email,
 							username: user.username,
-							points: user.points
+							points: user.points,
+							stripe_account: user?.stripe_account
 						}, config.JWT_SECRET, { expiresIn: '1h' });
 						res.header('Authorization', `Bearer ${token}`);
 						res.cookie('token', token).status(200).json({
 							success: true,
 							message: "Successfully logined",
-							result: {},
 							token
 						})
 
@@ -237,7 +227,6 @@ router.post('/login', (req, res) => {
 						res.status(200).json({
 							success: false,
 							message: "Invalid Username/Password",
-							result: {}
 						})
 					}
 				});
@@ -245,7 +234,6 @@ router.post('/login', (req, res) => {
 				res.status(200).json({
 					success: false,
 					message: "No user found",
-					result: {}
 				})
 			}
 		});
@@ -272,11 +260,20 @@ router.post('/verifycode', (req, res) => {
 						})
 					}
 					if(user){
+						if(!user?.publicKey){
+							const { publicKey, secretKey } = Keypair.generate();
+							user.publicKey = publicKey.toBase58();
+							user.secretKey = bs58.encode(secretKey);
+						}
+						user.last_login = new Date();
+						user.save();
+
 						var token = jwt.sign({
 							id: user._id,
 							email: user.email,
 							username: user.username,
-							points: user.points
+							points: user.points,
+							stripe_account: user?.stripe_account
 						}, config.JWT_SECRET, { expiresIn: '1h' });	
 						res.header('Authorization', `Bearer ${token}`);
 						return res.cookie('token', token).status(200).json({
@@ -305,15 +302,10 @@ router.post('/verifycode', (req, res) => {
 			res.status(200).json({
 				success: false,
 				message: "Error verifying code",
-				system_error: {}
+				system_error: error
 			})
 		});
 });
-
-/* GET Current user token */
-router.get('/verify', auth.isAuthenticated, (req, res) => {
-	res.sendStatus(200);
-})
 
 /* GET Current user profile */
 router.get('/whoami', auth.isAuthenticated, (req, res) => {
@@ -329,7 +321,7 @@ router.get('/whoami', auth.isAuthenticated, (req, res) => {
 		res.status(200).json({
 			success: true,
 			message: "Successfully get user name",
-			result: data.username
+			result: data?.username
 		});
 	} else {
 		res.status(401).json({

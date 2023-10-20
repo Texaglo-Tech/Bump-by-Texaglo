@@ -14,6 +14,7 @@ const Product = require('../models/ProductSchema'),
 	config = require('../config');
 
 const FormData = require('form-data');
+const { mint } = require('../utils/crossmint');
 
 const storage =  multer.diskStorage({
 	destination: function (req, file, callback) {      
@@ -38,11 +39,26 @@ router.get('/', (req, res) => {
 });
 
 /* POST NFT create */
-router.post('/create', auth.isAuthenticated, (req, res) => {
-	res.status(200).json({
-		success: true,
-		message: "Successfully created",
-	})
+router.post('/create', auth.isAuthenticated, async (req, res) => {
+	const { wallet, token, image, description } = req.body;
+	if(!token == 123) return res.status(200).json({
+		success: false,
+		message: "Invalid Token",
+	}) 
+	const data = await mint("", wallet, image);
+	if(data.success){ 
+		const actionId = data.message.actionId;
+		res.status(200).json({
+			success: true,
+			message: "Successfully created",
+		}) 
+	}else {
+		res.status(200).json({
+			success: false,
+			message: "Server Error",
+		})
+	}
+	
 });
 
 /* GET NFT get all NFT */

@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 // Encryption function
 const encryptMessage = (message, shift) => {
 	let encryptedMessage = '';
@@ -27,3 +29,15 @@ const decryptMessage = (encryptedMessage, shift) => {
 	}
 	return decryptedMessage;
 };
+
+// getHash function
+const getHash = async(password)=>{
+	try{
+		const salt = await bcrypt.genSalt(10)
+		return await bcrypt.hash(password, salt)
+	}catch(err){
+		console.log(err)
+	}
+}
+
+module.exports = { encryptMessage, decryptMessage, getHash, }
