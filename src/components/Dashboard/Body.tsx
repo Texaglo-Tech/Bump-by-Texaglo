@@ -109,6 +109,7 @@ const DashboardBody = ({ navigation }) => {
             style={styles.comingSoon}
           >
             COMING SOON
+            {/* Current Projects */}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -124,6 +125,7 @@ const DashboardBody = ({ navigation }) => {
             style={styles.comingSoon}
           >
             COMING SOON
+            {/* Learning Center */}
           </Text>
         </TouchableOpacity>
       </View>

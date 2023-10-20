@@ -50,6 +50,8 @@ export interface AccountProviderContext {
 
   cart?: any;
   cartHandle: (data) => void;
+  stripe: boolean;
+  stripeHandle: () => void
 }
 
 const AccountsContext = React.createContext<AccountProviderContext>({
@@ -74,6 +76,9 @@ const AccountsContext = React.createContext<AccountProviderContext>({
 
   cart: [],
   cartHandle(data: any) {},
+  stripe: false,
+  stripeHandle() {}
+
 });
 
 const AccountProvider = (props: { children: ReactNode }) => {
@@ -94,8 +99,13 @@ const AccountProvider = (props: { children: ReactNode }) => {
   const [activeTab, setTab] = useState<any>(0);
 
   const [paid, setPaid] = useState<any>(false);
+  const [stripe, setStripe] = useState(false)
 
   const navigation: any = useNavigation();
+
+  const stripeHandle = () => {
+    setStripe(!stripe);
+  };
 
   useEffect(() => {
     checkAuthentication(navigation);
@@ -333,6 +343,9 @@ const AccountProvider = (props: { children: ReactNode }) => {
 
       cart,
       cartHandle,
+
+      stripe,
+      stripeHandle
     }),
     [
       accounts,
@@ -354,6 +367,8 @@ const AccountProvider = (props: { children: ReactNode }) => {
       products,
       cart,
       cartHandle,
+      stripe,
+      stripeHandle
     ]
   );
 

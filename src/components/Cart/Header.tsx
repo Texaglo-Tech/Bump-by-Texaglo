@@ -10,12 +10,15 @@ import { comingSoon, getUserIdFromToken, encryptMessage, getUserNameFromToken } 
 import config from '../../config';
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
 import { Badge } from 'react-native-elements';
-import Alarm  from './../Alarm'
+import Alarm  from './../Alarm';
+import Payment from '../Payment';
+
+
 const Buffer = require("@craftzdog/react-native-buffer").Buffer;
 
 const CartHeader = ({ navigation }) => {
-  const { cart } = useAccounts();
-
+  const { cart, stripeHandle } = useAccounts();
+  const [ cartData, setCartData] = useState("");
   const [username, setUsername] = useState("");
   useEffect(()=>{
     getUserNameFromToken().then(data=>{
@@ -35,13 +38,25 @@ const CartHeader = ({ navigation }) => {
     }
     const user_id = await getUserIdFromToken()
     const products = [];
+    const products_cost = [];
+    const products_img = [];
+    let total_amount = 0;
     for (let i = 0; i <cart.length; i++){
-      products.push(cart[i]?.product_id)
+      products.push(cart[i]?.product_id);
+      products_cost.push(cart[i]?.product_cost);
+      products_img.push(cart[i]?.product_file)
+      total_amount += Number(cart[i]?.product_cost);
     }
     const data = {
       user_id,
-      products: products
+      products: products,
+      products_cost: products_cost,
+      products_img,
+      total_amount 
     }
+    setCartData(JSON.stringify(data))
+    stripeHandle();
+    return;
     const encodedData = Buffer.from(JSON.stringify(data)).toString('base64');
     const key = encryptMessage(encodedData, 5);
     console.log("encryptKey", key)
@@ -83,6 +98,8 @@ const CartHeader = ({ navigation }) => {
                 <Text style={styles.payButtonText}>Confirm And Pay</Text>
               </LinearGradient>
             </TouchableOpacity>
+
+            <Payment cartData={cartData}/>
 
           </View>
         </>

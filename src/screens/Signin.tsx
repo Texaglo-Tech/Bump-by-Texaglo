@@ -13,6 +13,7 @@ import {
   StatusBar,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import CountryPicker from "react-native-country-picker-modal";
 import { Toast, ALERT_TYPE } from "react-native-alert-notification";
 import { useAccounts } from "../providers/AccountProvider";
 import { sentCode, verifyCode } from "../api";
@@ -23,6 +24,10 @@ const SigninScreen = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
   const [step, setStep] = useState(1);
+
+  const [show, setShow] = useState(false);
+  const [countryCode, setCountryCode] = useState<any>();
+  const [countryPreCode, setCountryPreCode] = useState<any>();
 
   const [loading, setLoading] = useState(false);
 
@@ -36,10 +41,10 @@ const SigninScreen = ({ navigation }) => {
 
   const handleSentCode = async () => {
     console.log("clicked sentCode button->");
-    if(!phone){
+    if (!phone) {
       Toast.show({
-        type:  ALERT_TYPE.WARNING,
-        title:"Info",
+        type: ALERT_TYPE.WARNING,
+        title: "Info",
         textBody: "Please input the phone number",
         autoClose: 5000,
       });
@@ -49,7 +54,7 @@ const SigninScreen = ({ navigation }) => {
     setLoading(true);
 
     const data = {
-      phone,
+      phone:countryCode?`+${countryPreCode}${phone.replace(/\s+/g, '')}`:`+1${phone.replace(/\s+/g, '')}`,
       option: "phone",
     };
     const response: any = await sentCode(data);
@@ -57,8 +62,7 @@ const SigninScreen = ({ navigation }) => {
     setLoading(false);
     if (response.success) {
       setStep(2);
-      // navigation.navigate('Dashboard') // test
-    }else{
+    } else {
       Toast.show({
         type: ALERT_TYPE.WARNING,
         title: "Info",
@@ -67,8 +71,6 @@ const SigninScreen = ({ navigation }) => {
       });
       return;
     }
-
-    // setStep(2); // test
 
     Toast.show({
       type: response.success ? ALERT_TYPE.SUCCESS : ALERT_TYPE.WARNING,
@@ -81,10 +83,10 @@ const SigninScreen = ({ navigation }) => {
   const handleVerifyCode = async () => {
     console.log("clicked verification button->");
 
-    if(!code){
+    if (!code) {
       Toast.show({
-        type:  ALERT_TYPE.WARNING,
-        title:"Info",
+        type: ALERT_TYPE.WARNING,
+        title: "Info",
         textBody: "Please input the code",
         autoClose: 5000,
       });
@@ -95,13 +97,13 @@ const SigninScreen = ({ navigation }) => {
     setLoading(true);
 
     const data = {
-      phone,
+      phone:countryCode?`+${countryPreCode}${phone.replace(/\s+/g, '')}`:`+1${phone.replace(/\s+/g, '')}`,
       code,
     };
     const response: any = await verifyCode(data);
     console.log(response);
     setLoading(false);
-    
+
     if (!response.success) setStep(step + 1);
     if (step > 5) setStep(1);
 
@@ -115,7 +117,7 @@ const SigninScreen = ({ navigation }) => {
     if (response.success) {
       setAccountPhone(phone);
       navigation.navigate("Dashboard");
-    }else{
+    } else {
       Toast.show({
         type: ALERT_TYPE.WARNING,
         title: "Info",
@@ -126,60 +128,80 @@ const SigninScreen = ({ navigation }) => {
     }
   };
 
+  const onSelect = (country: any) => {
+    setCountryPreCode(country.callingCode[0]);
+    setCountryCode(country.cca2)
+    setShow(false);
+  };
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Image
-        source={require("../assets/login1.png")}
+        source={require("../assets/new_layout.png")}
         style={styles.backgroundImage}
       />
+      <Text style={styles.centerTitle}>Bump-me</Text>
       {step == 1 ? (
         <View style={styles.centerContainer}>
-          <Text style={styles.centerTitle}>
-            {"\n"} Enter your Phone Number {"\n"}
-          </Text>
-          <LinearGradient
-            colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.inputContainer}
-          >
-            <TextInput
-              placeholder="+1 (817) 123 4567"
-              value={phone}
-              onChangeText={handleChangePhone}
-            />
-          </LinearGradient>
+          <Text style={styles.centerSubTitle}>
+            {"\n"} Enter your phone number stating with you area code {"\n"}
+          </Text>         
+          <View style={styles.phoneInputContainer}>
+              <CountryPicker
+                theme={{
+                  onBackgroundTextColor: "white",
+                  backgroundColor: "#788995",
+                }}
+                containerButtonStyle={styles.countryContainer}
+                {...{
+                  countryCode,
+                  withFilter: true,
+                  withFlag: false,
+                  // withCountryNameButton,
+                  withCallingCodeButton: true,
+                  withFlagButton: false,
+                  withAlphaFilter: true,
+                  withCallingCode: true,
+                  withEmoji: true,
+                  placeholder: "  +1",
+                  onSelect,
+                }}
+                visible={show}
+              />
+              <TextInput
+                style={{color:"white"}}
+                placeholderTextColor="white"
+                placeholder="(817) 123 4567"
+                value={phone}
+                onChangeText={handleChangePhone}
+              />
+          </View>
           <TouchableOpacity
             activeOpacity={0.9}
             style={styles.signupContainer}
             onPress={() => handleSentCode()}
           >
-            <Text style={styles.signupText}>Get Code</Text>
+            <Text style={styles.signupText}>Verify</Text>
           </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.centerContainer}>
-          <Text style={styles.centerTitle}>
-            {"\n"} Enter your Confirmation Code {"\n"}
+          <Text style={styles.centerSubTitle}>
+            {"\n"} Enter The confirmation number {"\n"}
           </Text>
-          <LinearGradient
-            colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.inputContainer}
-          >
-            <TextInput
+          <TextInput
+              style={{color:"white", backgroundColor:"#39495D", borderRadius:15, textAlign:"center"}}
+              placeholderTextColor="white"
               placeholder="######"
               value={code}
               onChangeText={handleChangeCode}
-            />
-          </LinearGradient>
+          />
           <TouchableOpacity
             activeOpacity={0.9}
             style={styles.signupContainer}
             onPress={() => handleVerifyCode()}
           >
-            <Text style={styles.signupText}>Verify Code</Text>
+            <Text style={styles.signupText}>Verify</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -187,7 +209,7 @@ const SigninScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create<any>({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
@@ -201,47 +223,84 @@ const styles = StyleSheet.create<any>({
   },
 
   centerContainer: {
-    backgroundColor: "#D9D9D98A",
+    marginTop:200,
+    backgroundColor: "white",
     width: "80%",
+    height: '30%',
+    borderRadius:15,
     padding: 10,
   },
 
   centerTitle: {
-    fontSize: 16,
-    color: "black",
-    fontWeight: "600",
-    textAlign: "center",
+    marginTop: 100,
+    fontSize: 32, 
+    color: 'white',
+    fontWeight: '700',
+    textAlign: 'center',
   },
 
   centerSubTitle: {
-    fontSize: 16,
-    color: "black",
-    fontWeight: "400",
-    textAlign: "center",
-  },
+    fontSize: 12, 
+    color: 'black',
+    fontWeight: '200',
+    textAlign: 'center',
+  },  
 
   inputContainer: {
     backgroundColor:
       "linear-gradient(90.11deg, #9851F9 23.68%, rgba(249, 81, 108, 0.8) 128.98%)",
-    alignItems: "center",
+    alignItems: "flex-start",
     borderRadius: 4,
     marginBottom: 5,
     marginTop: 5,
   },
 
   signupContainer: {
-    borderColor: "#914FEC",
+    borderColor: "#DFD2C4",
     borderWidth: 1,
-    backgroundColor: "white",
+    backgroundColor: "#DFD2C4",
     alignItems: "center",
-    borderRadius: 4,
+    borderRadius: 15,
     paddingVertical: 12,
     marginBottom: 5,
     marginTop: 5,
   },
 
   signupText: {
-    color: "#914FEC",
+    color: "white",
+    fontSize:16,
+    fontWeight:"600"
+  },
+
+  phoneInputContainer: {
+    display: "flex",
+    backgroundColor:"#39495D",
+    borderRadius:15,
+    color:"white",
+    flexDirection: "row",
+  },
+
+  phoneCodeContainer: {
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+
+  phoneCode: {
+    color: "white",
+    fontSize: 20,
+    width: 60,
+    textAlign: "center",
+  },
+
+  countryContainer: {
+    shadowColor: "white",
+    paddingTop: 13,
+    backgroundColor: "grey",
+    height: 50,
+    width:60,
+    borderRadius:15,
+    paddingLeft: 5,
+    paddingRight: 5,
   },
 });
 

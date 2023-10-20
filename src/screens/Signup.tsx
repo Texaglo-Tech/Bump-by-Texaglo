@@ -13,6 +13,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { Toast, ALERT_TYPE } from "react-native-alert-notification";
 import { useAccounts } from "../providers/AccountProvider";
 import { signup } from "../api";
+import CountryPicker from "react-native-country-picker-modal";
 
 const SignupScreen = ({ navigation }) => {
   const { setAccountPhone } = useAccounts();
@@ -22,6 +23,10 @@ const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const [countryCode, setCountryCode] = useState<any>();
+  const [countryPreCode, setCountryPreCode] = useState<any>();
 
   const handleChangePhone = (inputText) => {
     setPhone(inputText);
@@ -41,9 +46,9 @@ const SignupScreen = ({ navigation }) => {
 
   const handleSignup = async () => {
     console.log("clicked signup button->");
-    if (loading) return;    
+    if (loading) return;
 
-    if(username == ""){
+    if (username == "") {
       Toast.show({
         type: ALERT_TYPE.WARNING,
         title: "Info",
@@ -53,7 +58,7 @@ const SignupScreen = ({ navigation }) => {
       return;
     }
 
-    if(email == ""){
+    if (email == "") {
       Toast.show({
         type: ALERT_TYPE.WARNING,
         title: "Info",
@@ -61,19 +66,9 @@ const SignupScreen = ({ navigation }) => {
         autoClose: 5000,
       });
       return;
-    }
+    }    
 
-    if(phone == ""){
-      Toast.show({
-        type: ALERT_TYPE.WARNING,
-        title: "Info",
-        textBody: "Please input the phone",
-        autoClose: 5000,
-      });
-      return;
-    }
-
-    if(password == ""){
+    if (password == "") {
       Toast.show({
         type: ALERT_TYPE.WARNING,
         title: "Info",
@@ -83,10 +78,20 @@ const SignupScreen = ({ navigation }) => {
       return;
     }
 
+    if (phone == "") {
+      Toast.show({
+        type: ALERT_TYPE.WARNING,
+        title: "Info",
+        textBody: "Please input the phone",
+        autoClose: 5000,
+      });
+      return;
+    }
+
     setLoading(true);
 
     const data = {
-      phone,
+      phone:countryCode?`+${countryPreCode}${phone.replace(/\s+/g, '')}`:`+1${phone.replace(/\s+/g, '')}`,
       email,
       username,
       password,
@@ -94,8 +99,6 @@ const SignupScreen = ({ navigation }) => {
     const response: any = await signup(data);
     console.log(response);
     setLoading(false);
-    // setAccountPhone("+1(108) 912")
-
     Toast.show({
       type: response.success ? ALERT_TYPE.SUCCESS : ALERT_TYPE.WARNING,
       title: response.success ? "Success" : "Info",
@@ -103,69 +106,84 @@ const SignupScreen = ({ navigation }) => {
       autoClose: 5000,
     });
 
-    if(response.success){
+    if (response.success) {
       navigation.navigate("Home");
     }
+  };
+
+  const onSelect = (country: any) => {
+    setCountryPreCode(country.callingCode[0]);
+    setCountryCode(country.cca2)
+    setShow(false);
   };
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Image
-        source={require("../assets/login1.png")}
+        source={require("../assets/new_layout.png")}
         style={styles.backgroundImage}
       />
+      <Text style={styles.centerTitle}>
+        {"\n"} Bump 
+      </Text>
       <View style={styles.centerContainer}>
-        <Text style={styles.centerTitle}>
-          {"\n"} Enter your Info {"\n"}
+        <Text style={styles.centerSubTitle}>
+          Signup to Bump Market {"\n"}
         </Text>
-        <LinearGradient
-          colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
+        <TextInput
+          placeholder="Name"
+          value={username}
+          onChangeText={handleChangeUsername}
           style={styles.inputContainer}
-        >
-          <TextInput
-            placeholder="Enter your name"
-            value={username}
-            onChangeText={handleChangeUsername}
-          />
-        </LinearGradient>
-        <LinearGradient
-          colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
+          placeholderTextColor="white"
+        />
+
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={handleChangeEmail}
           style={styles.inputContainer}
-        >
-          <TextInput
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={handleChangeEmail}
-          />
-        </LinearGradient>
-        <LinearGradient
-          colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
+          placeholderTextColor="white"
+        />
+
+        <TextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={handleChangePassword}
           style={styles.inputContainer}
-        >
-          <TextInput
-            placeholder="Enter your phone"
-            value={phone}
-            onChangeText={handleChangePhone}
-          />
-        </LinearGradient>
-        <LinearGradient
-          colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.inputContainer}
-        >
-          <TextInput
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={handleChangePassword}
-          />
-        </LinearGradient>
+          placeholderTextColor="white"
+        />
+
+        <View style={styles.phoneInputContainer}>
+            <CountryPicker
+              theme={{
+                onBackgroundTextColor: "white",
+                backgroundColor: "#788995",
+              }}
+              containerButtonStyle={styles.countryContainer}
+              {...{
+                countryCode,
+                withFilter: true,
+                withFlag: false,
+                // withCountryNameButton,
+                withCallingCodeButton: true,
+                withFlagButton: false,
+                withAlphaFilter: true,
+                withCallingCode: true,
+                withEmoji: true,
+                placeholder: "  +1",
+                onSelect,
+              }}
+              visible={show}
+            />
+            <TextInput
+              style={{color:"white"}}
+              placeholderTextColor="white"
+              placeholder="(817) 123 4567"
+              value={phone}
+              onChangeText={handleChangePhone}
+            />
+        </View>
 
         <TouchableOpacity
           activeOpacity={0.9}
@@ -179,7 +197,7 @@ const SignupScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create<any>({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
@@ -199,41 +217,62 @@ const styles = StyleSheet.create<any>({
   },
 
   centerTitle: {
-    fontSize: 20,
-    color: "black",
-    fontWeight: "500",
+    marginTop: 70,
+    fontSize: 32,
+    color: "white",
+    fontWeight: "700",
     textAlign: "center",
   },
 
   centerSubTitle: {
-    fontSize: 16,
+    fontSize: 12,
     color: "black",
-    fontWeight: "400",
+    fontWeight: "200",
     textAlign: "center",
   },
 
   inputContainer: {
-    backgroundColor:
-      "linear-gradient(90.11deg, #9851F9 23.68%, rgba(249, 81, 108, 0.8) 128.98%)",
     alignItems: "center",
-    borderRadius: 4,
     marginBottom: 5,
     marginTop: 5,
+    color: "white",
+    backgroundColor: "#39495D",
+    borderRadius: 15,
+    textAlign: "center",
   },
 
   signupContainer: {
-    borderColor: "#914FEC",
+    borderColor: "#DFD2C4",
     borderWidth: 1,
-    backgroundColor: "white",
+    backgroundColor: "#DFD2C4",
     alignItems: "center",
-    borderRadius: 4,
+    borderRadius: 15,
     paddingVertical: 12,
     marginBottom: 5,
     marginTop: 5,
   },
 
   signupText: {
-    color: "#914FEC",
+    color: "white",
+  },
+
+  phoneInputContainer: {
+    display: "flex",
+    backgroundColor:"#39495D",
+    borderRadius:15,
+    color:"white",
+    flexDirection: "row",
+  },
+
+  countryContainer: {
+    shadowColor: "white",
+    paddingTop: 13,
+    backgroundColor: "grey",
+    height: 50,
+    width:60,
+    borderRadius:15,
+    paddingLeft: 5,
+    paddingRight: 5,
   },
 });
 

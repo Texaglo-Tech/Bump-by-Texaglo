@@ -3,7 +3,7 @@
 import React from 'react';
 import { Text, StyleSheet, Image, } from 'react-native';
 import { Menu, MenuOptions, MenuOption, MenuTrigger, } from 'react-native-popup-menu';
-import { logout } from '../api';
+import { comingSoon, logout } from '../api';
 
 const NavbarMenu = ({ navigation }) => {
 
@@ -24,6 +24,9 @@ const NavbarMenu = ({ navigation }) => {
                 </MenuOption>
                 <MenuOption onSelect={() => {navigation.navigate('ChatContacts');}} >
                   <Text style={styles.menuOption}>Message</Text>
+                </MenuOption>
+                <MenuOption onSelect={() => {comingSoon();}} >
+                  <Text style={styles.menuOption}>Payments</Text>
                 </MenuOption>
                 <MenuOption onSelect={() => {logout(navigation)}} >
                   <Text style={styles.menuOption}>Log Out</Text>

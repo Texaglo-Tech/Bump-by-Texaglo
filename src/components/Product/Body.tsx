@@ -8,7 +8,8 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Linking
+  Linking,
+  Animated,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Tts from "react-native-tts";
@@ -16,13 +17,20 @@ import Voice from "@react-native-community/voice";
 import { useAccounts } from "../../providers/AccountProvider";
 import Dialog from "react-native-dialog";
 
-import { aiChat, comingSoon, encryptMessage, getUserIdFromToken } from "../../api";
+import {
+  aiChat,
+  comingSoon,
+  encryptMessage,
+  getUserIdFromToken,
+} from "../../api";
 import config from "../../config";
 import { Toast, ALERT_TYPE } from "react-native-alert-notification";
+import Payment from '../Payment';
+
 const Buffer = require("@craftzdog/react-native-buffer").Buffer;
 
 const ProductBody = ({ navigation }) => {
-  const { selectedProduct } = useAccounts();
+  const { selectedProduct, stripeHandle } = useAccounts();
   const [visible, setVisible] = useState(false);
 
   const [pitch, setPitch] = useState("");
@@ -33,16 +41,24 @@ const ProductBody = ({ navigation }) => {
   const [partialResults, setPartialResults] = useState([]);
   const [result, setResult] = useState("");
 
-  const payHandle = async() =>{
-    const user_id = await getUserIdFromToken()
+  const [ cartData, setCartData] = useState("");
+
+  const payHandle = async () => {
+    const user_id = await getUserIdFromToken();
     const data = {
       user_id,
-      products: [selectedProduct?.product_id]
-    }
-    const encodedData = Buffer.from(JSON.stringify(data)).toString('base64');
+      products: [selectedProduct?.product_id],
+      total_amount: selectedProduct?.product_cost,
+      products_img: [selectedProduct?.product_file],
+      products_cost: [selectedProduct?.product_cost],
+    };
+    setCartData(JSON.stringify(data))
+    stripeHandle();
+    return;
+    const encodedData = Buffer.from(JSON.stringify(data)).toString("base64");
     const key = encryptMessage(encodedData, 5);
     Linking.openURL(`${config.CROSSMINT_PAYMENT}/?${key}`);
-  }
+  };
 
   const onSpeechStart = (e) => {
     setStarted(true);
@@ -54,17 +70,17 @@ const ProductBody = ({ navigation }) => {
   };
   const onSpeechError = (e) => {
     setError(JSON.stringify(e.error));
-    startSpeechRecognizing();    
+    startSpeechRecognizing();
   };
   const onSpeechResults = (e) => {
     console.log(e.value);
     setResult(e.value[0]);
-    Toast.show({
-      type: ALERT_TYPE.SUCCESS,
-      title: 'Success',
-      textBody: e.value[0],
-      autoClose: 5000,
-    });
+    // Toast.show({
+    //   type: ALERT_TYPE.SUCCESS,
+    //   title: "Success",
+    //   textBody: e.value[0],
+    //   autoClose: 5000,
+    // });
   };
   const onSpeechPartialResults = (e) => {
     console.log(e.value);
@@ -83,7 +99,7 @@ const ProductBody = ({ navigation }) => {
     setEnd(false);
     try {
       console.log("speech recongize starting...");
-      await Voice.start('en-US');
+      await Voice.start("en-US");
     } catch (e) {
       console.log("speech recongize starting issue...");
       console.error(e);
@@ -104,7 +120,7 @@ const ProductBody = ({ navigation }) => {
   useEffect(() => {
     if (
       result != "" &&
-      (result.toLowerCase().includes("casper")||
+      (result.toLowerCase().includes("casper") ||
         result.toLowerCase().includes("caspher")) &&
       !visible
     ) {
@@ -113,7 +129,7 @@ const ProductBody = ({ navigation }) => {
     }
     if (
       result != "" &&
-      (result.toLowerCase().includes("turn off")||
+      (result.toLowerCase().includes("turn off") ||
         result.toLowerCase().includes("turnoff"))
     ) {
       setVisible(true);
@@ -135,10 +151,9 @@ const ProductBody = ({ navigation }) => {
       });
 
       aiChat(data).then((data) => {
-
         if (data.success) {
-          Tts.speak(data.data); 
-        }else{
+          Tts.speak(data.data);
+        } else {
           Toast.show({
             type: ALERT_TYPE.DANGER,
             title: "Info",
@@ -171,7 +186,6 @@ const ProductBody = ({ navigation }) => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
   }, []);
-
 
   return (
     <View style={styles.bodyContainer}>
@@ -221,7 +235,7 @@ const ProductBody = ({ navigation }) => {
         <TouchableOpacity
           style={{ width: "48%", marginRight: 5 }}
           activeOpacity={0.9}
-          onPress={() => {    
+          onPress={() => {
             payHandle();
             // startSpeechRecognizing();
           }}
@@ -240,7 +254,7 @@ const ProductBody = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={0.9}
           style={styles.signupContainer}
-          onPress={() =>{ 
+          onPress={() => {
             payHandle();
             // stopSpeechRecognizing()
           }}
@@ -261,17 +275,17 @@ const ProductBody = ({ navigation }) => {
                     console.log("clicked item..");
                   }}
                 >
-                {item !== "" ? (  
-                  <Image
-                    source={{ uri: `${config.API}/${item}` }}
-                    style={styles.nftImage}
-                  />
-                ) : (
-                  <Image 
-                    source={require("../../assets/fake_nft.png")}
-                    style={styles.nftImage}
-                  />
-                )}
+                  {item !== "" ? (
+                    <Image
+                      source={{ uri: `${config.API}/${item}` }}
+                      style={styles.nftImage}
+                    />
+                  ) : (
+                    <Image
+                      source={require("../../assets/fake_nft.png")}
+                      style={styles.nftImage}
+                    />
+                  )}
                 </TouchableOpacity>
               </React.Fragment>
             ))}
@@ -279,10 +293,7 @@ const ProductBody = ({ navigation }) => {
       </View>
 
       <View>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={() => comingSoon()}
-        >
+        <TouchableOpacity activeOpacity={0.9} onPress={() => comingSoon()}>
           <LinearGradient
             colors={["#9851F9", "rgba(249, 81, 108, 0.8)"]}
             start={{ x: 0, y: 0 }}
@@ -352,33 +363,19 @@ const ProductBody = ({ navigation }) => {
                   }}
                 />
               </View>
-              <Text style={{ color: "#7B31E1", marginTop:5 }}>Item {index + 1}</Text>
+              <Text style={{ color: "#7B31E1", marginTop: 5 }}>
+                Item {index + 1}
+              </Text>
               <Text style={{ color: "grey" }}>Product Name</Text>
             </TouchableOpacity>
           </React.Fragment>
         ))}
       </View>
 
-      <Dialog.Container visible={visible}>
-        <Text
-          style={{
-            textAlign: "center",
-            fontSize: 18,
-            color: "black",
-            fontWeight: "500",
-          }}
-        >
-          How can I assit ?
-        </Text>
-        <Image
-          source={require("../../assets/ai_think.png")}
-          style={{ width: 100, height: 100, left: "30%", marginTop: 15 }}
-        />
-        <View style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-          <TouchableOpacity activeOpacity={0.9} style={styles.casperContainer}>
-            <Text style={styles.signupText}>Casper is thinking...</Text>
-          </TouchableOpacity>
-        </View>
+      <Dialog.Container visible={visible} contentStyle={styles.casperWrapper}>
+        <Image source={require("../../assets/sound.gif")} style={styles.soundEffect} />
+        <Text style={styles.casperTitle}>How can I assit ?</Text>
+        <Text style={styles.signupText}>Casper is thinking... {"\n"}</Text>
         <TouchableOpacity
           activeOpacity={0.9}
           style={styles.casperContainer}
@@ -390,6 +387,7 @@ const ProductBody = ({ navigation }) => {
           <Text style={styles.signupText}>Stop and Close</Text>
         </TouchableOpacity>
       </Dialog.Container>
+      <Payment cartData={cartData}/>
     </View>
   );
 };
@@ -459,18 +457,20 @@ const styles = StyleSheet.create({
   },
 
   casperContainer: {
-    backgroundColor: "#C4C4C4",
+    backgroundColor: "#ECAF3A",
     alignItems: "center",
     borderRadius: 4,
     paddingVertical: 12,
     marginBottom: 5,
     marginTop: 5,
-    width: "100%",
+    width: "70%",
+    justifyContent: "center",
   },
 
   signupText: {
     color: "white",
     fontWeight: "600",
+    textAlign: "center",
   },
 
   pointsValueTitle: {
@@ -562,6 +562,29 @@ const styles = StyleSheet.create({
     width: 150,
     aspectRatio: 1,
     borderRadius: 10,
+  },
+
+  casperTitle: {
+    textAlign: "center",
+    fontSize: 35,
+    color: "white",
+    fontWeight: "500",
+  },
+
+  casperWrapper: {
+    backgroundColor: "#029ECE",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    borderColor: "#9851F9",
+    borderWidth: 2,
+  },
+
+  soundEffect: {
+    width: 150,
+    height: 50,
+    marginTop: 15,
+    backgroundColor: "transparent",
   },
 });
 

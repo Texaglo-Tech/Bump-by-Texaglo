@@ -8,12 +8,14 @@ import { comingSoon, getUserIdFromToken, encryptMessage } from "../../api";
 import { useAccounts } from "../../providers/AccountProvider";
 import config from "../../config";
 import { Toast, ALERT_TYPE } from "react-native-alert-notification";
+import Payment from '../Payment';
 const Buffer = require("@craftzdog/react-native-buffer").Buffer;
 
 const LocalCategoryBody = ({ navigation }) => {
-  const { products, selectedProduct, selectedProductHandle, cartHandle, cart } = useAccounts();
+  const { products, selectedProduct, selectedProductHandle, cartHandle, cart, stripeHandle } = useAccounts();
   const [detailVisible, setDetailVisible] = useState(false);
   const [rest, setRest] = useState(0);
+  const [ cartData, setCartData] = useState("");
 
   const addCart = ()=>{
     let exist = false;
@@ -49,9 +51,14 @@ const LocalCategoryBody = ({ navigation }) => {
     const user_id = await getUserIdFromToken()
     const data = {
       user_id,
-      products: [selectedProduct?.product_id]
+      products: [selectedProduct?.product_id],
+      total_amount: selectedProduct?.product_cost,
+      products_img: [selectedProduct?.product_file],
+      products_cost: [selectedProduct?.product_cost],
     }
-    console.log("product_json_data", data)
+    setCartData(JSON.stringify(data))
+    stripeHandle();
+    return;
     const encodedData = Buffer.from(JSON.stringify(data)).toString('base64');
     const key = encryptMessage(encodedData, 5);
     console.log("encryptKey", key)
@@ -211,6 +218,8 @@ const LocalCategoryBody = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </Dialog.Container>
+      <Payment cartData={cartData}/>
+
     </>
   );
 };

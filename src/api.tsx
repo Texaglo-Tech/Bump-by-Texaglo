@@ -155,6 +155,17 @@ export const getProducts = async () => {
   }
 };
 
+
+export const getCollectibles = async (data) => {
+  console.log("get Collectibles..");
+  try {
+    const res = (await api.post(`${config.API}/api/product/get_collectibles`, data)).data;
+    return res;
+  } catch (err) {
+    return { success: false, message: "Server Error" };
+  }
+};
+
 export const getProduct = async (data) => {
   console.log("get Product..");
   try {
@@ -184,6 +195,16 @@ export const refundPurchase = async (data) => {
     return { success: false, message: "Server Error" };
   }
 };
+
+export const createPayment = async (data) => {
+  console.log("creatPayment...");
+  try {
+    const res = (await api.post(`${config.API}/api/payment/create_payment`, data)).data;
+    return res;
+  } catch (err) {
+    return { success: false, message: "Server Error" };
+  }
+}; 
 
 // Encryption function
 export const encryptMessage = (message, shift) => {

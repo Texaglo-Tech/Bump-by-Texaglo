@@ -8,7 +8,7 @@ const HomeScreen = ({ navigation }) => {
 
   const [step , setStep] = useState(0);
 
-  const [imageSource, setImageSource] = useState(require('../assets/login2.png'));
+  const [imageSource, setImageSource] = useState(require('../assets/new_layout.png'));
 
   return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -16,74 +16,15 @@ const HomeScreen = ({ navigation }) => {
           source={imageSource}
           style={styles.backgroundImage}
         />
+        <Text style={styles.centerTitle}>Bump-me</Text>
         <View style={styles.centerContainer}>
-          <Text style={styles.centerTitle}>Bump-me</Text>
           <Text style={styles.centerSubTitle}>
-            Join the Bump-Me Marketplace where you can find local products
+            Join the Bump Marketplace and find local products
             {'\n'}
-            {'\n'}    
           </Text>
 
-          <View style={{display:"flex", marginBottom: 20, flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
-            <TouchableOpacity  activeOpacity={0.9} onPress={() => { setStep(0); setImageSource(require('../assets/login2.png')); }}>
-              {step == 0?
-                <Image
-                  source={require('../assets/active_dot.png')}
-                  style={{margin:5}}
-                />
-                :<Image
-                source={require('../assets/dot.png')}
-                style={{margin:5}}
-                />
-              } 
-            </TouchableOpacity>
-            <TouchableOpacity  activeOpacity={0.9} onPress={() => { setStep(1); setImageSource(require('../assets/login3.png')); }}>
-              {step == 1?
-                <Image
-                  source={require('../assets/active_dot.png')}
-                  style={{margin:5}}
-                />
-                :<Image
-                source={require('../assets/dot.png')}
-                style={{margin:5}}
-                />
-              } 
-            </TouchableOpacity>
-            <TouchableOpacity  activeOpacity={0.9} onPress={() => { setStep(2); setImageSource(require('../assets/login2.png')); }}>
-              {step == 2?
-                <Image
-                  source={require('../assets/active_dot.png')}
-                  style={{margin:5}}
-                />
-                :<Image
-                source={require('../assets/dot.png')}
-                style={{margin:5}}
-                />
-              } 
-            </TouchableOpacity>
-            <TouchableOpacity  activeOpacity={0.9} onPress={() => { setStep(3); setImageSource(require('../assets/login1.png')); }}>
-              {step == 3?
-                <Image
-                  source={require('../assets/active_dot.png')}
-                  style={{margin:5}}
-                />
-                :<Image
-                source={require('../assets/dot.png')}
-                style={{margin:5}}
-                />
-              } 
-            </TouchableOpacity>
-            
-          </View>
-
-          <TouchableOpacity  activeOpacity={0.9} onPress={() => navigation.navigate('Signin')}>
-            <LinearGradient
-              colors={['#9851F9',  'rgba(249, 81, 108, 0.8)']}
-              start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-              style={styles.loginContainer}   
-            >
-              <Text style={styles.loginText}>Login</Text>
-            </LinearGradient>
+          <TouchableOpacity style={styles.loginContainer}  activeOpacity={0.9} onPress={() => navigation.navigate('Signin')}>
+            <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
          
           <TouchableOpacity  activeOpacity={0.9} style={styles.signupContainer} onPress={() => navigation.navigate('Signup')}>
@@ -109,33 +50,36 @@ const styles = StyleSheet.create({
   },
 
   centerContainer: {
-    backgroundColor: '#D9D9D98A',
+    marginTop:200,
+    backgroundColor: 'white',
     width: '80%',
-    height: '50%',
+    height: '30%',
+    borderRadius: 15,
     padding: 10
   },
 
   centerTitle: {
+    marginTop: 100,
     fontSize: 32, 
-    color: 'black',
+    color: 'white',
     fontWeight: '700',
     textAlign: 'center',
   },
 
   centerSubTitle: {
-    fontSize: 14, 
+    fontSize: 12, 
     color: 'black',
-    fontWeight: '400',
+    fontWeight: '200',
     textAlign: 'center',
   },  
 
   loginContainer: {    
-    backgroundColor: 'linear-gradient(90.11deg, #9851F9 23.68%, rgba(249, 81, 108, 0.8) 128.98%)',
+    backgroundColor: '#39495D',
     alignItems: 'center',
-    borderRadius: 4,
+    borderRadius: 15,
     paddingVertical: 12,
     marginBottom: 5,
-    marginTop: 5
+    marginTop: 5,
   },
 
   loginText: {
@@ -143,18 +87,18 @@ const styles = StyleSheet.create({
   },
 
   signupContainer: {
-    borderColor: '#914FEC',
+    borderColor: '#DFD2C4',
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#DFD2C4',
     alignItems: 'center',
-    borderRadius: 4,
+    borderRadius: 15,
     paddingVertical: 12,
     marginBottom: 5,
     marginTop: 5
   },
 
   signupText: {
-    color: '#914FEC'
+    color: 'white'
   },
 
   button: {

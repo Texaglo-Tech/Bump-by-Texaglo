@@ -46,7 +46,6 @@ const CartBody = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.cartItemImgContainer}
                 activeOpacity={0.9}
-                onPress={() => navigation.navigate("LocalCategory")}
               >
                 {item?.product_file != "" ? (
                   <Image

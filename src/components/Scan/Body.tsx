@@ -26,13 +26,14 @@ import NfcManager, { NfcTech } from "react-native-nfc-manager";
 import { useAccounts } from "../../providers/AccountProvider";
 
 import { Dialog, Button, Input } from "react-native-elements";
+import Payment from '../Payment';
 
 import config from "../../config";
 // Pre-step, call this before any NFC operations
 NfcManager.start();
 
 const ScanBody = ({ navigation }) => {
-  const { products, selectedProduct, cartHandle, cart, selectedProductHandle } =
+  const { products, selectedProduct, cartHandle, cart, selectedProductHandle, stripeHandle } =
     useAccounts();
 
   const [visible, setVisible] = useState(true);
@@ -41,6 +42,7 @@ const ScanBody = ({ navigation }) => {
 
   const [visibleMessage, setVisibleMessage] = useState(false);
   const [message, setMessage] = useState("");
+  const [ cartData, setCartData] = useState("");
 
   const showModal = () => setVisibleMessage(true);
   const hideModal = () => setVisibleMessage(false);
@@ -65,19 +67,25 @@ const ScanBody = ({ navigation }) => {
     }
   };
 
-  const onSuccess = (e: any) => {
+  const onSuccess = async (e: any) => {
     const scan_data: any = e.data;
     console.log(`scanned data`, scan_data);
     const product_id = scan_data.split("product/")[1];
+    const user_id = await getUserIdFromToken();
     if (product_id && product_id != "") {
       const data = {
         product_id,
         type: "app",
+        user_id,
       };
       getProduct(data).then((product) => {
         if (product.success) {
           setProduct(product.data);
-          if (product?.data?.payment_status == 1) {
+          if (
+            product?.data?.payment_status == 1 &&
+            userId &&
+            userId == product?.data?.buyer_id
+          ) {
             Toast.show({
               type: ALERT_TYPE.SUCCESS,
               title: "Thanks",
@@ -140,7 +148,7 @@ const ScanBody = ({ navigation }) => {
     }
     if (userId && userId == product?.buyer_id && product?.payment_status == 1) {
       // unpaid  "Open Scanner"
-      setVisible(false);
+      setVisible(true);
     }
     if (userId && userId == product?.buy_id && product?.payment_status == 2) {
       // paid  "Continue Shopping"
@@ -255,7 +263,14 @@ const ScanBody = ({ navigation }) => {
                     const data = {
                       user_id: userId,
                       products: [product?.product_id],
-                    };
+                      total_amount: product?.product_cost,
+                      products_img: [product?.product_file],
+                      products_cost: [product?.product_cost],
+                    }
+                    setCartData(JSON.stringify(data))
+                    stripeHandle();
+
+                    return;
                     const encodedData = Buffer.from(
                       JSON.stringify(data)
                     ).toString("base64");
@@ -300,6 +315,11 @@ const ScanBody = ({ navigation }) => {
               product?.payment_status == 2 // paid
                 ? "You are the owner"
                 : null}
+              {userId &&
+              userId != product?.buy_id &&
+              product?.payment_status == 2 // paid
+                ? "Check another product"
+                : null}
             </Text>
             <Text
               style={{
@@ -329,6 +349,11 @@ const ScanBody = ({ navigation }) => {
               product?.payment_status == 2 // paid
                 ? "You have confirmed receipt of the item, funds will be released to the seller and you will receive a nft as a collectible receipt "
                 : null}
+              {userId &&
+              userId != product?.buy_id &&
+              product?.payment_status == 2 // paid
+                ? "This product is already sold, plz find another product"
+                : null}
             </Text>
             <View
               style={{ display: "flex", flexDirection: "row", width: "100%" }}
@@ -350,13 +375,17 @@ const ScanBody = ({ navigation }) => {
                     {product?.payment_status == 0 // unclaimed
                       ? "ADD TO CART"
                       : null}
-                    {product?.payment_status == 1 // claimed
+                    {userId &&
+                    userId != product?.buy_id &&
+                    product?.payment_status == 1 // claimed
                       ? "Similar Items"
                       : null}
-                    {product?.payment_status == 2 // unpaid
+                    {userId &&
+                    userId == product?.buy_id &&
+                    product?.payment_status == 1 // unpaid
                       ? "Open Scanner"
                       : null}
-                    {product?.payment_status == 3 // paid
+                    {product?.payment_status == 2 // paid
                       ? "Continue Shopping"
                       : null}
                   </Text>
@@ -379,13 +408,17 @@ const ScanBody = ({ navigation }) => {
                     {product?.payment_status == 0 // unclaimed
                       ? "OPEN PAGE"
                       : null}
-                    {product?.payment_status == 1 // claimed
+                    {userId &&
+                    userId != product?.buy_id &&
+                    product?.payment_status == 1 // claimed
                       ? "Message Owner"
                       : null}
-                    {product?.payment_status == 2 // unpaid
+                    {userId &&
+                    userId == product?.buy_id &&
+                    product?.payment_status == 1 // unpaid
                       ? "Refund Purchase"
                       : null}
-                    {product?.payment_status == 3 // paid
+                    {product?.payment_status == 2 // paid
                       ? "Collectibles"
                       : null}
                   </Text>
@@ -466,11 +499,11 @@ const ScanBody = ({ navigation }) => {
           <Input
             placeholder="Please message"
             onChangeText={(text) => {
-              setMessage(text); 
+              setMessage(text);
             }}
-          /> 
+          />
           <Button
-            onPress={() => sendMessage()} 
+            onPress={() => sendMessage()}
             title="Send"
             buttonStyle={{
               backgroundColor: "rgba(78, 116, 289, 1)",
@@ -479,9 +512,10 @@ const ScanBody = ({ navigation }) => {
             containerStyle={{
               width: "100%",
             }}
-          /> 
+          />
         </Dialog>
       </View>
+      <Payment cartData={cartData}/>
     </View>
   );
 };
