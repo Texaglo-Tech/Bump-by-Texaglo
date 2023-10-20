@@ -11,5 +11,6 @@
     "github": "https://github.com/texaglo",
     "twitter": "https://twitter.com/Bump739096",
     "app": "https://drive.google.com/file/d/1oLIWJUYaPRp4bW6dlRzhThcLSuOpyBoF/view?usp=drive_link",
-    "crossmint": "https://crossmint.texaglo.com"
+    "crossmint": "https://crossmint.texaglo.com",
+    "stripe_pubkey": "pk_test_51O2pevERVjC7tdMDTqjoKNtaZ7TuS8Pyo3f30hCVZdoZC6Uf0n4V1trlil1uftxooGRlwhhmqb3L2f9WWto3mKN70092mXP3Bm"
 }

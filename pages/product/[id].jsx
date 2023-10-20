@@ -8,10 +8,12 @@ import { toast } from "react-toastify";
 import { getProduct } from "../../api";
 import { Grid } from "@mui/material";
 import jwt from 'jsonwebtoken';
+import { useGlobal } from "../../context/GlobalContext";
 
 const config = require("./../../config.json");
 
 const Product = ({id}) => {
+  const {paymentVisibleHandle, cartDataHandle} = useGlobal();
   const [product, setProduct] = useState(null)
 
   // Encryption function
@@ -30,18 +32,27 @@ const Product = ({id}) => {
   };
 
   const payHandle = async () => {
-    
+
+    paymentVisibleHandle(true);
+
     const decodedToken = jwt.decode(localStorage.getItem("token"));
     
     const user_id = decodedToken.id;
+
     const data = {
       user_id,
       products: [id],
+      total_amount: product?.product_cost,
+      products_img: [product?.product_file],
+      products_cost: [product?.product_cost],
     };
+
+    cartDataHandle(JSON.stringify(data))
+
     const encodedData = Buffer.from(JSON.stringify(data)).toString("base64");
     const key = encryptMessage(encodedData, 5);
     console.log("encryptKey", key);
-    window.open(`${config.crossmint}/?${key}`, "_blank");
+    // window.open(`${config.crossmint}/?${key}`, "_blank");
   };
 
   const getProductInfo = async () => {
@@ -61,8 +72,6 @@ const Product = ({id}) => {
   useEffect(()=>{
     getProductInfo()
   }, [])
-
-
 
   return (
     <>

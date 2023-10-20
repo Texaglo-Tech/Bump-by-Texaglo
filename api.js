@@ -25,6 +25,11 @@ export const getUserIdFromToken = ()=>{
     return decodedToken.id
 }
 
+export const getStripeIDFromToken = ()=>{
+    const decodedToken = jwt.decode(localStorage.getItem("token"));
+    return decodedToken?.stripe_account
+}
+
 export const getCurrentProductId = ()=>{
     const id = localStorage.getItem("product_id");
     return id
@@ -241,7 +246,8 @@ export const checkAuthentication = async (router) => {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3000,
         });
-        localStorage.removeItem("token")
+        console.log(err)
+        if(err.response.status == 401 && err.response.data.success) localStorage.setItem("token", err.response.data.token)
         router.push("/login")
         return {success:false, message: "Server Error"}
     }
@@ -542,6 +548,27 @@ export const aiChat = async (data) => {
     try {
         const res = (await api.post(`${config.backend_url}/api/product/ai_chat`, data)).data;
         return res
+    }catch(err){
+        return {success:false, message: "Server Error"}
+    }
+}
+
+
+export const createPayment = async (data) => {
+    console.log("creatPayment...");
+    try {
+      const res = (await api.post(`${config.backend_url}/api/payment/create_payment`, data)).data;
+      return res;
+    } catch (err) {
+      return { success: false, message: "Server Error" };
+    }
+}; 
+
+
+export const getOauthStripe = async (data) => {
+    try {
+        const res = await api.post(`${config.backend_url}/api/payment/get_oauth`, data);
+        return res.data
     }catch(err){
         return {success:false, message: "Server Error"}
     }

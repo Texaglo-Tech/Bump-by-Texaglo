@@ -14,7 +14,11 @@ const GlobalContext = createContext({
     responsiveVisibleHandle:()=>{},
     editProduct: false,
     editProductHandle: ()=>{},
-    editproductDataHandle: ()=>{}
+    editproductDataHandle: ()=>{},
+    paymentVisible: false,
+    paymentVisibleHandle: (data) =>{},
+    cartData: undefined,
+    cartDataHandle:(data)=>{}
 });
 
 const GlobalProviders = (props) => {
@@ -24,6 +28,9 @@ const GlobalProviders = (props) => {
     const [responseVisible, setResponseVisible] = useState(false);
 
     const [editProduct, setEditProduct] = useState(false);
+
+    const [paymentVisible, setPaymentVisible] = useState(false);
+    const [cartData, setCartData] = useState()
 
     const [product_data, setProductData] = useState({        
         product_name: "",
@@ -48,6 +55,14 @@ const GlobalProviders = (props) => {
         product_file: null,
         product_id:""
     });
+
+    const cartDataHandle = (data) =>{
+        setCartData(data)
+    }
+
+    const paymentVisibleHandle = (data) =>{
+        setPaymentVisible(data)
+    }
 
     const setAddress = useCallback(
         async (addr) => {
@@ -97,6 +112,8 @@ const GlobalProviders = (props) => {
         product_data,
         responseVisible,
         editProduct,
+        paymentVisible,
+        cartData,
         setAddress,
         activeSubMenuHandle,
         activeNavbarHandle,
@@ -104,7 +121,9 @@ const GlobalProviders = (props) => {
         downSubMenuHandle,
         responsiveVisibleHandle,
         editProductHandle,
-        editproductDataHandle
+        editproductDataHandle,
+        paymentVisibleHandle,
+        cartDataHandle
     };
 
     return (

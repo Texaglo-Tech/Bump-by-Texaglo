@@ -8,7 +8,7 @@ import NavProfile from "../NavProfile/NavProfile";
 import { Connection } from "@solana/web3.js";
 import { getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { getRefer, getUserIdFromToken } from "../../api";
+import { getOauthStripe, getRefer, getStripeIDFromToken, getUserIdFromToken } from "../../api";
 import { toast } from "react-toastify";
 
 const config = require("./../../config.json");
@@ -18,6 +18,8 @@ const UserProfile = () => {
   const [nft_count, setNFTCount] = useState(0);
   const [refer, setRefer] = useState([]);
   const [refer_link, setReferLink] = useState("");
+  const [stripe_id, setStripeID] = useState();
+  
 
   const fetchWalletForNFTs = async (address) => {
     const connection = new Connection(config.mainnetRPC, "confirmed");
@@ -58,6 +60,8 @@ const UserProfile = () => {
         }
       });
     }
+    // getStripeIDFromToken
+    setStripeID(getStripeIDFromToken());
   }, []);
 
   const copyHandle = () => {
@@ -69,6 +73,15 @@ const UserProfile = () => {
       autoClose: 3000,
     });
   };
+
+  const connect = async()=>{
+    const data = {
+      user_id: getUserIdFromToken(),
+    }
+    const res = await getOauthStripe(data);
+    if(res.success) window.open(res.message, "_blank")
+    console.log(res)
+  }
 
   return (
     <>
@@ -144,6 +157,17 @@ const UserProfile = () => {
             -WHEN YOU PURCHASE A POINT YOUR ENTRY WILL COUNT AS 1 POINT X N OF
             UNCLAIMED POINTS.
           </p>
+        </div>       
+      </div>
+      <div className={Style.user_details_section}>
+        <div>
+          <h3>Please connect your stripe</h3>
+          <div>
+            <h4>AccountID: {stripe_id} </h4>
+            <button onClick={connect} className={Style.user_details_first_btn}>
+              <h4 className={Style.user_details_first_h4}>Connect</h4>
+            </button>
+          </div>
         </div>
       </div>
     </>
